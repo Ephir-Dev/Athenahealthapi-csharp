@@ -1,0 +1,105 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Athena Health
+  license:
+    name: MIT
+servers:
+  - url: https://api.athenahealth.com/
+
+components:
+  securitySchemes:
+    defaultSecurityScheme:
+      type: oauth2
+      description: This API uses OAuth 2 with the clientCredentials grant flow. [More info](https://api.example.com/docs/auth)
+      flows:
+        clientCredentials:
+          tokenUrl: /oauthpreview/token
+          scopes: {}
+  schemas:
+    PracticesInformation:
+      required:
+        - iscoordinatorsender
+        - hasclinicals
+      properties:
+        iscoordinatorsender:
+          type: boolean
+        hasclinicals:
+          type: boolean
+        name:
+          type: string
+        golivedate:
+          type: string
+        experiencemode:
+          type: string
+        hascommunicator:
+          type: boolean
+        iscoordinatorreceiver:
+          type: boolean
+        hascollector:
+          type: boolean
+        practiceid:
+          type: string
+    PracticesInformationList:
+      required:
+        - totalcount
+        - practiceinfo
+      properties:
+        totalcount:
+          type: integer
+          format: int32
+          x-ms-client-name: TotalCount
+        practiceinfo:
+          type: array
+          x-ms-client-name: PracticeInfo
+          items:
+            $ref: "#/components/schemas/PracticesInformation"
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+security:
+  - defaultSecurityScheme: []
+
+paths:
+  /practiceinfo:
+    get:
+      summary: Get available practice IDs
+      operationId: getPracticeInfo
+      parameters:
+        - name: limit
+          in: query
+          description: Number of entries to return (default 1500, max 5000)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            maximum: 5000
+        - name: offset
+          in: query
+          description: Starting point of entries; 0-indexed
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Array of available practices
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/PracticesInformation"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
