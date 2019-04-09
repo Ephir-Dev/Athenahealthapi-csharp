@@ -27,7 +27,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='offset'>
             /// Starting point of entries; 0-indexed
             /// </param>
-            public static PracticesInformation GetPracticeInfo(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?))
+            public static PracticesInformationList GetPracticeInfo(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?))
             {
                 return operations.GetPracticeInfoAsync(limit, offset).GetAwaiter().GetResult();
             }
@@ -47,9 +47,49 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PracticesInformation> GetPracticeInfoAsync(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PracticesInformationList> GetPracticeInfoAsync(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetPracticeInfoWithHttpMessagesAsync(limit, offset, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Get department IDs
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='limit'>
+            /// Number of entries to return (default 1500, max 5000)
+            /// </param>
+            /// <param name='offset'>
+            /// Starting point of entries; 0-indexed
+            /// </param>
+            public static DepartmentInformationList GetDepartments(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?))
+            {
+                return operations.GetDepartmentsAsync(limit, offset).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get department IDs
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='limit'>
+            /// Number of entries to return (default 1500, max 5000)
+            /// </param>
+            /// <param name='offset'>
+            /// Starting point of entries; 0-indexed
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<DepartmentInformationList> GetDepartmentsAsync(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetDepartmentsWithHttpMessagesAsync(limit, offset, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

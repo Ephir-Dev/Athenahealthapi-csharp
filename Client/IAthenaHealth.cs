@@ -60,7 +60,24 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<PracticesInformation>> GetPracticeInfoWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PracticesInformationList>> GetPracticeInfoWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Get department IDs
+        /// </summary>
+        /// <param name='limit'>
+        /// Number of entries to return (default 1500, max 5000)
+        /// </param>
+        /// <param name='offset'>
+        /// Starting point of entries; 0-indexed
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

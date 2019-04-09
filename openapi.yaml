@@ -54,6 +54,92 @@ components:
           x-ms-client-name: PracticeInfo
           items:
             $ref: "#/components/schemas/PracticesInformation"
+    DepartmentInformation:
+      required:
+        - creditcardtypes
+        - timezoneoffset
+      properties:
+        creditcardtypes:
+          type: array
+          items:
+            type: string
+        timezoneoffset:
+          type: integer
+          format: int32
+        singleappointmentcontractmax:
+          type: string
+        state:
+          type: string
+        placeofservicefacility:
+          type: boolean
+        latitude:
+          type: string
+        departmentid:
+          type: string
+        address:
+          type: string
+        placeofservicetypeid:
+          type: string
+        longitude:
+          type: string
+        clinicals:
+          type: string
+        timezone:
+          type: integer
+          format: int32
+        name:
+          type: string
+        patientdepartmentname:
+          type: string
+        chartsharinggroupid:
+          type: string
+        placeofservicetypename:
+          type: string
+        zip:
+          type: string
+        timezonename:
+          type: string
+        communicatorbrandid:
+          type: string
+        medicationhistoryconsent:
+          type: boolean
+        ishospitaldepartment:
+          type: boolean
+        providergroupid:
+          type: string
+        portalurl:
+          type: string
+        city:
+          type: string
+        servicedepartment:
+          type: boolean
+        oneyearcontractmax:
+          type: string
+        fax:
+          type: string
+        providergroupname:
+          type: string
+        doesnotobservedst:
+          type: string
+        phone:
+          type: string
+        ecommercecreditcardtypes:
+          type: array
+          items:
+            type: string
+    DepartmentInformationList:
+      required:
+        - totalcount
+        - departments
+      properties:
+        totalcount:
+          type: integer
+          format: int32
+          x-ms-client-name: TotalCount
+        departments:
+          type: array
+          items:
+            $ref: "#/components/schemas/DepartmentInformation"
     Error:
       required:
         - code
@@ -95,7 +181,40 @@ paths:
           content:
             application/json:    
               schema:
-                $ref: "#/components/schemas/PracticesInformation"
+                $ref: "#/components/schemas/PracticesInformationList"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /departments:
+    get:
+      summary: Get department IDs
+      operationId: getDepartments
+      parameters:
+        - name: limit
+          in: query
+          description: Number of entries to return (default 1500, max 5000)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            maximum: 5000
+        - name: offset
+          in: query
+          description: Starting point of entries; 0-indexed
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Array of available departments
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/DepartmentInformationList"
         default:
           description: unexpected error
           content:
