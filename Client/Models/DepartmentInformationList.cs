@@ -59,6 +59,16 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Departments");
             }
+            if (Departments != null)
+            {
+                foreach (var element in Departments)
+                {
+                    if (element != null)
+                    {
+                        element.Validate();
+                    }
+                }
+            }
         }
     }
 }

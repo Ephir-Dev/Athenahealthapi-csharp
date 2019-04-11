@@ -67,9 +67,20 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='offset'>
             /// Starting point of entries; 0-indexed
             /// </param>
-            public static DepartmentInformationList GetDepartments(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?))
+            /// <param name='hospitalonly'>
+            /// If set to true, return hospital only departments.
+            /// </param>
+            /// <param name='showalldepartments'>
+            /// By default, departments hidden in the portal do not appear. When this is
+            /// set to true, that restriction is not applied. Default is false.
+            /// </param>
+            /// <param name='providerlist'>
+            /// If set to true, list providers who see patients in this department. Default
+            /// is false.
+            /// </param>
+            public static DepartmentInformationList GetDepartments(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?), bool? hospitalonly = default(bool?), bool? showalldepartments = default(bool?), bool? providerlist = default(bool?))
             {
-                return operations.GetDepartmentsAsync(limit, offset).GetAwaiter().GetResult();
+                return operations.GetDepartmentsAsync(limit, offset, hospitalonly, showalldepartments, providerlist).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -84,12 +95,23 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='offset'>
             /// Starting point of entries; 0-indexed
             /// </param>
+            /// <param name='hospitalonly'>
+            /// If set to true, return hospital only departments.
+            /// </param>
+            /// <param name='showalldepartments'>
+            /// By default, departments hidden in the portal do not appear. When this is
+            /// set to true, that restriction is not applied. Default is false.
+            /// </param>
+            /// <param name='providerlist'>
+            /// If set to true, list providers who see patients in this department. Default
+            /// is false.
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<DepartmentInformationList> GetDepartmentsAsync(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<DepartmentInformationList> GetDepartmentsAsync(this IAthenaHealth operations, int? limit = default(int?), int? offset = default(int?), bool? hospitalonly = default(bool?), bool? showalldepartments = default(bool?), bool? providerlist = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetDepartmentsWithHttpMessagesAsync(limit, offset, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetDepartmentsWithHttpMessagesAsync(limit, offset, hospitalonly, showalldepartments, providerlist, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

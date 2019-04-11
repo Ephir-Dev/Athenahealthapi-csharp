@@ -6,6 +6,7 @@
 
 namespace AndriiKurdiumov.AuthenaHealth.Client.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// Initializes a new instance of the DepartmentInformation class.
         /// </summary>
-        public DepartmentInformation(IList<string> creditcardtypes = default(IList<string>), int? timezoneoffset = default(int?), string singleappointmentcontractmax = default(string), string state = default(string), bool? placeofservicefacility = default(bool?), string latitude = default(string), string departmentid = default(string), string address = default(string), string placeofservicetypeid = default(string), string longitude = default(string), string clinicals = default(string), int? timezone = default(int?), string name = default(string), string patientdepartmentname = default(string), string chartsharinggroupid = default(string), string placeofservicetypename = default(string), string zip = default(string), string timezonename = default(string), string communicatorbrandid = default(string), bool? medicationhistoryconsent = default(bool?), bool? ishospitaldepartment = default(bool?), string providergroupid = default(string), string portalurl = default(string), string city = default(string), bool? servicedepartment = default(bool?), string oneyearcontractmax = default(string), string fax = default(string), string providergroupname = default(string), string doesnotobservedst = default(string), string phone = default(string), IList<string> ecommercecreditcardtypes = default(IList<string>))
+        public DepartmentInformation(IList<string> creditcardtypes, int timezoneoffset, string singleappointmentcontractmax = default(string), string state = default(string), bool? placeofservicefacility = default(bool?), string latitude = default(string), string departmentid = default(string), string address = default(string), string placeofservicetypeid = default(string), string longitude = default(string), string clinicals = default(string), int? timezone = default(int?), string name = default(string), string patientdepartmentname = default(string), string chartsharinggroupid = default(string), string placeofservicetypename = default(string), string zip = default(string), string timezonename = default(string), string communicatorbrandid = default(string), bool? medicationhistoryconsent = default(bool?), bool? ishospitaldepartment = default(bool?), string providergroupid = default(string), string portalurl = default(string), string city = default(string), bool? servicedepartment = default(bool?), string oneyearcontractmax = default(string), string fax = default(string), string providergroupname = default(string), string doesnotobservedst = default(string), string phone = default(string), IList<string> ecommercecreditcardtypes = default(IList<string>))
         {
             Creditcardtypes = creditcardtypes;
             Timezoneoffset = timezoneoffset;
@@ -73,7 +74,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "timezoneoffset")]
-        public int? Timezoneoffset { get; set; }
+        public int Timezoneoffset { get; set; }
 
         /// <summary>
         /// </summary>
@@ -220,5 +221,18 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         [JsonProperty(PropertyName = "ecommercecreditcardtypes")]
         public IList<string> Ecommercecreditcardtypes { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            if (Creditcardtypes == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Creditcardtypes");
+            }
+        }
     }
 }

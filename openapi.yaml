@@ -16,6 +16,24 @@ components:
         clientCredentials:
           tokenUrl: /oauthpreview/token
           scopes: {}
+  parameters:
+    limit: 
+      name: limit
+      in: query
+      description: "Number of entries to return (default 1500, max 5000)"
+      required: false
+      schema:
+        type: integer
+        format: int32
+        maximum: 5000
+    offset: 
+      name: offset
+      in: query
+      description: Starting point of entries; 0-indexed
+      required: false
+      schema:
+        type: integer
+        format: int32
   schemas:
     PracticesInformation:
       required:
@@ -208,6 +226,27 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: hospitalonly
+          in: query
+          description: 
+            If set to true, return hospital only departments.
+          required: false
+          schema:
+            type: boolean
+        - name: showalldepartments
+          in: query
+          description: 
+            By default, departments hidden in the portal do not appear. When this is set to true, that restriction is not applied. Default is false.
+          required: false
+          schema:
+            type: boolean
+        - name: providerlist
+          in: query
+          description: 
+            If set to true, list providers who see patients in this department. Default is false.
+          required: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: Array of available departments

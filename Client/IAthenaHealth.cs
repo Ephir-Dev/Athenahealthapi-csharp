@@ -34,6 +34,16 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         JsonSerializerSettings DeserializationSettings { get; }
 
         /// <summary>
+        /// Number of entries to return (default 1500, max 5000)
+        /// </summary>
+        int? Limit { get; set; }
+
+        /// <summary>
+        /// Starting point of entries; 0-indexed
+        /// </summary>
+        int? Offset { get; set; }
+
+        /// <summary>
         /// Client API version.
         /// </summary>
         string ApiVersion { get; }
@@ -71,13 +81,25 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='offset'>
         /// Starting point of entries; 0-indexed
         /// </param>
+        /// <param name='hospitalonly'>
+        /// If set to true, return hospital only departments.
+        /// </param>
+        /// <param name='showalldepartments'>
+        /// By default, departments hidden in the portal do not appear. When
+        /// this is set to true, that restriction is not applied. Default is
+        /// false.
+        /// </param>
+        /// <param name='providerlist'>
+        /// If set to true, list providers who see patients in this department.
+        /// Default is false.
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), bool? hospitalonly = default(bool?), bool? showalldepartments = default(bool?), bool? providerlist = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

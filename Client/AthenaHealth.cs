@@ -35,6 +35,16 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         public JsonSerializerSettings DeserializationSettings { get; private set; }
 
         /// <summary>
+        /// Number of entries to return (default 1500, max 5000)
+        /// </summary>
+        public int? Limit { get; set; }
+
+        /// <summary>
+        /// Starting point of entries; 0-indexed
+        /// </summary>
+        public int? Offset { get; set; }
+
+        /// <summary>
         /// Client API version.
         /// </summary>
         public string ApiVersion { get; private set; }
@@ -487,6 +497,17 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='offset'>
         /// Starting point of entries; 0-indexed
         /// </param>
+        /// <param name='hospitalonly'>
+        /// If set to true, return hospital only departments.
+        /// </param>
+        /// <param name='showalldepartments'>
+        /// By default, departments hidden in the portal do not appear. When this is
+        /// set to true, that restriction is not applied. Default is false.
+        /// </param>
+        /// <param name='providerlist'>
+        /// If set to true, list providers who see patients in this department. Default
+        /// is false.
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -502,7 +523,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), bool? hospitalonly = default(bool?), bool? showalldepartments = default(bool?), bool? providerlist = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (limit > 5000)
             {
@@ -518,6 +539,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("limit", limit);
                 tracingParameters.Add("offset", offset);
+                tracingParameters.Add("hospitalonly", hospitalonly);
+                tracingParameters.Add("showalldepartments", showalldepartments);
+                tracingParameters.Add("providerlist", providerlist);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetDepartments", tracingParameters);
@@ -533,6 +557,18 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (offset != null)
             {
                 _queryParameters.Add(string.Format("offset={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(offset, SerializationSettings).Trim('"'))));
+            }
+            if (hospitalonly != null)
+            {
+                _queryParameters.Add(string.Format("hospitalonly={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(hospitalonly, SerializationSettings).Trim('"'))));
+            }
+            if (showalldepartments != null)
+            {
+                _queryParameters.Add(string.Format("showalldepartments={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showalldepartments, SerializationSettings).Trim('"'))));
+            }
+            if (providerlist != null)
+            {
+                _queryParameters.Add(string.Format("providerlist={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(providerlist, SerializationSettings).Trim('"'))));
             }
             if (apiVersion != null)
             {
