@@ -678,5 +678,285 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             return _result;
         }
 
+        /// <summary>
+        /// Register new patient
+        /// </summary>
+        /// <param name='address1'>
+        /// Patient's address - 1st line (Max length: 100)
+        /// </param>
+        /// <param name='address2'>
+        /// Patient's address - 2nd line (Max length: 100)
+        /// </param>
+        /// <param name='city'>
+        /// Patient's city (Max length: 30)
+        /// </param>
+        /// <param name='departmentid'>
+        /// Primary (registration) department ID.
+        /// </param>
+        /// <param name='dob'>
+        /// Patient's DOB (mm/dd/yyyy)
+        /// </param>
+        /// <param name='email'>
+        /// Patient's email address. 'declined' can be used to indicate just that.
+        /// </param>
+        /// <param name='firstname'>
+        /// Patient's first name
+        /// </param>
+        /// <param name='homephone'>
+        /// The patient's home phone number. Invalid numbers in a GET will be ignored.
+        /// Patient phone numbers and other data may change, and one phone number may
+        /// be associated with multiple patients. You are responsible for taking
+        /// additional steps to verify patient identity and for using this data in
+        /// accordance with applicable law, including HIPAA. Only phone numbers that
+        /// exist in the North American Naming Plan (NANP) are acceptable for input.
+        /// </param>
+        /// <param name='lastname'>
+        /// Patient's last name
+        /// </param>
+        /// <param name='mobilephone'>
+        /// The patient's mobile phone number. On input, 'declined' can be used to
+        /// indicate no number. (Alternatively, hasmobile can also be set to false.
+        /// "declined" simply does this for you.) Invalid numbers in a GET will be
+        /// ignored. Patient phone numbers and other data may change, and one phone
+        /// number may be associated with multiple patients. You are responsible for
+        /// taking additional steps to verify patient identity and for using this data
+        /// in accordance with applicable law, including HIPAA. Only phone numbers that
+        /// exist in the North American Naming Plan (NANP) are acceptable for input.
+        /// </param>
+        /// <param name='state'>
+        /// Patient's state (2 letter abbreviation)
+        /// </param>
+        /// <param name='zip'>
+        /// Patient's zip. Matching occurs on first 5 characters.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="ErrorException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<object>> CreatePatientWithHttpMessagesAsync(string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("address1", address1);
+                tracingParameters.Add("address2", address2);
+                tracingParameters.Add("city", city);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("dob", dob);
+                tracingParameters.Add("email", email);
+                tracingParameters.Add("firstname", firstname);
+                tracingParameters.Add("homephone", homephone);
+                tracingParameters.Add("lastname", lastname);
+                tracingParameters.Add("mobilephone", mobilephone);
+                tracingParameters.Add("state", state);
+                tracingParameters.Add("zip", zip);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "CreatePatient", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "patients").ToString();
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("POST");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            var values = new List<KeyValuePair<string, string>>();
+            if(address1 != null)
+            {
+                values.Add(new KeyValuePair<string,string>("address1", address1));
+            }
+            if(address2 != null)
+            {
+                values.Add(new KeyValuePair<string,string>("address2", address2));
+            }
+            if(city != null)
+            {
+                values.Add(new KeyValuePair<string,string>("city", city));
+            }
+            if(departmentid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("departmentid", departmentid?.ToString()));
+            }
+            if(dob != null)
+            {
+                values.Add(new KeyValuePair<string,string>("dob", dob));
+            }
+            if(email != null)
+            {
+                values.Add(new KeyValuePair<string,string>("email", email));
+            }
+            if(firstname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("firstname", firstname));
+            }
+            if(homephone != null)
+            {
+                values.Add(new KeyValuePair<string,string>("homephone", homephone));
+            }
+            if(lastname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("lastname", lastname));
+            }
+            if(mobilephone != null)
+            {
+                values.Add(new KeyValuePair<string,string>("mobilephone", mobilephone));
+            }
+            if(state != null)
+            {
+                values.Add(new KeyValuePair<string,string>("state", state));
+            }
+            if(zip != null)
+            {
+                values.Add(new KeyValuePair<string,string>("zip", zip));
+            }
+            var _formContent = new FormUrlEncodedContent(values);
+            _httpRequest.Content = _formContent;
+            // Set Credentials
+            if (Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200 && (int)_statusCode != 400 && (int)_statusCode != 500)
+            {
+                var ex = new ErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                try
+                {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    Error _errorBody =  SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                    if (_errorBody != null)
+                    {
+                        ex.Body = _errorBody;
+                    }
+                }
+                catch (JsonException)
+                {
+                    // Ignore the exception
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<object>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<PatientCreatedResponse>>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 400)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 500)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
     }
 }

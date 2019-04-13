@@ -158,16 +158,61 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/DepartmentInformation"
-    Error:
-      required:
-        - code
-        - message
+    PatientCreatedResponse:
       properties:
-        code:
+        patientid:
           type: integer
           format: int32
-        message:
+          x-ms-client-name: PatientId
+    Error:
+      required:
+        - error
+      properties:
+        missingfields:
+          type: array
+          items:
+            type: string
+        fields:
+          type: array
+          items:
+            type: string
+        error:
           type: string
+    CreatePersonForm:
+      required:
+        - dob
+      properties:
+        address1:
+          description: "Patient's address - 1st line (Max length: 100)"
+          type: string
+        address2:
+          description: "Patient's address - 2nd line (Max length: 100)"
+          type: string
+        city:
+          description: "Patient's city (Max length: 30)"
+          type: string
+        departmentid:
+          description: Primary (registration) department ID.
+          type: integer
+          format: int32
+        dob:
+          description: Patient's DOB (mm/dd/yyyy)
+          type: string
+        email:
+          description: Patient's email address. 'declined' can be used to indicate just that.
+          type: string
+        firstname:
+          description: Patient's first name
+          type: string
+  requestBodies:
+    CreatePerson:
+      x-ms-client-name: createPerson
+      required: true
+      content:
+        'application/x-www-form-urlencoded':
+          schema:
+            $ref: '#/components/schemas/CreatePersonForm'
+
 
 security:
   - defaultSecurityScheme: []
@@ -254,6 +299,81 @@ paths:
             application/json:    
               schema:
                 $ref: "#/components/schemas/DepartmentInformationList"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"     
+  /patients:
+    post:
+      summary: Register new patient
+      operationId: createPatient
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              properties:
+                address1:
+                  description: "Patient's address - 1st line (Max length: 100)"
+                  type: string
+                address2:
+                  description: "Patient's address - 2nd line (Max length: 100)"
+                  type: string
+                city:
+                  description: "Patient's city (Max length: 30)"
+                  type: string
+                departmentid:
+                  description: Primary (registration) department ID.
+                  type: integer
+                  format: int32
+                dob:
+                  description: Patient's DOB (mm/dd/yyyy)
+                  type: string
+                email:
+                  description: Patient's email address. 'declined' can be used to indicate just that.
+                  type: string
+                firstname:
+                  description: Patient's first name
+                  type: string
+                homephone:
+                  description: The patient's home phone number. Invalid numbers in a GET will be ignored. Patient phone numbers and other data may change, and one phone number may be associated with multiple patients. You are responsible for taking additional steps to verify patient identity and for using this data in accordance with applicable law, including HIPAA. Only phone numbers that exist in the North American Naming Plan (NANP) are acceptable for input.
+                  type: string
+                lastname:
+                  description: Patient's last name
+                  type: string
+                mobilephone:
+                  description: The patient's mobile phone number. On input, 'declined' can be used to indicate no number. (Alternatively, hasmobile can also be set to false. "declined" simply does this for you.) Invalid numbers in a GET will be ignored. Patient phone numbers and other data may change, and one phone number may be associated with multiple patients. You are responsible for taking additional steps to verify patient identity and for using this data in accordance with applicable law, including HIPAA. Only phone numbers that exist in the North American Naming Plan (NANP) are acceptable for input.
+                  type: string
+                state:
+                  description: Patient's state (2 letter abbreviation)
+                  type: string
+                zip:
+                  description: Patient's zip. Matching occurs on first 5 characters.
+                  type: string
+      responses:
+        '200':
+          description: Array of information about created patients
+          content:
+            application/json:    
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PatientCreatedResponse"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
         default:
           description: unexpected error
           content:

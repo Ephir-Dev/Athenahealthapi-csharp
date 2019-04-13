@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using AndriiKurdiumov.AuthenaHealth.Client;
+using AndriiKurdiumov.AuthenaHealth.Client.Models;
 using Microsoft.Rest;
 
 namespace sample
@@ -17,6 +19,50 @@ namespace sample
             }
 
             tokenKey = args[0];
+            PrintDepartments();
+
+            CreatePatient();
+        }
+
+        private static void CreatePatient()
+        {
+            var clientApi = GetApi(195900);
+            var patientResponse = clientApi.CreatePatient(
+                address1: "adress",
+                address2: string.Empty,
+                city: "Boston",
+                departmentid: 1,
+                email: "test@test.com",
+                dob: "03/01/1959",
+                firstname: "Andy",
+                //homephone: "declined",
+                lastname: "Doe",
+                //mobilephone: "declined",
+                state: "MA",
+                zip: "02111");
+            switch (patientResponse)
+            {
+                case Error error:
+                    Console.WriteLine(error.ErrorProperty);
+                    if (error.Missingfields != null)
+                    {
+                        Console.WriteLine(string.Join(", ", error.Missingfields));
+                    }
+
+                    return;
+                case IList<PatientCreatedResponse> created:
+                    Console.WriteLine("Patient created");
+                    foreach (var item in created)
+                    {
+                        Console.WriteLine(item.PatientId);
+                    }
+
+                    return;
+            }
+        }
+
+        private static void PrintDepartments()
+        {
             var api = GetApi(1);
             var practices = api.GetPracticeInfo();
             Console.WriteLine($"Practices available: {practices.TotalCount}");

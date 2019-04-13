@@ -101,5 +101,67 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), bool? hospitalonly = default(bool?), bool? showalldepartments = default(bool?), bool? providerlist = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Register new patient
+        /// </summary>
+        /// <param name='address1'>
+        /// Patient's address - 1st line (Max length: 100)
+        /// </param>
+        /// <param name='address2'>
+        /// Patient's address - 2nd line (Max length: 100)
+        /// </param>
+        /// <param name='city'>
+        /// Patient's city (Max length: 30)
+        /// </param>
+        /// <param name='departmentid'>
+        /// Primary (registration) department ID.
+        /// </param>
+        /// <param name='dob'>
+        /// Patient's DOB (mm/dd/yyyy)
+        /// </param>
+        /// <param name='email'>
+        /// Patient's email address. 'declined' can be used to indicate just
+        /// that.
+        /// </param>
+        /// <param name='firstname'>
+        /// Patient's first name
+        /// </param>
+        /// <param name='homephone'>
+        /// The patient's home phone number. Invalid numbers in a GET will be
+        /// ignored. Patient phone numbers and other data may change, and one
+        /// phone number may be associated with multiple patients. You are
+        /// responsible for taking additional steps to verify patient identity
+        /// and for using this data in accordance with applicable law,
+        /// including HIPAA. Only phone numbers that exist in the North
+        /// American Naming Plan (NANP) are acceptable for input.
+        /// </param>
+        /// <param name='lastname'>
+        /// Patient's last name
+        /// </param>
+        /// <param name='mobilephone'>
+        /// The patient's mobile phone number. On input, 'declined' can be used
+        /// to indicate no number. (Alternatively, hasmobile can also be set to
+        /// false. "declined" simply does this for you.) Invalid numbers in a
+        /// GET will be ignored. Patient phone numbers and other data may
+        /// change, and one phone number may be associated with multiple
+        /// patients. You are responsible for taking additional steps to verify
+        /// patient identity and for using this data in accordance with
+        /// applicable law, including HIPAA. Only phone numbers that exist in
+        /// the North American Naming Plan (NANP) are acceptable for input.
+        /// </param>
+        /// <param name='state'>
+        /// Patient's state (2 letter abbreviation)
+        /// </param>
+        /// <param name='zip'>
+        /// Patient's zip. Matching occurs on first 5 characters.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> CreatePatientWithHttpMessagesAsync(string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

@@ -8,6 +8,8 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     public partial class Error
@@ -23,10 +25,11 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// Initializes a new instance of the Error class.
         /// </summary>
-        public Error(int code, string message)
+        public Error(string errorProperty, IList<string> missingfields = default(IList<string>), IList<string> fields = default(IList<string>))
         {
-            Code = code;
-            Message = message;
+            Missingfields = missingfields;
+            Fields = fields;
+            ErrorProperty = errorProperty;
             CustomInit();
         }
 
@@ -37,13 +40,18 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "code")]
-        public int Code { get; set; }
+        [JsonProperty(PropertyName = "missingfields")]
+        public IList<string> Missingfields { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "message")]
-        public string Message { get; set; }
+        [JsonProperty(PropertyName = "fields")]
+        public IList<string> Fields { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "error")]
+        public string ErrorProperty { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -53,9 +61,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Message == null)
+            if (ErrorProperty == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Message");
+                throw new ValidationException(ValidationRules.CannotBeNull, "ErrorProperty");
             }
         }
     }
