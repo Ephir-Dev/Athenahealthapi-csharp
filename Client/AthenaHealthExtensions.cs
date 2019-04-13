@@ -7,6 +7,8 @@
 namespace AndriiKurdiumov.AuthenaHealth.Client
 {
     using Models;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -236,6 +238,40 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             public static async Task<object> CreatePatientAsync(this IAthenaHealth operations, string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreatePatientWithHttpMessagesAsync(address1, address2, city, departmentid, dob, email, firstname, homephone, lastname, mobilephone, state, zip, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Get a patients by ID
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            public static IList<PatientInformation> GetPatientById(this IAthenaHealth operations, int patientId)
+            {
+                return operations.GetPatientByIdAsync(patientId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get a patients by ID
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<PatientInformation>> GetPatientByIdAsync(this IAthenaHealth operations, int patientId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientByIdWithHttpMessagesAsync(patientId, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

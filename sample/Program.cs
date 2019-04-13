@@ -55,6 +55,11 @@ namespace sample
                     foreach (var item in created)
                     {
                         Console.WriteLine(item.PatientId);
+                        var patient = clientApi.GetPatientById(item.PatientId.Value)[0];
+                        Console.WriteLine($"{patient.Firstname}");
+                        Console.WriteLine($"{patient.Lastname}");
+                        Console.WriteLine($"{patient.Email}");
+                        Console.WriteLine($"{patient.Emailexistsyn}");
                     }
 
                     return;
