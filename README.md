@@ -11,5 +11,4 @@ csharp:
 ```
 
 # Legal
-Usage of this API still subject to Athenahealth terms for API usage. 
-See: https://developer.athenahealth.com/terms
+Usage of this client for Athenahealth API still subject to https://developer.athenahealth.com/terms
