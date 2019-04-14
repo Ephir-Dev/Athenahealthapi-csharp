@@ -633,6 +633,21 @@ components:
         firstname:
           description: Patient's first name
           type: string
+    PatientInformationList:
+      required:
+        - totalcount
+        - patients
+      properties:
+        totalcount:
+          type: integer
+          format: int32
+          x-ms-client-name: TotalCount
+        next:
+          type: string
+        patients:
+          type: array
+          items:
+            $ref: "#/components/schemas/PatientInformation"
     Error:
       required:
         - error
@@ -747,8 +762,40 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Error"     
+                $ref: "#/components/schemas/Error"
   /patients:
+    get:
+      summary: Search for patients
+      operationId: getPatients
+      parameters:
+        - in: query
+          name: departmentid
+          description: Primary (registration) department ID.
+          schema:
+            type: integer
+        - in: query
+          name: firstname
+          description: First name of the patient to find.
+          schema:
+            type: string
+        - in: query
+          name: lastname
+          description: Last name of the patient to find.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of available patients with given search criteria
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/PatientInformationList"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"        
     post:
       summary: Register new patient
       operationId: createPatient

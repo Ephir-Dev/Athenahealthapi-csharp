@@ -102,6 +102,26 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<DepartmentInformationList>> GetDepartmentsWithHttpMessagesAsync(int? limit = default(int?), int? offset = default(int?), bool? hospitalonly = default(bool?), bool? showalldepartments = default(bool?), bool? providerlist = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Search for patients
+        /// </summary>
+        /// <param name='departmentid'>
+        /// Primary (registration) department ID.
+        /// </param>
+        /// <param name='firstname'>
+        /// First name of the patient to find.
+        /// </param>
+        /// <param name='lastname'>
+        /// Last name of the patient to find.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<PatientInformationList>> GetPatientsWithHttpMessagesAsync(int? departmentid = default(int?), string firstname = default(string), string lastname = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Register new patient
         /// </summary>
         /// <param name='address1'>

@@ -120,6 +120,52 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Search for patients
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='departmentid'>
+            /// Primary (registration) department ID.
+            /// </param>
+            /// <param name='firstname'>
+            /// First name of the patient to find.
+            /// </param>
+            /// <param name='lastname'>
+            /// Last name of the patient to find.
+            /// </param>
+            public static PatientInformationList GetPatients(this IAthenaHealth operations, int? departmentid = default(int?), string firstname = default(string), string lastname = default(string))
+            {
+                return operations.GetPatientsAsync(departmentid, firstname, lastname).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Search for patients
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='departmentid'>
+            /// Primary (registration) department ID.
+            /// </param>
+            /// <param name='firstname'>
+            /// First name of the patient to find.
+            /// </param>
+            /// <param name='lastname'>
+            /// Last name of the patient to find.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PatientInformationList> GetPatientsAsync(this IAthenaHealth operations, int? departmentid = default(int?), string firstname = default(string), string lastname = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientsWithHttpMessagesAsync(departmentid, firstname, lastname, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Register new patient
             /// </summary>
             /// <param name='operations'>
