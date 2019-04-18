@@ -13,5 +13,10 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 3.0.100-preview3-010431'
+  inputs:
+    version: 3.0.100-preview3-010431
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
