@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\client\AndriiKurdiumov.AuthenaHealth.Client.csproj" />
+    <ProjectReference Include="..\Client\AndriiKurdiumov.AuthenaHealth.Client.csproj" />
   </ItemGroup>
 
 </Project>
