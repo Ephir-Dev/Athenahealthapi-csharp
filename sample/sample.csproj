@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="3.10.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Client\AndriiKurdiumov.AuthenaHealth.Client.csproj" />
   </ItemGroup>
 

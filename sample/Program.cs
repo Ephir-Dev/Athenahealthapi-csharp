@@ -1,33 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 using AndriiKurdiumov.AuthenaHealth.Client;
 using AndriiKurdiumov.AuthenaHealth.Client.Models;
+using IdentityModel.Client;
 using Microsoft.Rest;
 
 namespace sample
 {
     class Program
     {
-
         private static string tokenKey = "";
-        static void Main(string[] args)
+        private static string clientId = "";
+        private static string clientSecret = "";
+        private static DateTime expiresIn = DateTime.MinValue;
+
+        static async Task Main(string[] args)
         {
-            if (args.Length < 1)
+            if (args.Length < 2)
             {
-                Console.WriteLine("Specify <token>");
+                Console.WriteLine("Specify <client-id> <client-secret>");
                 return;
             }
 
-            tokenKey = args[0];
-            PrintDepartments();
+            clientId = args[0];
+            clientSecret = args[1];
 
-            CreatePatient();
+            await PrintDepartmentsAsync().ConfigureAwait(false);
+            await CreatePatientAsync().ConfigureAwait(false);
         }
 
-        private static void CreatePatient()
+        private static async Task CreatePatientAsync()
         {
-            var clientApi = GetApi(195900);
-            var patientResponse = clientApi.CreatePatient(
+            var clientApi = await GetApiAsync(195900);
+            var patientResponse = await clientApi.CreatePatientAsync(
                 address1: "adress",
                 address2: string.Empty,
                 city: "Boston",
@@ -39,7 +46,7 @@ namespace sample
                 lastname: "Doe",
                 //mobilephone: "declined",
                 state: "MA",
-                zip: "02111");
+                zip: "02111").ConfigureAwait(false);
             switch (patientResponse)
             {
                 case Error error:
@@ -66,15 +73,15 @@ namespace sample
             }
         }
 
-        private static void PrintDepartments()
+        private static async Task PrintDepartmentsAsync()
         {
-            var api = GetApi(1);
+            var api = await GetApiAsync(1).ConfigureAwait(false);
             var practices = api.GetPracticeInfo();
             Console.WriteLine($"Practices available: {practices.TotalCount}");
             foreach (var practice in practices.Practiceinfo)
             {
                 Console.WriteLine($"Name: {practice.Name}");
-                var papi = GetApi(int.Parse(practice.Practiceid));
+                var papi = await GetApiAsync(int.Parse(practice.Practiceid)).ConfigureAwait(false);
                 var departments = papi.GetDepartments();
                 Console.WriteLine($"Departments available: {departments.TotalCount}");
                 foreach (var department in departments.Departments)
@@ -84,19 +91,40 @@ namespace sample
             }
         }
 
-        private static IAthenaHealth GetApi(int practiceId)
+        private static async Task<IAthenaHealth> GetApiAsync(int practiceId)
         {
-            EnsureTokenObtained();
+            await EnsureTokenObtainedAsync();
             var credentials = new TokenCredentials(tokenKey);
             var api = new AthenaHealth(new Uri($"https://api.athenahealth.com/"), credentials);
             api.Apivariant = "preview1";
             api.Practiceid = practiceId;
             return api;
         }
-
-        private static void EnsureTokenObtained()
+        private static async Task EnsureTokenObtainedAsync()
         {
+            if (!string.IsNullOrWhiteSpace(tokenKey) && DateTime.UtcNow < expiresIn)
+            {
+                return;
+            }
+
             // get token from client data
+            var client = new HttpClient();
+            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            {
+                Address = "https://api.athenahealth.com/oauthpreview/token",
+
+                ClientId = clientId,
+                ClientSecret = clientSecret,
+            });
+
+            if (tokenResponse.IsError)
+            {
+                Console.WriteLine(tokenResponse.Error);
+                return;
+            }
+
+            tokenKey = tokenResponse.AccessToken;
+            expiresIn = new DateTime(tokenResponse.ExpiresIn);
         }
     }
 }
