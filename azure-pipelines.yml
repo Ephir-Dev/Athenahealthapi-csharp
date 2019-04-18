@@ -20,7 +20,7 @@ steps:
     version: 3.0.100-preview3-010431
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
-- script: dotnet pack --configuration $(buildConfiguration) --version-suffix "ci-$(date:yyyymmdd-hhmmss)" -o $(Build.ArtifactStagingDirectory)
+- script: dotnet pack --configuration $(buildConfiguration) --version-suffix "ci-$(Build.BuildId)" -o $(Build.ArtifactStagingDirectory)
   displayName: 'dotnet pack $(buildConfiguration)'
 #- task: NuGetCommand@2
 #  inputs:
