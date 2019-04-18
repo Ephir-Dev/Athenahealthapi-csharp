@@ -10,5 +10,10 @@ csharp:
   output-folder: Client
 ```
 
+All content of the client, generated using autorest. Just run in the root of solution:
+```
+autorest
+```
+
 # Legal
 Usage of this client for Athenahealth API still subject to https://developer.athenahealth.com/terms
