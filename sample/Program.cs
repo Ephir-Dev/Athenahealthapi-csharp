@@ -88,7 +88,9 @@ namespace sample
         {
             EnsureTokenObtained();
             var credentials = new TokenCredentials(tokenKey);
-            var api = new AthenaHealth(new Uri($"https://api.athenahealth.com/preview1/{practiceId}"), credentials);
+            var api = new AthenaHealth(new Uri($"https://api.athenahealth.com/"), credentials);
+            api.Apivariant = "preview1";
+            api.Practiceid = practiceId;
             return api;
         }
 

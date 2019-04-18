@@ -34,6 +34,16 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         JsonSerializerSettings DeserializationSettings { get; }
 
         /// <summary>
+        /// Variant of the API
+        /// </summary>
+        string Apivariant { get; set; }
+
+        /// <summary>
+        /// Id of the practice
+        /// </summary>
+        int Practiceid { get; set; }
+
+        /// <summary>
         /// Number of entries to return (default 1500, max 5000)
         /// </summary>
         int? Limit { get; set; }

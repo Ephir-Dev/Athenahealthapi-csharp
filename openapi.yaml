@@ -17,6 +17,21 @@ components:
           tokenUrl: /oauthpreview/token
           scopes: {}
   parameters:
+    apivariant: 
+      name: apivariant
+      in: path
+      description: "Variant of the API"
+      required: true
+      schema:
+        type: string
+    practiceid: 
+      name: practiceid
+      in: path
+      description: "Id of the practice"
+      required: true
+      schema:
+        type: integer
+        format: int32
     limit: 
       name: limit
       in: query
@@ -676,11 +691,13 @@ security:
   - defaultSecurityScheme: []
 
 paths:
-  /practiceinfo:
+  /{apivariant}/{practiceid}/practiceinfo:
     get:
       summary: Get available practice IDs
       operationId: getPracticeInfo
       parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
         - name: limit
           in: query
           description: Number of entries to return (default 1500, max 5000)
@@ -709,11 +726,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /departments:
+  /{apivariant}/{practiceid}/departments:
     get:
       summary: Get department IDs
       operationId: getDepartments
       parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
         - name: limit
           in: query
           description: Number of entries to return (default 1500, max 5000)
@@ -763,11 +782,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /patients:
+  /{apivariant}/{practiceid}/patients:
     get:
       summary: Search for patients
       operationId: getPatients
       parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
         - in: query
           name: departmentid
           description: Primary (registration) department ID.
@@ -799,6 +820,9 @@ paths:
     post:
       summary: Register new patient
       operationId: createPatient
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
       requestBody:
         required: true
         content:
@@ -870,11 +894,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /patients/{patientId}:
+  /{apivariant}/{practiceid}/patients/{patientId}:
     get:
       summary: Get a patients by ID
       operationId: getPatientById
       parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
         - in: path
           name: patientId
           description: Id of the patient for which get information
