@@ -20,3 +20,17 @@ steps:
     version: 3.0.100-preview3-010431
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+- task: NuGetCommand@2
+  inputs:
+    command: pack
+    packagesToPack: '**/AndriiKurdiumov.AuthenaHealth.Client.csproj'
+    versioningScheme: byPrereleaseNumber
+    majorVersion: '0'
+    minorVersion: '1'
+    patchVersion: '0'
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  inputs:
+    command: push
+    publishVstsFeed: 'athenahealth'
+    allowPackageConflicts: true
