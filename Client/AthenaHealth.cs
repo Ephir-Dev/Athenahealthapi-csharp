@@ -1579,6 +1579,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='medicalgroupid'>
         /// The medical group of the provider.
         /// </param>
+        /// <param name='providergroupid'>
+        /// The provider group of the provider.
+        /// </param>
         /// <param name='schedulingname'>
         /// The scheduling name of the provider.
         /// </param>
@@ -1632,9 +1635,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         /// <param name='practiceroleid'>
         /// The practice role ID for the provider.
-        /// </param>
-        /// <param name='providergroupid'>
-        /// The provider group of the provider.
         /// </param>
         /// <param name='providerprofileid'>
         /// The provider profile of the provider (integer or 'NEW')
@@ -1700,7 +1700,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> CreateProviderWithHttpMessagesAsync(bool billable, int entitytypeid, int medicalgroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), int? providergroupid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> CreateProviderWithHttpMessagesAsync(bool billable, int entitytypeid, int medicalgroupid, int providergroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (schedulingname == null)
             {
@@ -1872,7 +1872,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
             if(providergroupid != null)
             {
-                values.Add(new KeyValuePair<string,string>("providergroupid", providergroupid?.ToString()));
+                values.Add(new KeyValuePair<string,string>("providergroupid", providergroupid.ToString()));
             }
             if(providerprofileid != null)
             {
@@ -1995,7 +1995,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<IList<ProviderCreatedResponse>>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderCreatedResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {

@@ -443,6 +443,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='medicalgroupid'>
             /// The medical group of the provider.
             /// </param>
+            /// <param name='providergroupid'>
+            /// The provider group of the provider.
+            /// </param>
             /// <param name='schedulingname'>
             /// The scheduling name of the provider.
             /// </param>
@@ -496,9 +499,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// </param>
             /// <param name='practiceroleid'>
             /// The practice role ID for the provider.
-            /// </param>
-            /// <param name='providergroupid'>
-            /// The provider group of the provider.
             /// </param>
             /// <param name='providerprofileid'>
             /// The provider profile of the provider (integer or 'NEW')
@@ -543,9 +543,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='username'>
             /// The username for the provider.
             /// </param>
-            public static object CreateProvider(this IAthenaHealth operations, bool billable, int entitytypeid, int medicalgroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), int? providergroupid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string))
+            public static object CreateProvider(this IAthenaHealth operations, bool billable, int entitytypeid, int medicalgroupid, int providergroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string))
             {
-                return operations.CreateProviderAsync(billable, entitytypeid, medicalgroupid, schedulingname, signatureonfileflag, alternatephone, ansicode, billednamecase, communicatordisplayname, communicatorhomedepartment, crdreferring, createencounteroncheckin, directaddress, firstname, hideinportal, lastname, middleinitial, namesuffix, ndctatnumber, npinumber, practiceroleid, providergroupid, providerprofileid, providertype, reportingname, scheduleresourcetypeid, schedulingnote, sex, specialtyid, ssn, staffbucket, supervisingproviderid, supervisingprovidertype, trackmissingslips, username).GetAwaiter().GetResult();
+                return operations.CreateProviderAsync(billable, entitytypeid, medicalgroupid, providergroupid, schedulingname, signatureonfileflag, alternatephone, ansicode, billednamecase, communicatordisplayname, communicatorhomedepartment, crdreferring, createencounteroncheckin, directaddress, firstname, hideinportal, lastname, middleinitial, namesuffix, ndctatnumber, npinumber, practiceroleid, providerprofileid, providertype, reportingname, scheduleresourcetypeid, schedulingnote, sex, specialtyid, ssn, staffbucket, supervisingproviderid, supervisingprovidertype, trackmissingslips, username).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -563,6 +563,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// </param>
             /// <param name='medicalgroupid'>
             /// The medical group of the provider.
+            /// </param>
+            /// <param name='providergroupid'>
+            /// The provider group of the provider.
             /// </param>
             /// <param name='schedulingname'>
             /// The scheduling name of the provider.
@@ -617,9 +620,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// </param>
             /// <param name='practiceroleid'>
             /// The practice role ID for the provider.
-            /// </param>
-            /// <param name='providergroupid'>
-            /// The provider group of the provider.
             /// </param>
             /// <param name='providerprofileid'>
             /// The provider profile of the provider (integer or 'NEW')
@@ -667,9 +667,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateProviderAsync(this IAthenaHealth operations, bool billable, int entitytypeid, int medicalgroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), int? providergroupid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateProviderAsync(this IAthenaHealth operations, bool billable, int entitytypeid, int medicalgroupid, int providergroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CreateProviderWithHttpMessagesAsync(billable, entitytypeid, medicalgroupid, schedulingname, signatureonfileflag, alternatephone, ansicode, billednamecase, communicatordisplayname, communicatorhomedepartment, crdreferring, createencounteroncheckin, directaddress, firstname, hideinportal, lastname, middleinitial, namesuffix, ndctatnumber, npinumber, practiceroleid, providergroupid, providerprofileid, providertype, reportingname, scheduleresourcetypeid, schedulingnote, sex, specialtyid, ssn, staffbucket, supervisingproviderid, supervisingprovidertype, trackmissingslips, username, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CreateProviderWithHttpMessagesAsync(billable, entitytypeid, medicalgroupid, providergroupid, schedulingname, signatureonfileflag, alternatephone, ansicode, billednamecase, communicatordisplayname, communicatorhomedepartment, crdreferring, createencounteroncheckin, directaddress, firstname, hideinportal, lastname, middleinitial, namesuffix, ndctatnumber, npinumber, practiceroleid, providerprofileid, providertype, reportingname, scheduleresourcetypeid, schedulingnote, sex, specialtyid, ssn, staffbucket, supervisingproviderid, supervisingprovidertype, trackmissingslips, username, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

@@ -1117,6 +1117,7 @@ paths:
                 - billable
                 - entitytypeid
                 - medicalgroupid
+                - providergroupid
                 - schedulingname
                 - signatureonfileflag
               properties:
@@ -1233,9 +1234,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/ProviderCreatedResponse"
+                $ref: "#/components/schemas/ProviderCreatedResponse"
         400:
           description: Bad request
           content:
