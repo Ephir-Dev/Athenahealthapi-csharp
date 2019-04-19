@@ -1370,5 +1370,201 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             return _result;
         }
 
+        /// <summary>
+        /// Get a providers
+        /// </summary>
+        /// <param name='name'>
+        /// Id of the patient for which get information
+        /// </param>
+        /// <param name='providertype'>
+        /// The provider type to filter the results on. Valid provider type values can
+        /// be found by using GET /reference/providertypes.
+        /// </param>
+        /// <param name='showallproviderids'>
+        /// In athenaNet's internal data structures, a single provider can be
+        /// represented by multiple IDs. These IDs are used in certain external
+        /// messages (e.g. HL7) and thus these IDs may need to be known by the API user
+        /// as well. When set to true, a list of all of these ancillary IDs will be
+        /// provided.
+        /// </param>
+        /// <param name='showusualdepartmentguessthreshold'>
+        /// There are situations where determining where a provider "normally"
+        /// practices is desired. Unfortuantely, there is no such concept in athenaNet
+        /// since providers often practice in multiple locations. However, we can use
+        /// some intelligence to determine this by looking back over the previous few
+        /// months (90 days) to see actual practice. To enable this, set this value
+        /// between 0 and 1; it is highly recommended to be at least .5. This is the
+        /// ratio of appointments in a given department to the total number of
+        /// appointments for that provider. A value of .5 means "the provider's
+        /// appointments are 50% in the department guessed." Setting this to 1 would
+        /// only return a department if ALL of the provider's appointments were in one
+        /// department.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<ProvidersInformationList>> GetProvidersWithHttpMessagesAsync(string name = default(string), string providertype = default(string), bool? showallproviderids = default(bool?), int? showusualdepartmentguessthreshold = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            string apiVersion = "1.0.0";
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("name", name);
+                tracingParameters.Add("providertype", providertype);
+                tracingParameters.Add("showallproviderids", showallproviderids);
+                tracingParameters.Add("showusualdepartmentguessthreshold", showusualdepartmentguessthreshold);
+                tracingParameters.Add("apiVersion", apiVersion);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetProviders", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/providers").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            List<string> _queryParameters = new List<string>();
+            if (name != null)
+            {
+                _queryParameters.Add(string.Format("name={0}", System.Uri.EscapeDataString(name)));
+            }
+            if (providertype != null)
+            {
+                _queryParameters.Add(string.Format("providertype={0}", System.Uri.EscapeDataString(providertype)));
+            }
+            if (showallproviderids != null)
+            {
+                _queryParameters.Add(string.Format("showallproviderids={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showallproviderids, SerializationSettings).Trim('"'))));
+            }
+            if (showusualdepartmentguessthreshold != null)
+            {
+                _queryParameters.Add(string.Format("showusualdepartmentguessthreshold={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showusualdepartmentguessthreshold, SerializationSettings).Trim('"'))));
+            }
+            if (apiVersion != null)
+            {
+                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Set Credentials
+            if (Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<ProvidersInformationList>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<ProvidersInformationList>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
     }
 }

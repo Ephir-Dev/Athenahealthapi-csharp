@@ -28,6 +28,7 @@ namespace sample
             clientSecret = args[1];
 
             await PrintDepartmentsAsync().ConfigureAwait(false);
+            await PrintProvidersAsync().ConfigureAwait(false);
             await CreatePatientAsync().ConfigureAwait(false);
         }
 
@@ -88,6 +89,25 @@ namespace sample
                 {
                     Console.WriteLine($"{department.Name}");
                 }
+            }
+        }
+
+        private static async Task PrintProvidersAsync()
+        {
+            var api = await GetApiAsync(195900).ConfigureAwait(false);
+            var providers = await api.GetProvidersAsync();
+            Console.WriteLine($"Practices available: {providers.TotalCount}");
+            foreach (var provider in providers.Providers)
+            {
+                Console.WriteLine($"ID: {provider.Providerid}");
+                Console.WriteLine($"Name: {provider.Providerusername}");
+                Console.WriteLine($"NPI: {provider.Npi}");
+                //var departments = papi.GetDepartments();
+                //Console.WriteLine($"Departments available: {departments.TotalCount}");
+                //foreach (var department in departments.Departments)
+                //{
+                //    Console.WriteLine($"{department.Name}");
+                //}
             }
         }
 
