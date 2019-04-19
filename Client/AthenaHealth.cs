@@ -1566,5 +1566,489 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             return _result;
         }
 
+        /// <summary>
+        /// Create new provider
+        /// </summary>
+        /// <param name='billable'>
+        /// This provider is a supervising provider and is credentialed to bill for
+        /// services.
+        /// </param>
+        /// <param name='entitytypeid'>
+        /// The entity type of provider. 1 = person, 2 = non-person
+        /// </param>
+        /// <param name='medicalgroupid'>
+        /// The medical group of the provider.
+        /// </param>
+        /// <param name='schedulingname'>
+        /// The scheduling name of the provider.
+        /// </param>
+        /// <param name='signatureonfileflag'>
+        /// This provider's signature is on file.
+        /// </param>
+        /// <param name='alternatephone'>
+        /// The phone number of the provider.
+        /// </param>
+        /// <param name='ansicode'>
+        /// The provider taxonomy code of the provider.
+        /// </param>
+        /// <param name='billednamecase'>
+        /// The billing name of the provider.
+        /// </param>
+        /// <param name='communicatordisplayname'>
+        /// The communicator display name for the provider.
+        /// </param>
+        /// <param name='communicatorhomedepartment'>
+        /// The communicator home department for the provider.
+        /// </param>
+        /// <param name='crdreferring'>
+        /// This provider is a Coordinator referring provider.
+        /// </param>
+        /// <param name='createencounteroncheckin'>
+        /// Automatically create encounters at check-in.
+        /// </param>
+        /// <param name='directaddress'>
+        /// The direct email address for the provider.
+        /// </param>
+        /// <param name='firstname'>
+        /// The first name of the provider.
+        /// </param>
+        /// <param name='hideinportal'>
+        /// Hide this provider in the Patient Portal.
+        /// </param>
+        /// <param name='lastname'>
+        /// The last name of the provider.
+        /// </param>
+        /// <param name='middleinitial'>
+        /// The middle name of the provider.
+        /// </param>
+        /// <param name='namesuffix'>
+        /// The suffix of the provider.
+        /// </param>
+        /// <param name='ndctatnumber'>
+        /// The NDC TAT number for this provider.
+        /// </param>
+        /// <param name='npinumber'>
+        /// The NPI of the provider.
+        /// </param>
+        /// <param name='practiceroleid'>
+        /// The practice role ID for the provider.
+        /// </param>
+        /// <param name='providergroupid'>
+        /// The provider group of the provider.
+        /// </param>
+        /// <param name='providerprofileid'>
+        /// The provider profile of the provider (integer or 'NEW')
+        /// </param>
+        /// <param name='providertype'>
+        /// The abbreviation for the provider type of the provider. (e.g., MD, NP). See
+        /// GET /reference/providertypes for a mapping of abbreviation to provider
+        /// type.
+        /// </param>
+        /// <param name='reportingname'>
+        /// The reporting name for the provider.
+        /// </param>
+        /// <param name='scheduleresourcetypeid'>
+        /// The scheduling resource type id of the provider.
+        /// </param>
+        /// <param name='schedulingnote'>
+        /// The scheduling note for the provider.
+        /// </param>
+        /// <param name='sex'>
+        /// The sex of the provider (M or F)
+        /// </param>
+        /// <param name='specialtyid'>
+        /// The specialty ID of the provider. See GET /reference/providerspecialties
+        /// for a mapping of ID to specialty name.
+        /// </param>
+        /// <param name='ssn'>
+        /// The SSN of the provider.
+        /// </param>
+        /// <param name='staffbucket'>
+        /// Create a staff bucket for this provider.
+        /// </param>
+        /// <param name='supervisingproviderid'>
+        /// The supervising provider ID for this provider.
+        /// </param>
+        /// <param name='supervisingprovidertype'>
+        /// If set to self,set supervisingprovider to itself.
+        /// </param>
+        /// <param name='trackmissingslips'>
+        /// This provider renders services that should be tracked on the Missing Slips
+        /// Worklist.
+        /// </param>
+        /// <param name='username'>
+        /// The username for the provider.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="ErrorException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<object>> CreateProviderWithHttpMessagesAsync(bool billable, int entitytypeid, int medicalgroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), int? providergroupid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (schedulingname == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "schedulingname");
+            }
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            string apiVersion = "1.0.0";
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("alternatephone", alternatephone);
+                tracingParameters.Add("ansicode", ansicode);
+                tracingParameters.Add("billable", billable);
+                tracingParameters.Add("billednamecase", billednamecase);
+                tracingParameters.Add("communicatordisplayname", communicatordisplayname);
+                tracingParameters.Add("communicatorhomedepartment", communicatorhomedepartment);
+                tracingParameters.Add("crdreferring", crdreferring);
+                tracingParameters.Add("createencounteroncheckin", createencounteroncheckin);
+                tracingParameters.Add("directaddress", directaddress);
+                tracingParameters.Add("entitytypeid", entitytypeid);
+                tracingParameters.Add("firstname", firstname);
+                tracingParameters.Add("hideinportal", hideinportal);
+                tracingParameters.Add("lastname", lastname);
+                tracingParameters.Add("medicalgroupid", medicalgroupid);
+                tracingParameters.Add("middleinitial", middleinitial);
+                tracingParameters.Add("namesuffix", namesuffix);
+                tracingParameters.Add("ndctatnumber", ndctatnumber);
+                tracingParameters.Add("npinumber", npinumber);
+                tracingParameters.Add("practiceroleid", practiceroleid);
+                tracingParameters.Add("providergroupid", providergroupid);
+                tracingParameters.Add("providerprofileid", providerprofileid);
+                tracingParameters.Add("providertype", providertype);
+                tracingParameters.Add("reportingname", reportingname);
+                tracingParameters.Add("scheduleresourcetypeid", scheduleresourcetypeid);
+                tracingParameters.Add("schedulingname", schedulingname);
+                tracingParameters.Add("schedulingnote", schedulingnote);
+                tracingParameters.Add("sex", sex);
+                tracingParameters.Add("signatureonfileflag", signatureonfileflag);
+                tracingParameters.Add("specialtyid", specialtyid);
+                tracingParameters.Add("ssn", ssn);
+                tracingParameters.Add("staffbucket", staffbucket);
+                tracingParameters.Add("supervisingproviderid", supervisingproviderid);
+                tracingParameters.Add("supervisingprovidertype", supervisingprovidertype);
+                tracingParameters.Add("trackmissingslips", trackmissingslips);
+                tracingParameters.Add("username", username);
+                tracingParameters.Add("apiVersion", apiVersion);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "CreateProvider", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/providers").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            List<string> _queryParameters = new List<string>();
+            if (apiVersion != null)
+            {
+                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("POST");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            var values = new List<KeyValuePair<string, string>>();
+            if(alternatephone != null)
+            {
+                values.Add(new KeyValuePair<string,string>("alternatephone", alternatephone));
+            }
+            if(ansicode != null)
+            {
+                values.Add(new KeyValuePair<string,string>("ansicode", ansicode));
+            }
+            if(billable != null)
+            {
+                values.Add(new KeyValuePair<string,string>("billable", billable.ToString()));
+            }
+            if(billednamecase != null)
+            {
+                values.Add(new KeyValuePair<string,string>("billednamecase", billednamecase));
+            }
+            if(communicatordisplayname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("communicatordisplayname", communicatordisplayname));
+            }
+            if(communicatorhomedepartment != null)
+            {
+                values.Add(new KeyValuePair<string,string>("communicatorhomedepartment", communicatorhomedepartment?.ToString()));
+            }
+            if(crdreferring != null)
+            {
+                values.Add(new KeyValuePair<string,string>("crdreferring", crdreferring?.ToString()));
+            }
+            if(createencounteroncheckin != null)
+            {
+                values.Add(new KeyValuePair<string,string>("createencounteroncheckin", createencounteroncheckin?.ToString()));
+            }
+            if(directaddress != null)
+            {
+                values.Add(new KeyValuePair<string,string>("directaddress", directaddress));
+            }
+            if(entitytypeid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("entitytypeid", entitytypeid.ToString()));
+            }
+            if(firstname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("firstname", firstname));
+            }
+            if(hideinportal != null)
+            {
+                values.Add(new KeyValuePair<string,string>("hideinportal", hideinportal?.ToString()));
+            }
+            if(lastname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("lastname", lastname));
+            }
+            if(medicalgroupid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("medicalgroupid", medicalgroupid.ToString()));
+            }
+            if(middleinitial != null)
+            {
+                values.Add(new KeyValuePair<string,string>("middleinitial", middleinitial));
+            }
+            if(namesuffix != null)
+            {
+                values.Add(new KeyValuePair<string,string>("namesuffix", namesuffix));
+            }
+            if(ndctatnumber != null)
+            {
+                values.Add(new KeyValuePair<string,string>("ndctatnumber", ndctatnumber));
+            }
+            if(npinumber != null)
+            {
+                values.Add(new KeyValuePair<string,string>("npinumber", npinumber?.ToString()));
+            }
+            if(practiceroleid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("practiceroleid", practiceroleid?.ToString()));
+            }
+            if(providergroupid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("providergroupid", providergroupid?.ToString()));
+            }
+            if(providerprofileid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("providerprofileid", providerprofileid));
+            }
+            if(providertype != null)
+            {
+                values.Add(new KeyValuePair<string,string>("providertype", providertype));
+            }
+            if(reportingname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("reportingname", reportingname));
+            }
+            if(scheduleresourcetypeid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("scheduleresourcetypeid", scheduleresourcetypeid?.ToString()));
+            }
+            if(schedulingname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("schedulingname", schedulingname));
+            }
+            if(schedulingnote != null)
+            {
+                values.Add(new KeyValuePair<string,string>("schedulingnote", schedulingnote));
+            }
+            if(sex != null)
+            {
+                values.Add(new KeyValuePair<string,string>("sex", sex));
+            }
+            if(signatureonfileflag != null)
+            {
+                values.Add(new KeyValuePair<string,string>("signatureonfileflag", signatureonfileflag.ToString()));
+            }
+            if(specialtyid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("specialtyid", specialtyid));
+            }
+            if(ssn != null)
+            {
+                values.Add(new KeyValuePair<string,string>("ssn", ssn?.ToString()));
+            }
+            if(staffbucket != null)
+            {
+                values.Add(new KeyValuePair<string,string>("staffbucket", staffbucket?.ToString()));
+            }
+            if(supervisingproviderid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("supervisingproviderid", supervisingproviderid?.ToString()));
+            }
+            if(supervisingprovidertype != null)
+            {
+                values.Add(new KeyValuePair<string,string>("supervisingprovidertype", supervisingprovidertype));
+            }
+            if(trackmissingslips != null)
+            {
+                values.Add(new KeyValuePair<string,string>("trackmissingslips", trackmissingslips?.ToString()));
+            }
+            if(username != null)
+            {
+                values.Add(new KeyValuePair<string,string>("username", username));
+            }
+            var _formContent = new FormUrlEncodedContent(values);
+            _httpRequest.Content = _formContent;
+            // Set Credentials
+            if (Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200 && (int)_statusCode != 400 && (int)_statusCode != 500)
+            {
+                var ex = new ErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                try
+                {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    Error _errorBody =  SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                    if (_errorBody != null)
+                    {
+                        ex.Body = _errorBody;
+                    }
+                }
+                catch (JsonException)
+                {
+                    // Ignore the exception
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<object>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<ProviderCreatedResponse>>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 400)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 500)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
     }
 }

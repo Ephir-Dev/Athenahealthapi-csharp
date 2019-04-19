@@ -772,6 +772,19 @@ components:
           x-ms-client-name: Providers
           items:
             $ref: "#/components/schemas/ProviderInformation"
+    ProviderCreatedResponse:
+      required:
+        - providerid
+      properties:
+        providerid:
+          type: integer
+          format: int32
+          x-ms-client-name: ProviderId
+          description: >
+            The ID to be used for this provider.
+            Note that in athenaNet, an individual provider (as defined by a unique NPI) may have multiple provider IDs.
+            For the API, we have collapsed these to a single canonical ID.
+            For updates and deletes, this will be either 1 or -1 depending on success or failure.
     Error:
       required:
         - error
@@ -1080,3 +1093,156 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ProvidersInformationList"
+    post:
+      summary: Create new provider
+      operationId: createProvider
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - billable
+                - entitytypeid
+                - medicalgroupid
+                - schedulingname
+                - signatureonfileflag
+              properties:
+                alternatephone:
+                  description: The phone number of the provider.	
+                  type: string
+                ansicode:
+                  description: The provider taxonomy code of the provider.	
+                  type: string
+                billable:
+                  description: This provider is a supervising provider and is credentialed to bill for services.	
+                  type: boolean
+                billednamecase:
+                  description: The billing name of the provider.
+                  type: string
+                communicatordisplayname:
+                  description: The communicator display name for the provider.
+                  type: string
+                communicatorhomedepartment:
+                  description: The communicator home department for the provider.	
+                  type: integer
+                crdreferring:
+                  description: This provider is a Coordinator referring provider.
+                  type: boolean
+                createencounteroncheckin:
+                  description: Automatically create encounters at check-in.
+                  type: boolean
+                directaddress:
+                  description: The direct email address for the provider.
+                  type: string
+                entitytypeid:
+                  description: The entity type of provider. 1 = person, 2 = non-person
+                  type: integer
+                firstname:
+                  description: The first name of the provider.
+                  type: string
+                hideinportal:
+                  description: Hide this provider in the Patient Portal.
+                  type: boolean
+                lastname:
+                  description: The last name of the provider.
+                  type: string
+                medicalgroupid:
+                  description: The medical group of the provider.
+                  type: integer
+                middleinitial:
+                  description: The middle name of the provider.
+                  type: string
+                namesuffix:
+                  description: The suffix of the provider.
+                  type: string
+                ndctatnumber:
+                  description: The NDC TAT number for this provider.
+                  type: string
+                npinumber:
+                  description: The NPI of the provider.
+                  type: integer
+                practiceroleid:
+                  description: The practice role ID for the provider.
+                  type: integer
+                providergroupid:
+                  description: The provider group of the provider.
+                  type: integer
+                providerprofileid:
+                  description: The provider profile of the provider (integer or 'NEW')
+                  type: string
+                providertype:
+                  description: >
+                    The abbreviation for the provider type of the provider. (e.g., MD, NP).
+                    See GET /reference/providertypes for a mapping of abbreviation to provider type.	
+                  type: string
+                reportingname:
+                  description: The reporting name for the provider.
+                  type: string
+                scheduleresourcetypeid:
+                  description: The scheduling resource type id of the provider.
+                  type: integer
+                schedulingname:
+                  description: The scheduling name of the provider.	
+                  type: string
+                schedulingnote:
+                  description: The scheduling note for the provider.
+                  type: string
+                sex:
+                  description: The sex of the provider (M or F)
+                  type: string
+                signatureonfileflag:
+                  description: This provider's signature is on file.
+                  type: boolean
+                specialtyid:
+                  description: The specialty ID of the provider. See GET /reference/providerspecialties for a mapping of ID to specialty name.
+                  type: string
+                ssn:
+                  description: The SSN of the provider.
+                  type: integer
+                staffbucket:
+                  description: Create a staff bucket for this provider.
+                  type: boolean
+                supervisingproviderid:
+                  description: The supervising provider ID for this provider.
+                  type: integer
+                supervisingprovidertype:
+                  description: If set to self,set supervisingprovider to itself.
+                  type: string
+                trackmissingslips:
+                  description: This provider renders services that should be tracked on the Missing Slips Worklist.
+                  type: boolean
+                username:
+                  description: The username for the provider.
+                  type: string
+      responses:
+        '200':
+          description: Array of information about created providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProviderCreatedResponse"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"

@@ -427,5 +427,253 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Create new provider
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='billable'>
+            /// This provider is a supervising provider and is credentialed to bill for
+            /// services.
+            /// </param>
+            /// <param name='entitytypeid'>
+            /// The entity type of provider. 1 = person, 2 = non-person
+            /// </param>
+            /// <param name='medicalgroupid'>
+            /// The medical group of the provider.
+            /// </param>
+            /// <param name='schedulingname'>
+            /// The scheduling name of the provider.
+            /// </param>
+            /// <param name='signatureonfileflag'>
+            /// This provider's signature is on file.
+            /// </param>
+            /// <param name='alternatephone'>
+            /// The phone number of the provider.
+            /// </param>
+            /// <param name='ansicode'>
+            /// The provider taxonomy code of the provider.
+            /// </param>
+            /// <param name='billednamecase'>
+            /// The billing name of the provider.
+            /// </param>
+            /// <param name='communicatordisplayname'>
+            /// The communicator display name for the provider.
+            /// </param>
+            /// <param name='communicatorhomedepartment'>
+            /// The communicator home department for the provider.
+            /// </param>
+            /// <param name='crdreferring'>
+            /// This provider is a Coordinator referring provider.
+            /// </param>
+            /// <param name='createencounteroncheckin'>
+            /// Automatically create encounters at check-in.
+            /// </param>
+            /// <param name='directaddress'>
+            /// The direct email address for the provider.
+            /// </param>
+            /// <param name='firstname'>
+            /// The first name of the provider.
+            /// </param>
+            /// <param name='hideinportal'>
+            /// Hide this provider in the Patient Portal.
+            /// </param>
+            /// <param name='lastname'>
+            /// The last name of the provider.
+            /// </param>
+            /// <param name='middleinitial'>
+            /// The middle name of the provider.
+            /// </param>
+            /// <param name='namesuffix'>
+            /// The suffix of the provider.
+            /// </param>
+            /// <param name='ndctatnumber'>
+            /// The NDC TAT number for this provider.
+            /// </param>
+            /// <param name='npinumber'>
+            /// The NPI of the provider.
+            /// </param>
+            /// <param name='practiceroleid'>
+            /// The practice role ID for the provider.
+            /// </param>
+            /// <param name='providergroupid'>
+            /// The provider group of the provider.
+            /// </param>
+            /// <param name='providerprofileid'>
+            /// The provider profile of the provider (integer or 'NEW')
+            /// </param>
+            /// <param name='providertype'>
+            /// The abbreviation for the provider type of the provider. (e.g., MD, NP). See
+            /// GET /reference/providertypes for a mapping of abbreviation to provider
+            /// type.
+            /// </param>
+            /// <param name='reportingname'>
+            /// The reporting name for the provider.
+            /// </param>
+            /// <param name='scheduleresourcetypeid'>
+            /// The scheduling resource type id of the provider.
+            /// </param>
+            /// <param name='schedulingnote'>
+            /// The scheduling note for the provider.
+            /// </param>
+            /// <param name='sex'>
+            /// The sex of the provider (M or F)
+            /// </param>
+            /// <param name='specialtyid'>
+            /// The specialty ID of the provider. See GET /reference/providerspecialties
+            /// for a mapping of ID to specialty name.
+            /// </param>
+            /// <param name='ssn'>
+            /// The SSN of the provider.
+            /// </param>
+            /// <param name='staffbucket'>
+            /// Create a staff bucket for this provider.
+            /// </param>
+            /// <param name='supervisingproviderid'>
+            /// The supervising provider ID for this provider.
+            /// </param>
+            /// <param name='supervisingprovidertype'>
+            /// If set to self,set supervisingprovider to itself.
+            /// </param>
+            /// <param name='trackmissingslips'>
+            /// This provider renders services that should be tracked on the Missing Slips
+            /// Worklist.
+            /// </param>
+            /// <param name='username'>
+            /// The username for the provider.
+            /// </param>
+            public static object CreateProvider(this IAthenaHealth operations, bool billable, int entitytypeid, int medicalgroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), int? providergroupid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string))
+            {
+                return operations.CreateProviderAsync(billable, entitytypeid, medicalgroupid, schedulingname, signatureonfileflag, alternatephone, ansicode, billednamecase, communicatordisplayname, communicatorhomedepartment, crdreferring, createencounteroncheckin, directaddress, firstname, hideinportal, lastname, middleinitial, namesuffix, ndctatnumber, npinumber, practiceroleid, providergroupid, providerprofileid, providertype, reportingname, scheduleresourcetypeid, schedulingnote, sex, specialtyid, ssn, staffbucket, supervisingproviderid, supervisingprovidertype, trackmissingslips, username).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Create new provider
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='billable'>
+            /// This provider is a supervising provider and is credentialed to bill for
+            /// services.
+            /// </param>
+            /// <param name='entitytypeid'>
+            /// The entity type of provider. 1 = person, 2 = non-person
+            /// </param>
+            /// <param name='medicalgroupid'>
+            /// The medical group of the provider.
+            /// </param>
+            /// <param name='schedulingname'>
+            /// The scheduling name of the provider.
+            /// </param>
+            /// <param name='signatureonfileflag'>
+            /// This provider's signature is on file.
+            /// </param>
+            /// <param name='alternatephone'>
+            /// The phone number of the provider.
+            /// </param>
+            /// <param name='ansicode'>
+            /// The provider taxonomy code of the provider.
+            /// </param>
+            /// <param name='billednamecase'>
+            /// The billing name of the provider.
+            /// </param>
+            /// <param name='communicatordisplayname'>
+            /// The communicator display name for the provider.
+            /// </param>
+            /// <param name='communicatorhomedepartment'>
+            /// The communicator home department for the provider.
+            /// </param>
+            /// <param name='crdreferring'>
+            /// This provider is a Coordinator referring provider.
+            /// </param>
+            /// <param name='createencounteroncheckin'>
+            /// Automatically create encounters at check-in.
+            /// </param>
+            /// <param name='directaddress'>
+            /// The direct email address for the provider.
+            /// </param>
+            /// <param name='firstname'>
+            /// The first name of the provider.
+            /// </param>
+            /// <param name='hideinportal'>
+            /// Hide this provider in the Patient Portal.
+            /// </param>
+            /// <param name='lastname'>
+            /// The last name of the provider.
+            /// </param>
+            /// <param name='middleinitial'>
+            /// The middle name of the provider.
+            /// </param>
+            /// <param name='namesuffix'>
+            /// The suffix of the provider.
+            /// </param>
+            /// <param name='ndctatnumber'>
+            /// The NDC TAT number for this provider.
+            /// </param>
+            /// <param name='npinumber'>
+            /// The NPI of the provider.
+            /// </param>
+            /// <param name='practiceroleid'>
+            /// The practice role ID for the provider.
+            /// </param>
+            /// <param name='providergroupid'>
+            /// The provider group of the provider.
+            /// </param>
+            /// <param name='providerprofileid'>
+            /// The provider profile of the provider (integer or 'NEW')
+            /// </param>
+            /// <param name='providertype'>
+            /// The abbreviation for the provider type of the provider. (e.g., MD, NP). See
+            /// GET /reference/providertypes for a mapping of abbreviation to provider
+            /// type.
+            /// </param>
+            /// <param name='reportingname'>
+            /// The reporting name for the provider.
+            /// </param>
+            /// <param name='scheduleresourcetypeid'>
+            /// The scheduling resource type id of the provider.
+            /// </param>
+            /// <param name='schedulingnote'>
+            /// The scheduling note for the provider.
+            /// </param>
+            /// <param name='sex'>
+            /// The sex of the provider (M or F)
+            /// </param>
+            /// <param name='specialtyid'>
+            /// The specialty ID of the provider. See GET /reference/providerspecialties
+            /// for a mapping of ID to specialty name.
+            /// </param>
+            /// <param name='ssn'>
+            /// The SSN of the provider.
+            /// </param>
+            /// <param name='staffbucket'>
+            /// Create a staff bucket for this provider.
+            /// </param>
+            /// <param name='supervisingproviderid'>
+            /// The supervising provider ID for this provider.
+            /// </param>
+            /// <param name='supervisingprovidertype'>
+            /// If set to self,set supervisingprovider to itself.
+            /// </param>
+            /// <param name='trackmissingslips'>
+            /// This provider renders services that should be tracked on the Missing Slips
+            /// Worklist.
+            /// </param>
+            /// <param name='username'>
+            /// The username for the provider.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CreateProviderAsync(this IAthenaHealth operations, bool billable, int entitytypeid, int medicalgroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), int? providergroupid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateProviderWithHttpMessagesAsync(billable, entitytypeid, medicalgroupid, schedulingname, signatureonfileflag, alternatephone, ansicode, billednamecase, communicatordisplayname, communicatorhomedepartment, crdreferring, createencounteroncheckin, directaddress, firstname, hideinportal, lastname, middleinitial, namesuffix, ndctatnumber, npinumber, practiceroleid, providergroupid, providerprofileid, providertype, reportingname, scheduleresourcetypeid, schedulingnote, sex, specialtyid, ssn, staffbucket, supervisingproviderid, supervisingprovidertype, trackmissingslips, username, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
