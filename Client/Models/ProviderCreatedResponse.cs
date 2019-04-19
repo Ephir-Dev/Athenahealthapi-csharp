@@ -28,9 +28,15 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// these to a single canonical ID. For updates and deletes, this will
         /// be either 1 or -1 depending on success or failure.
         /// </param>
-        public ProviderCreatedResponse(int providerId)
+        /// <param name="errorreason">Error message if the operation did not
+        /// work.</param>
+        /// <param name="alertmessage">Alert message if the operation did not
+        /// work.</param>
+        public ProviderCreatedResponse(int providerId, string errorreason = default(string), string alertmessage = default(string))
         {
             ProviderId = providerId;
+            Errorreason = errorreason;
+            Alertmessage = alertmessage;
             CustomInit();
         }
 
@@ -49,6 +55,18 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// </summary>
         [JsonProperty(PropertyName = "providerid")]
         public int ProviderId { get; set; }
+
+        /// <summary>
+        /// Gets or sets error message if the operation did not work.
+        /// </summary>
+        [JsonProperty(PropertyName = "errorreason")]
+        public string Errorreason { get; set; }
+
+        /// <summary>
+        /// Gets or sets alert message if the operation did not work.
+        /// </summary>
+        [JsonProperty(PropertyName = "alertmessage")]
+        public string Alertmessage { get; set; }
 
         /// <summary>
         /// Validate the object.
