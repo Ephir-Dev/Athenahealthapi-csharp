@@ -219,9 +219,20 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='zip'>
             /// Patient's zip. Matching occurs on first 5 characters.
             /// </param>
-            public static object CreatePatient(this IAthenaHealth operations, string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string))
+            /// <param name='sex'>
+            /// Patient's sex (M/F)
+            /// </param>
+            /// <param name='race'>
+            /// The patient race, using the 2.16.840.1.113883.5.104 codeset. See
+            /// http://www.hl7.org/implement/standards/fhir/terminologies-v3.html Special
+            /// case: use "declined" to indicate that the patient declined to answer.
+            /// Multiple values or a tab-seperated list of codes is acceptable for multiple
+            /// races for input. The first race will be considered "primary". Note: you
+            /// must update all values at once if you update any.
+            /// </param>
+            public static object CreatePatient(this IAthenaHealth operations, string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), string sex = default(string), string race = default(string))
             {
-                return operations.CreatePatientAsync(address1, address2, city, departmentid, dob, email, firstname, homephone, lastname, mobilephone, state, zip).GetAwaiter().GetResult();
+                return operations.CreatePatientAsync(address1, address2, city, departmentid, dob, email, firstname, homephone, lastname, mobilephone, state, zip, sex, race).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -278,12 +289,23 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='zip'>
             /// Patient's zip. Matching occurs on first 5 characters.
             /// </param>
+            /// <param name='sex'>
+            /// Patient's sex (M/F)
+            /// </param>
+            /// <param name='race'>
+            /// The patient race, using the 2.16.840.1.113883.5.104 codeset. See
+            /// http://www.hl7.org/implement/standards/fhir/terminologies-v3.html Special
+            /// case: use "declined" to indicate that the patient declined to answer.
+            /// Multiple values or a tab-seperated list of codes is acceptable for multiple
+            /// races for input. The first race will be considered "primary". Note: you
+            /// must update all values at once if you update any.
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreatePatientAsync(this IAthenaHealth operations, string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreatePatientAsync(this IAthenaHealth operations, string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), string sex = default(string), string race = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CreatePatientWithHttpMessagesAsync(address1, address2, city, departmentid, dob, email, firstname, homephone, lastname, mobilephone, state, zip, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CreatePatientWithHttpMessagesAsync(address1, address2, city, departmentid, dob, email, firstname, homephone, lastname, mobilephone, state, zip, sex, race, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

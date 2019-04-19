@@ -867,6 +867,18 @@ paths:
                 zip:
                   description: Patient's zip. Matching occurs on first 5 characters.
                   type: string
+                sex:
+                  description: Patient's sex (M/F)
+                  type: string
+                race:
+                  description: >
+                    The patient race, using the 2.16.840.1.113883.5.104 codeset.
+                    See http://www.hl7.org/implement/standards/fhir/terminologies-v3.html
+                    Special case: use "declined" to indicate that the patient declined to answer.
+                    Multiple values or a tab-seperated list of codes is acceptable for multiple races for input.
+                    The first race will be considered "primary".
+                    Note: you must update all values at once if you update any.	
+                  type: string
       responses:
         '200':
           description: Array of information about created patients

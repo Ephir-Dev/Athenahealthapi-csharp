@@ -185,13 +185,25 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='zip'>
         /// Patient's zip. Matching occurs on first 5 characters.
         /// </param>
+        /// <param name='sex'>
+        /// Patient's sex (M/F)
+        /// </param>
+        /// <param name='race'>
+        /// The patient race, using the 2.16.840.1.113883.5.104 codeset. See
+        /// http://www.hl7.org/implement/standards/fhir/terminologies-v3.html
+        /// Special case: use "declined" to indicate that the patient declined
+        /// to answer. Multiple values or a tab-seperated list of codes is
+        /// acceptable for multiple races for input. The first race will be
+        /// considered "primary". Note: you must update all values at once if
+        /// you update any.
+        /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> CreatePatientWithHttpMessagesAsync(string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> CreatePatientWithHttpMessagesAsync(string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), string sex = default(string), string race = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get a patients by ID

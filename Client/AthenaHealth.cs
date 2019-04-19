@@ -943,6 +943,17 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='zip'>
         /// Patient's zip. Matching occurs on first 5 characters.
         /// </param>
+        /// <param name='sex'>
+        /// Patient's sex (M/F)
+        /// </param>
+        /// <param name='race'>
+        /// The patient race, using the 2.16.840.1.113883.5.104 codeset. See
+        /// http://www.hl7.org/implement/standards/fhir/terminologies-v3.html Special
+        /// case: use "declined" to indicate that the patient declined to answer.
+        /// Multiple values or a tab-seperated list of codes is acceptable for multiple
+        /// races for input. The first race will be considered "primary". Note: you
+        /// must update all values at once if you update any.
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -964,7 +975,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> CreatePatientWithHttpMessagesAsync(string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> CreatePatientWithHttpMessagesAsync(string address1 = default(string), string address2 = default(string), string city = default(string), int? departmentid = default(int?), string dob = default(string), string email = default(string), string firstname = default(string), string homephone = default(string), string lastname = default(string), string mobilephone = default(string), string state = default(string), string zip = default(string), string sex = default(string), string race = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -990,6 +1001,8 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("mobilephone", mobilephone);
                 tracingParameters.Add("state", state);
                 tracingParameters.Add("zip", zip);
+                tracingParameters.Add("sex", sex);
+                tracingParameters.Add("race", race);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreatePatient", tracingParameters);
@@ -1078,6 +1091,14 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if(zip != null)
             {
                 values.Add(new KeyValuePair<string,string>("zip", zip));
+            }
+            if(sex != null)
+            {
+                values.Add(new KeyValuePair<string,string>("sex", sex));
+            }
+            if(race != null)
+            {
+                values.Add(new KeyValuePair<string,string>("race", race));
             }
             var _formContent = new FormUrlEncodedContent(values);
             _httpRequest.Content = _formContent;
