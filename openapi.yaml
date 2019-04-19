@@ -287,7 +287,9 @@ components:
             Multiple values or a tab-seperated list of codes is acceptable for multiple races for input.
             The first race will be considered "primary".
             Note: you must update all values at once if you update any.
-          type: string
+          type: array
+          items:
+            type: string
         sexualorientationother:
           description: If a patient does not identify with any prescribed sexual orientation choice, this field stores the patient-provided description of sexual orientation.
           type: string
