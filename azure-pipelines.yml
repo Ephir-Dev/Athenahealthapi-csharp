@@ -15,9 +15,9 @@ variables:
 steps:
 
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 3.0.100-preview3-010431'
+  displayName: 'Use .NET Core sdk 3.0.100-preview4-011223'
   inputs:
-    version: 3.0.100-preview3-010431
+    version: 3.0.100-preview4-011223
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 - script: dotnet pack --configuration $(buildConfiguration) --version-suffix "ci-$(Build.BuildId)" -o $(Build.ArtifactStagingDirectory)
