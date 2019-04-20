@@ -1253,3 +1253,74 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/appointments/open:
+    post:
+      summary: Provides the ability to add new open appointment slots
+      operationId: openNewAppointment
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - appointmentdate
+                - appointmenttime
+                - departmentid
+                - providerid
+              properties:
+                appointmentdate:
+                  description: The appointment date for the new open appointment slot (mm/dd/yyyy).	
+                  type: string
+                appointmenttime:
+                  description: >
+                    The time (hh24:mi) for the new appointment slot.
+                    Multiple times (either as a comma delimited list or multiple POSTed values) are allowed. 24 hour time.	
+                  type: string
+                appointmenttypeid:
+                  description: The appointment type ID to be created. Either this or a reason must be provided.	
+                  type: integer
+                departmentid:
+                  description: The athenaNet department ID.	
+                  type: integer
+                providerid:
+                  description: The athenaNet provider ID.
+                  type: integer
+                reasonid:
+                  description: >
+                    The appointment reason (/patientappointmentreasons) to be created.
+                    Either this or a raw appointment type ID must be provided.
+                  type: integer
+      responses:
+        '200':
+          description: Array of information about created providers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  appointmentids:
+                    type: array
+                    items:
+                      type: string
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"

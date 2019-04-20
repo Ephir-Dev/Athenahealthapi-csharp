@@ -380,5 +380,39 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<object>> CreateProviderWithHttpMessagesAsync(bool billable, int entitytypeid, int medicalgroupid, int providergroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Provides the ability to add new open appointment slots
+        /// </summary>
+        /// <param name='appointmentdate'>
+        /// The appointment date for the new open appointment slot
+        /// (mm/dd/yyyy).
+        /// </param>
+        /// <param name='appointmenttime'>
+        /// The time (hh24:mi) for the new appointment slot. Multiple times
+        /// (either as a comma delimited list or multiple POSTed values) are
+        /// allowed. 24 hour time.
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenaNet department ID.
+        /// </param>
+        /// <param name='providerid'>
+        /// The athenaNet provider ID.
+        /// </param>
+        /// <param name='appointmenttypeid'>
+        /// The appointment type ID to be created. Either this or a reason must
+        /// be provided.
+        /// </param>
+        /// <param name='reasonid'>
+        /// The appointment reason (/patientappointmentreasons) to be created.
+        /// Either this or a raw appointment type ID must be provided.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> OpenNewAppointmentWithHttpMessagesAsync(string appointmentdate, string appointmenttime, int departmentid, int providerid, int? appointmenttypeid = default(int?), int? reasonid = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

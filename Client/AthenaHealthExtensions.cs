@@ -675,5 +675,77 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Provides the ability to add new open appointment slots
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentdate'>
+            /// The appointment date for the new open appointment slot (mm/dd/yyyy).
+            /// </param>
+            /// <param name='appointmenttime'>
+            /// The time (hh24:mi) for the new appointment slot. Multiple times (either as
+            /// a comma delimited list or multiple POSTed values) are allowed. 24 hour
+            /// time.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='providerid'>
+            /// The athenaNet provider ID.
+            /// </param>
+            /// <param name='appointmenttypeid'>
+            /// The appointment type ID to be created. Either this or a reason must be
+            /// provided.
+            /// </param>
+            /// <param name='reasonid'>
+            /// The appointment reason (/patientappointmentreasons) to be created. Either
+            /// this or a raw appointment type ID must be provided.
+            /// </param>
+            public static object OpenNewAppointment(this IAthenaHealth operations, string appointmentdate, string appointmenttime, int departmentid, int providerid, int? appointmenttypeid = default(int?), int? reasonid = default(int?))
+            {
+                return operations.OpenNewAppointmentAsync(appointmentdate, appointmenttime, departmentid, providerid, appointmenttypeid, reasonid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Provides the ability to add new open appointment slots
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentdate'>
+            /// The appointment date for the new open appointment slot (mm/dd/yyyy).
+            /// </param>
+            /// <param name='appointmenttime'>
+            /// The time (hh24:mi) for the new appointment slot. Multiple times (either as
+            /// a comma delimited list or multiple POSTed values) are allowed. 24 hour
+            /// time.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='providerid'>
+            /// The athenaNet provider ID.
+            /// </param>
+            /// <param name='appointmenttypeid'>
+            /// The appointment type ID to be created. Either this or a reason must be
+            /// provided.
+            /// </param>
+            /// <param name='reasonid'>
+            /// The appointment reason (/patientappointmentreasons) to be created. Either
+            /// this or a raw appointment type ID must be provided.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> OpenNewAppointmentAsync(this IAthenaHealth operations, string appointmentdate, string appointmenttime, int departmentid, int providerid, int? appointmenttypeid = default(int?), int? reasonid = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.OpenNewAppointmentWithHttpMessagesAsync(appointmentdate, appointmenttime, departmentid, providerid, appointmenttypeid, reasonid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
