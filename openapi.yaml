@@ -793,6 +793,54 @@ components:
           type: string
           x-ms-client-name: AlertMessage
           description: Alert message if the operation did not work.
+    AppointmentTypeInformation:
+      required:
+        - name
+        - appointmenttypeid
+      properties:
+        name:
+          description: The name of the appointment type.
+          type: string
+        duration:
+          description: Expected duration of the appointment in minutes.
+          type: integer
+        genericyn:
+          description: If true, this type is a "generic" type able to be filled with other types of appointments.
+          type: boolean
+        shortname:
+          description: The short name code of the appointment type.
+          type: string
+        patientyn:
+          description: If true, this type is a patient-facing type.
+          type: boolean
+        patientdisplayname:
+          description: Patient friendly appointment type name. Defaults to regular name.
+          type: string
+        appointmenttypeid:
+          description: The appointment type ID.
+          type: integer
+        templatetypeonlyyn:
+          description: If true, this type is a "template-only" type, and must be filled with a different appointment type upon booking.
+          type: boolean
+        createencounteroncheckin:
+          description: >
+            If true, then this appointments of this type will generated an encounter when checked in, with certain conditions.
+            It's rather complex, but the rendering provider on the appointment must also have the create encounter feature set, the department must have athena Clinicals enabled, and other rarer and less visible settings.
+          type: boolean
+    AppointmentTypeInformationList:
+      required:
+        - totalcount
+        - appointmenttypes
+      properties:
+        totalcount:
+          type: integer
+          format: int32
+          x-ms-client-name: TotalCount
+        appointmenttypes:
+          type: array
+          x-ms-client-name: AppointmentTypes
+          items:
+            $ref: "#/components/schemas/AppointmentTypeInformation"
     Error:
       required:
         - error
@@ -1306,6 +1354,120 @@ paths:
                     type: array
                     items:
                       type: string
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        500:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/appointmenttypes:
+    get:
+      summary: Get appointment types
+      operationId: getAppointmentTypes
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: query
+          name: hidegeneric
+          description: By default, we show both generic and non-generic types. Setting this to true will hide the generic types (and show only non-generic types).
+          schema:
+            type: boolean
+        - in: query
+          name: hidenongeneric
+          description: By default, we show both generic and non-generic types. Setting this to true will hide non-generic types (and show only generic types).
+          schema:
+            type: boolean
+        - in: query
+          name: hidenonpatient
+          description: This defaults to true if not specified, and thus will hide non-patient facing types. Setting this to false would thus show non-patient facing types.
+          schema:
+            type: boolean
+        - in: query
+          name: hidetemplatetypeonly
+          description: By default, we show both "template only" and not-template only types. Setting this to true, the results will omit template only types. ("Template only" is a setting that makes the type appear in schedules, but forces users to select a non-template type upon booking.)
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Array of information about appointment types
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppointmentTypeInformationList"
+    post:
+      summary: Creates new appointment type
+      operationId: createAppointmentType
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - name
+                - shortname
+                - patient
+                - duration
+              properties:
+                duration:
+                  description: >
+                    The expected duration, in minutes, of the appointment type.
+                    Note, this value cannot be changed after creation, so please choose carefully.
+                  type: integer
+                generic:
+                  description: >
+                    If set to true, this type serves as a "generic" type, that will match any type when searching.
+                    Defaults to false.
+                  type: boolean
+                name:
+                  description: The name of the appointment type. Maximum length of 30 characters.
+                  type: string
+                  maxLength: 30
+                patient:
+                  description: >
+                    If set to true, this type serves as a "patient" type, meaning that is is a type that can be used for booking patients.
+                    If set to false, then it this type will not be used for patient (e.g. "Lunch" or "Vacation").
+                    Non-patient types are mostly used to reserving time for providers to not see patients.
+                  type: boolean
+                shortname :
+                  description: >
+                    The short name code of the appointment type.
+                    Maximum length of 4 characters.
+                    Used for making schedule templates.
+                    Note, this value cannot be changed after creation, so please choose carefully.
+                  type: string
+                  maxLength: 4
+                templatetypeonly:
+                  description: >
+                    If set to true, this type serves as a "template-only" type, meaning that it can be used for building schedule templates, 
+                    but cannot be used for booking appointments (i.e. another type must be chosen).
+                    Defaults to false.
+                  type: boolean
+      responses:
+        '200':
+          description: Array of information about created providers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  appointmenttypeid:
+                    type: integer
         400:
           description: Bad request
           content:

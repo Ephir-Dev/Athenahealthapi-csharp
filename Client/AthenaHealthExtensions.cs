@@ -747,5 +747,153 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get appointment types
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='hidegeneric'>
+            /// By default, we show both generic and non-generic types. Setting this to
+            /// true will hide the generic types (and show only non-generic types).
+            /// </param>
+            /// <param name='hidenongeneric'>
+            /// By default, we show both generic and non-generic types. Setting this to
+            /// true will hide non-generic types (and show only generic types).
+            /// </param>
+            /// <param name='hidenonpatient'>
+            /// This defaults to true if not specified, and thus will hide non-patient
+            /// facing types. Setting this to false would thus show non-patient facing
+            /// types.
+            /// </param>
+            /// <param name='hidetemplatetypeonly'>
+            /// By default, we show both "template only" and not-template only types.
+            /// Setting this to true, the results will omit template only types. ("Template
+            /// only" is a setting that makes the type appear in schedules, but forces
+            /// users to select a non-template type upon booking.)
+            /// </param>
+            public static AppointmentTypeInformationList GetAppointmentTypes(this IAthenaHealth operations, bool? hidegeneric = default(bool?), bool? hidenongeneric = default(bool?), bool? hidenonpatient = default(bool?), bool? hidetemplatetypeonly = default(bool?))
+            {
+                return operations.GetAppointmentTypesAsync(hidegeneric, hidenongeneric, hidenonpatient, hidetemplatetypeonly).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get appointment types
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='hidegeneric'>
+            /// By default, we show both generic and non-generic types. Setting this to
+            /// true will hide the generic types (and show only non-generic types).
+            /// </param>
+            /// <param name='hidenongeneric'>
+            /// By default, we show both generic and non-generic types. Setting this to
+            /// true will hide non-generic types (and show only generic types).
+            /// </param>
+            /// <param name='hidenonpatient'>
+            /// This defaults to true if not specified, and thus will hide non-patient
+            /// facing types. Setting this to false would thus show non-patient facing
+            /// types.
+            /// </param>
+            /// <param name='hidetemplatetypeonly'>
+            /// By default, we show both "template only" and not-template only types.
+            /// Setting this to true, the results will omit template only types. ("Template
+            /// only" is a setting that makes the type appear in schedules, but forces
+            /// users to select a non-template type upon booking.)
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<AppointmentTypeInformationList> GetAppointmentTypesAsync(this IAthenaHealth operations, bool? hidegeneric = default(bool?), bool? hidenongeneric = default(bool?), bool? hidenonpatient = default(bool?), bool? hidetemplatetypeonly = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetAppointmentTypesWithHttpMessagesAsync(hidegeneric, hidenongeneric, hidenonpatient, hidetemplatetypeonly, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Creates new appointment type
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='duration'>
+            /// The expected duration, in minutes, of the appointment type. Note, this
+            /// value cannot be changed after creation, so please choose carefully.
+            /// </param>
+            /// <param name='name'>
+            /// The name of the appointment type. Maximum length of 30 characters.
+            /// </param>
+            /// <param name='patient'>
+            /// If set to true, this type serves as a "patient" type, meaning that is is a
+            /// type that can be used for booking patients. If set to false, then it this
+            /// type will not be used for patient (e.g. "Lunch" or "Vacation"). Non-patient
+            /// types are mostly used to reserving time for providers to not see patients.
+            /// </param>
+            /// <param name='shortname'>
+            /// The short name code of the appointment type. Maximum length of 4
+            /// characters. Used for making schedule templates. Note, this value cannot be
+            /// changed after creation, so please choose carefully.
+            /// </param>
+            /// <param name='generic'>
+            /// If set to true, this type serves as a "generic" type, that will match any
+            /// type when searching. Defaults to false.
+            /// </param>
+            /// <param name='templatetypeonly'>
+            /// If set to true, this type serves as a "template-only" type, meaning that it
+            /// can be used for building schedule templates,  but cannot be used for
+            /// booking appointments (i.e. another type must be chosen). Defaults to false.
+            /// </param>
+            public static object CreateAppointmentType(this IAthenaHealth operations, int duration, string name, bool patient, string shortname, bool? generic = default(bool?), bool? templatetypeonly = default(bool?))
+            {
+                return operations.CreateAppointmentTypeAsync(duration, name, patient, shortname, generic, templatetypeonly).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Creates new appointment type
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='duration'>
+            /// The expected duration, in minutes, of the appointment type. Note, this
+            /// value cannot be changed after creation, so please choose carefully.
+            /// </param>
+            /// <param name='name'>
+            /// The name of the appointment type. Maximum length of 30 characters.
+            /// </param>
+            /// <param name='patient'>
+            /// If set to true, this type serves as a "patient" type, meaning that is is a
+            /// type that can be used for booking patients. If set to false, then it this
+            /// type will not be used for patient (e.g. "Lunch" or "Vacation"). Non-patient
+            /// types are mostly used to reserving time for providers to not see patients.
+            /// </param>
+            /// <param name='shortname'>
+            /// The short name code of the appointment type. Maximum length of 4
+            /// characters. Used for making schedule templates. Note, this value cannot be
+            /// changed after creation, so please choose carefully.
+            /// </param>
+            /// <param name='generic'>
+            /// If set to true, this type serves as a "generic" type, that will match any
+            /// type when searching. Defaults to false.
+            /// </param>
+            /// <param name='templatetypeonly'>
+            /// If set to true, this type serves as a "template-only" type, meaning that it
+            /// can be used for building schedule templates,  but cannot be used for
+            /// booking appointments (i.e. another type must be chosen). Defaults to false.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CreateAppointmentTypeAsync(this IAthenaHealth operations, int duration, string name, bool patient, string shortname, bool? generic = default(bool?), bool? templatetypeonly = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateAppointmentTypeWithHttpMessagesAsync(duration, name, patient, shortname, generic, templatetypeonly, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }

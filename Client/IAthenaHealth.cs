@@ -414,5 +414,79 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<object>> OpenNewAppointmentWithHttpMessagesAsync(string appointmentdate, string appointmenttime, int departmentid, int providerid, int? appointmenttypeid = default(int?), int? reasonid = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Get appointment types
+        /// </summary>
+        /// <param name='hidegeneric'>
+        /// By default, we show both generic and non-generic types. Setting
+        /// this to true will hide the generic types (and show only non-generic
+        /// types).
+        /// </param>
+        /// <param name='hidenongeneric'>
+        /// By default, we show both generic and non-generic types. Setting
+        /// this to true will hide non-generic types (and show only generic
+        /// types).
+        /// </param>
+        /// <param name='hidenonpatient'>
+        /// This defaults to true if not specified, and thus will hide
+        /// non-patient facing types. Setting this to false would thus show
+        /// non-patient facing types.
+        /// </param>
+        /// <param name='hidetemplatetypeonly'>
+        /// By default, we show both "template only" and not-template only
+        /// types. Setting this to true, the results will omit template only
+        /// types. ("Template only" is a setting that makes the type appear in
+        /// schedules, but forces users to select a non-template type upon
+        /// booking.)
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<AppointmentTypeInformationList>> GetAppointmentTypesWithHttpMessagesAsync(bool? hidegeneric = default(bool?), bool? hidenongeneric = default(bool?), bool? hidenonpatient = default(bool?), bool? hidetemplatetypeonly = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Creates new appointment type
+        /// </summary>
+        /// <param name='duration'>
+        /// The expected duration, in minutes, of the appointment type. Note,
+        /// this value cannot be changed after creation, so please choose
+        /// carefully.
+        /// </param>
+        /// <param name='name'>
+        /// The name of the appointment type. Maximum length of 30 characters.
+        /// </param>
+        /// <param name='patient'>
+        /// If set to true, this type serves as a "patient" type, meaning that
+        /// is is a type that can be used for booking patients. If set to
+        /// false, then it this type will not be used for patient (e.g. "Lunch"
+        /// or "Vacation"). Non-patient types are mostly used to reserving time
+        /// for providers to not see patients.
+        /// </param>
+        /// <param name='shortname'>
+        /// The short name code of the appointment type. Maximum length of 4
+        /// characters. Used for making schedule templates. Note, this value
+        /// cannot be changed after creation, so please choose carefully.
+        /// </param>
+        /// <param name='generic'>
+        /// If set to true, this type serves as a "generic" type, that will
+        /// match any type when searching. Defaults to false.
+        /// </param>
+        /// <param name='templatetypeonly'>
+        /// If set to true, this type serves as a "template-only" type, meaning
+        /// that it can be used for building schedule templates,  but cannot be
+        /// used for booking appointments (i.e. another type must be chosen).
+        /// Defaults to false.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> CreateAppointmentTypeWithHttpMessagesAsync(int duration, string name, bool patient, string shortname, bool? generic = default(bool?), bool? templatetypeonly = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }
