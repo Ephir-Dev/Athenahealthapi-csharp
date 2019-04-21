@@ -25,11 +25,12 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// Initializes a new instance of the Error class.
         /// </summary>
-        public Error(string errorProperty, IList<string> missingfields = default(IList<string>), IList<string> fields = default(IList<string>))
+        public Error(string errorProperty, IList<string> missingfields = default(IList<string>), IList<string> fields = default(IList<string>), string detailedmessage = default(string))
         {
             Missingfields = missingfields;
             Fields = fields;
             ErrorProperty = errorProperty;
+            Detailedmessage = detailedmessage;
             CustomInit();
         }
 
@@ -52,6 +53,11 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// </summary>
         [JsonProperty(PropertyName = "error")]
         public string ErrorProperty { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "detailedmessage")]
+        public string Detailedmessage { get; set; }
 
         /// <summary>
         /// Validate the object.

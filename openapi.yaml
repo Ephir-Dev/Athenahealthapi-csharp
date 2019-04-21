@@ -855,6 +855,9 @@ components:
             type: string
         error:
           type: string
+        detailedmessage:
+          type: string
+          x-ms-client-name: DetailedMessage
   requestBodies:
     CreatePerson:
       x-ms-client-name: createPerson
