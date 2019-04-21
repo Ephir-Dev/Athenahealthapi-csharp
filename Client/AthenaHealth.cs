@@ -2561,6 +2561,13 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "shortname");
             }
+            if (shortname != null)
+            {
+                if (shortname.Length > 4)
+                {
+                    throw new ValidationException(ValidationRules.MaxLength, "shortname", 4);
+                }
+            }
             if (Apivariant == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");

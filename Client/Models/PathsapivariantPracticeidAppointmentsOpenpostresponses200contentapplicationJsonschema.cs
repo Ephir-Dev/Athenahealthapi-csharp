@@ -28,7 +28,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// PathsapivariantPracticeidAppointmentsOpenpostresponses200contentapplicationJsonschema
         /// class.
         /// </summary>
-        public PathsapivariantPracticeidAppointmentsOpenpostresponses200contentapplicationJsonschema(IList<string> appointmentids = default(IList<string>))
+        public PathsapivariantPracticeidAppointmentsOpenpostresponses200contentapplicationJsonschema(IDictionary<string, string> appointmentids = default(IDictionary<string, string>))
         {
             Appointmentids = appointmentids;
             CustomInit();
@@ -42,7 +42,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "appointmentids")]
-        public IList<string> Appointmentids { get; set; }
+        public IDictionary<string, string> Appointmentids { get; set; }
 
     }
 }
