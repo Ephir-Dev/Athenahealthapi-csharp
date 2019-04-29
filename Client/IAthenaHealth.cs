@@ -422,6 +422,83 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<IList<AppointmentInformation>>> GetAppointmentByIdWithHttpMessagesAsync(int appointmentId, bool? ignorerestrictions = default(bool?), bool? showclaimdetail = default(bool?), bool? showcopay = default(bool?), bool? showexpectedprocedurecodes = default(bool?), bool? showinsurance = default(bool?), bool? showpatientdetail = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Set Information about a single patient's appointment by id
+        /// </summary>
+        /// <param name='patientid'>
+        /// The athenaNet patient ID.
+        /// </param>
+        /// <param name='appointmentId'>
+        /// Id of the appointment.
+        /// </param>
+        /// <param name='appointmenttypeid'>
+        /// The appointment type to be booked. This field should never be used
+        /// for booking appointments for web-based scheduling. The use of this
+        /// field is reserved for digital check-in (aka "kiosk") or an
+        /// application used by practice staff. One of this or reasonid is
+        /// required.
+        /// </param>
+        /// <param name='bookingnote'>
+        /// A note from the patient about why this appointment is being booked
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenaNet department ID.
+        /// </param>
+        /// <param name='donotsendconfirmationemail'>
+        /// For clients with athenaCommunicator, certain appointment types can
+        /// be configured to have an appointment confirmation email sent to the
+        /// patient at time of appointment booking. If this parameter is set to
+        /// true, that email will not be sent. This should only be used if you
+        /// plan on sending a confirmation email via another method.
+        /// </param>
+        /// <param name='ignoreschedulablepermission'>
+        /// By default, we allow booking of appointments marked as schedulable
+        /// via the web. This flag allows you to bypass that restriction for
+        /// booking.
+        /// </param>
+        /// <param name='insurancecompany'>
+        /// The name of the insurance company.
+        /// </param>
+        /// <param name='insurancegroupid'>
+        /// If available, any identifier for the insurance group.
+        /// </param>
+        /// <param name='insuranceidnumber'>
+        /// The insurance identifier for this individual patient.
+        /// </param>
+        /// <param name='insurancenote'>
+        /// Any extra information provided by the patient about insurance
+        /// coverage.
+        /// </param>
+        /// <param name='insurancephone'>
+        /// The phone number for the insurance company.
+        /// </param>
+        /// <param name='insuranceplanname'>
+        /// The insurance plan name (e.g. "HMO Blue").
+        /// </param>
+        /// <param name='insurancepolicyholder'>
+        /// The full name of the insurance policy holder.
+        /// </param>
+        /// <param name='nopatientcase'>
+        /// By default, we create a patient case upon booking an appointment
+        /// for new patients. Setting this to true bypasses that patient case.
+        /// </param>
+        /// <param name='reasonid'>
+        /// The appointment reason ID to be booked. This field is required for
+        /// booking appointments for web-based scheduling and is a reason that
+        /// is retrieved from the /patientappointmentreasons call.
+        /// </param>
+        /// <param name='urgentyn'>
+        /// Set this field in order to set the urgent flag in athena (if the
+        /// practice settings allow for this).
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> BookAppointmentByIdWithHttpMessagesAsync(int patientid, int appointmentId, int? appointmenttypeid = default(int?), string bookingnote = default(string), int? departmentid = default(int?), bool? donotsendconfirmationemail = default(bool?), bool? ignoreschedulablepermission = default(bool?), string insurancecompany = default(string), string insurancegroupid = default(string), string insuranceidnumber = default(string), string insurancenote = default(string), string insurancephone = default(string), string insuranceplanname = default(string), string insurancepolicyholder = default(string), bool? nopatientcase = default(bool?), int? reasonid = default(int?), bool? urgentyn = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get booked appointments
         /// </summary>
         /// <param name='appointmentstatus'>

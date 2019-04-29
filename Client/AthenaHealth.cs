@@ -2258,6 +2258,339 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         }
 
         /// <summary>
+        /// Set Information about a single patient's appointment by id
+        /// </summary>
+        /// <param name='patientid'>
+        /// The athenaNet patient ID.
+        /// </param>
+        /// <param name='appointmentId'>
+        /// Id of the appointment.
+        /// </param>
+        /// <param name='appointmenttypeid'>
+        /// The appointment type to be booked. This field should never be used for
+        /// booking appointments for web-based scheduling. The use of this field is
+        /// reserved for digital check-in (aka "kiosk") or an application used by
+        /// practice staff. One of this or reasonid is required.
+        /// </param>
+        /// <param name='bookingnote'>
+        /// A note from the patient about why this appointment is being booked
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenaNet department ID.
+        /// </param>
+        /// <param name='donotsendconfirmationemail'>
+        /// For clients with athenaCommunicator, certain appointment types can be
+        /// configured to have an appointment confirmation email sent to the patient at
+        /// time of appointment booking. If this parameter is set to true, that email
+        /// will not be sent. This should only be used if you plan on sending a
+        /// confirmation email via another method.
+        /// </param>
+        /// <param name='ignoreschedulablepermission'>
+        /// By default, we allow booking of appointments marked as schedulable via the
+        /// web. This flag allows you to bypass that restriction for booking.
+        /// </param>
+        /// <param name='insurancecompany'>
+        /// The name of the insurance company.
+        /// </param>
+        /// <param name='insurancegroupid'>
+        /// If available, any identifier for the insurance group.
+        /// </param>
+        /// <param name='insuranceidnumber'>
+        /// The insurance identifier for this individual patient.
+        /// </param>
+        /// <param name='insurancenote'>
+        /// Any extra information provided by the patient about insurance coverage.
+        /// </param>
+        /// <param name='insurancephone'>
+        /// The phone number for the insurance company.
+        /// </param>
+        /// <param name='insuranceplanname'>
+        /// The insurance plan name (e.g. "HMO Blue").
+        /// </param>
+        /// <param name='insurancepolicyholder'>
+        /// The full name of the insurance policy holder.
+        /// </param>
+        /// <param name='nopatientcase'>
+        /// By default, we create a patient case upon booking an appointment for new
+        /// patients. Setting this to true bypasses that patient case.
+        /// </param>
+        /// <param name='reasonid'>
+        /// The appointment reason ID to be booked. This field is required for booking
+        /// appointments for web-based scheduling and is a reason that is retrieved
+        /// from the /patientappointmentreasons call.
+        /// </param>
+        /// <param name='urgentyn'>
+        /// Set this field in order to set the urgent flag in athena (if the practice
+        /// settings allow for this).
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<object>> BookAppointmentByIdWithHttpMessagesAsync(int patientid, int appointmentId, int? appointmenttypeid = default(int?), string bookingnote = default(string), int? departmentid = default(int?), bool? donotsendconfirmationemail = default(bool?), bool? ignoreschedulablepermission = default(bool?), string insurancecompany = default(string), string insurancegroupid = default(string), string insuranceidnumber = default(string), string insurancenote = default(string), string insurancephone = default(string), string insuranceplanname = default(string), string insurancepolicyholder = default(string), bool? nopatientcase = default(bool?), int? reasonid = default(int?), bool? urgentyn = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            string apiVersion = "1.0.0";
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("patientid", patientid);
+                tracingParameters.Add("appointmenttypeid", appointmenttypeid);
+                tracingParameters.Add("bookingnote", bookingnote);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("donotsendconfirmationemail", donotsendconfirmationemail);
+                tracingParameters.Add("ignoreschedulablepermission", ignoreschedulablepermission);
+                tracingParameters.Add("insurancecompany", insurancecompany);
+                tracingParameters.Add("insurancegroupid", insurancegroupid);
+                tracingParameters.Add("insuranceidnumber", insuranceidnumber);
+                tracingParameters.Add("insurancenote", insurancenote);
+                tracingParameters.Add("insurancephone", insurancephone);
+                tracingParameters.Add("insuranceplanname", insuranceplanname);
+                tracingParameters.Add("insurancepolicyholder", insurancepolicyholder);
+                tracingParameters.Add("nopatientcase", nopatientcase);
+                tracingParameters.Add("reasonid", reasonid);
+                tracingParameters.Add("urgentyn", urgentyn);
+                tracingParameters.Add("appointmentId", appointmentId);
+                tracingParameters.Add("apiVersion", apiVersion);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "BookAppointmentById", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/appointments/{appointmentId}").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            _url = _url.Replace("{appointmentId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(appointmentId, SerializationSettings).Trim('"')));
+            List<string> _queryParameters = new List<string>();
+            if (apiVersion != null)
+            {
+                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("PUT");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            var values = new List<KeyValuePair<string, string>>();
+            if(patientid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("patientid", patientid.ToString()));
+            }
+            if(appointmenttypeid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("appointmenttypeid", appointmenttypeid?.ToString()));
+            }
+            if(bookingnote != null)
+            {
+                values.Add(new KeyValuePair<string,string>("bookingnote", bookingnote));
+            }
+            if(departmentid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("departmentid", departmentid?.ToString()));
+            }
+            if(donotsendconfirmationemail != null)
+            {
+                values.Add(new KeyValuePair<string,string>("donotsendconfirmationemail", donotsendconfirmationemail?.ToString()));
+            }
+            if(ignoreschedulablepermission != null)
+            {
+                values.Add(new KeyValuePair<string,string>("ignoreschedulablepermission", ignoreschedulablepermission?.ToString()));
+            }
+            if(insurancecompany != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insurancecompany", insurancecompany));
+            }
+            if(insurancegroupid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insurancegroupid", insurancegroupid));
+            }
+            if(insuranceidnumber != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insuranceidnumber", insuranceidnumber));
+            }
+            if(insurancenote != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insurancenote", insurancenote));
+            }
+            if(insurancephone != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insurancephone", insurancephone));
+            }
+            if(insuranceplanname != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insuranceplanname", insuranceplanname));
+            }
+            if(insurancepolicyholder != null)
+            {
+                values.Add(new KeyValuePair<string,string>("insurancepolicyholder", insurancepolicyholder));
+            }
+            if(nopatientcase != null)
+            {
+                values.Add(new KeyValuePair<string,string>("nopatientcase", nopatientcase?.ToString()));
+            }
+            if(reasonid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("reasonid", reasonid?.ToString()));
+            }
+            if(urgentyn != null)
+            {
+                values.Add(new KeyValuePair<string,string>("urgentyn", urgentyn?.ToString()));
+            }
+            var _formContent = new FormUrlEncodedContent(values);
+            _httpRequest.Content = _formContent;
+            // Set Credentials
+            if (Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200 && (int)_statusCode != 400 && (int)_statusCode != 409)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<object>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<AppointmentInformation>>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 400)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 409)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <summary>
         /// Get booked appointments
         /// </summary>
         /// <param name='appointmentstatus'>

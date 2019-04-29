@@ -1629,6 +1629,110 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AppointmentInformationArray"
+    put:
+      summary: Set Information about a single patient's appointment by id
+      operationId: bookAppointmentById
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: appointmentId
+          description: Id of the appointment.
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - patientid
+              properties:
+                patientid:
+                  description: The athenaNet patient ID.
+                  type: integer
+                appointmenttypeid:
+                  description: >
+                    The appointment type to be booked.
+                    This field should never be used for booking appointments for web-based scheduling.
+                    The use of this field is reserved for digital check-in (aka "kiosk") or an application used by practice staff.
+                    One of this or reasonid is required.
+                  type: integer
+                bookingnote:
+                  description: A note from the patient about why this appointment is being booked
+                  type: string
+                departmentid:
+                  description: The athenaNet department ID.
+                  type: integer
+                donotsendconfirmationemail:
+                  description: >
+                    For clients with athenaCommunicator, certain appointment types can be configured to have an appointment confirmation email sent to the patient at time of appointment booking.
+                    If this parameter is set to true, that email will not be sent.
+                    This should only be used if you plan on sending a confirmation email via another method.
+                  type: boolean
+                ignoreschedulablepermission:
+                  description: >
+                    By default, we allow booking of appointments marked as schedulable via the web.
+                    This flag allows you to bypass that restriction for booking.
+                  type: boolean
+                #insuranceinfo:
+                #  description: >
+                #    Patient insurance information, which will be added to the note on the appointment.
+                #  type: string
+                insurancecompany:
+                  description: The name of the insurance company.
+                  type: string
+                insurancegroupid:
+                  description: If available, any identifier for the insurance group.
+                  type: string
+                insuranceidnumber:
+                  description: The insurance identifier for this individual patient.
+                  type: string
+                insurancenote:
+                  description: Any extra information provided by the patient about insurance coverage.
+                  type: string
+                insurancephone:
+                  description: The phone number for the insurance company.
+                  type: string
+                insuranceplanname:
+                  description: The insurance plan name (e.g. "HMO Blue").
+                  type: string
+                insurancepolicyholder:
+                  description: The full name of the insurance policy holder.
+                  type: string
+                nopatientcase:
+                  description: >
+                    By default, we create a patient case upon booking an appointment for new patients. Setting this to true bypasses that patient case.
+                  type: boolean
+                reasonid:
+                  description: >
+                    The appointment reason ID to be booked.
+                    This field is required for booking appointments for web-based scheduling and is a reason that is retrieved from the /patientappointmentreasons call.
+                  type: integer
+                urgentyn:
+                  description: Set this field in order to set the urgent flag in athena (if the practice settings allow for this).
+                  type: boolean
+      responses:
+        '200':
+          description: Array of information about appointments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppointmentInformationArray"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /{apivariant}/{practiceid}/appointments/booked:
     get:
       summary: Get booked appointments
