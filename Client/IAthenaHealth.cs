@@ -381,6 +381,47 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<object>> CreateProviderWithHttpMessagesAsync(bool billable, int entitytypeid, int medicalgroupid, int providergroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Get Information about a single patient's appointment by id
+        /// </summary>
+        /// <param name='appointmentId'>
+        /// Id of the appointment.
+        /// </param>
+        /// <param name='ignorerestrictions'>
+        /// When showing patient detail for appointments, the patient
+        /// information for patients with record restrictions and blocked
+        /// patients will not be shown. Setting this flag to true will show
+        /// that information for those patients.
+        /// </param>
+        /// <param name='showclaimdetail'>
+        /// Include claim information, if available, associated with an
+        /// appointment.
+        /// </param>
+        /// <param name='showcopay'>
+        /// By default, the expected co-pay is returned. For performance
+        /// purposes, you can set this to false and copay will not be
+        /// populated.
+        /// </param>
+        /// <param name='showexpectedprocedurecodes'>
+        /// Show the expetcted procedurecodes.
+        /// </param>
+        /// <param name='showinsurance'>
+        /// Include patient insurance information. Shows insurance packages for
+        /// the appointment if any are selected, and all patient packages
+        /// otherwise.
+        /// </param>
+        /// <param name='showpatientdetail'>
+        /// Include patient information for each patient associated with an
+        /// appointment.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<AppointmentInformation>>> GetAppointmentByIdWithHttpMessagesAsync(int appointmentId, bool? ignorerestrictions = default(bool?), bool? showclaimdetail = default(bool?), bool? showcopay = default(bool?), bool? showexpectedprocedurecodes = default(bool?), bool? showinsurance = default(bool?), bool? showpatientdetail = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get booked appointments
         /// </summary>
         /// <param name='appointmentstatus'>

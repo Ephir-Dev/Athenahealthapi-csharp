@@ -676,6 +676,86 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get Information about a single patient's appointment by id
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentId'>
+            /// Id of the appointment.
+            /// </param>
+            /// <param name='ignorerestrictions'>
+            /// When showing patient detail for appointments, the patient information for
+            /// patients with record restrictions and blocked patients will not be shown.
+            /// Setting this flag to true will show that information for those patients.
+            /// </param>
+            /// <param name='showclaimdetail'>
+            /// Include claim information, if available, associated with an appointment.
+            /// </param>
+            /// <param name='showcopay'>
+            /// By default, the expected co-pay is returned. For performance purposes, you
+            /// can set this to false and copay will not be populated.
+            /// </param>
+            /// <param name='showexpectedprocedurecodes'>
+            /// Show the expetcted procedurecodes.
+            /// </param>
+            /// <param name='showinsurance'>
+            /// Include patient insurance information. Shows insurance packages for the
+            /// appointment if any are selected, and all patient packages otherwise.
+            /// </param>
+            /// <param name='showpatientdetail'>
+            /// Include patient information for each patient associated with an
+            /// appointment.
+            /// </param>
+            public static IList<AppointmentInformation> GetAppointmentById(this IAthenaHealth operations, int appointmentId, bool? ignorerestrictions = default(bool?), bool? showclaimdetail = default(bool?), bool? showcopay = default(bool?), bool? showexpectedprocedurecodes = default(bool?), bool? showinsurance = default(bool?), bool? showpatientdetail = default(bool?))
+            {
+                return operations.GetAppointmentByIdAsync(appointmentId, ignorerestrictions, showclaimdetail, showcopay, showexpectedprocedurecodes, showinsurance, showpatientdetail).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get Information about a single patient's appointment by id
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentId'>
+            /// Id of the appointment.
+            /// </param>
+            /// <param name='ignorerestrictions'>
+            /// When showing patient detail for appointments, the patient information for
+            /// patients with record restrictions and blocked patients will not be shown.
+            /// Setting this flag to true will show that information for those patients.
+            /// </param>
+            /// <param name='showclaimdetail'>
+            /// Include claim information, if available, associated with an appointment.
+            /// </param>
+            /// <param name='showcopay'>
+            /// By default, the expected co-pay is returned. For performance purposes, you
+            /// can set this to false and copay will not be populated.
+            /// </param>
+            /// <param name='showexpectedprocedurecodes'>
+            /// Show the expetcted procedurecodes.
+            /// </param>
+            /// <param name='showinsurance'>
+            /// Include patient insurance information. Shows insurance packages for the
+            /// appointment if any are selected, and all patient packages otherwise.
+            /// </param>
+            /// <param name='showpatientdetail'>
+            /// Include patient information for each patient associated with an
+            /// appointment.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<AppointmentInformation>> GetAppointmentByIdAsync(this IAthenaHealth operations, int appointmentId, bool? ignorerestrictions = default(bool?), bool? showclaimdetail = default(bool?), bool? showcopay = default(bool?), bool? showexpectedprocedurecodes = default(bool?), bool? showinsurance = default(bool?), bool? showpatientdetail = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetAppointmentByIdWithHttpMessagesAsync(appointmentId, ignorerestrictions, showclaimdetail, showcopay, showexpectedprocedurecodes, showinsurance, showpatientdetail, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get booked appointments
             /// </summary>
             /// <param name='operations'>

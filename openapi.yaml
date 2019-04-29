@@ -1091,6 +1091,10 @@ components:
           x-ms-client-name: AppointmentTypes
           items:
             $ref: "#/components/schemas/AppointmentTypeInformation"
+    AppointmentInformationArray:
+      type: array
+      items:
+        $ref: "#/components/schemas/AppointmentInformation"
     AppointmentInformationList:
       required:
         - totalcount
@@ -1568,6 +1572,63 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/appointments/{appointmentId}:
+    get:
+      summary: Get Information about a single patient's appointment by id
+      operationId: getAppointmentById
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: appointmentId
+          description: Id of the appointment.
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: ignorerestrictions
+          description: >
+            When showing patient detail for appointments, the patient information for patients with record restrictions and blocked patients will not be shown.
+            Setting this flag to true will show that information for those patients.
+          schema:
+            type: boolean
+        - in: query
+          name: showclaimdetail
+          description: >
+            Include claim information, if available, associated with an appointment.
+          schema:
+            type: boolean
+        - in: query
+          name: showcopay
+          description: >
+            By default, the expected co-pay is returned.
+            For performance purposes, you can set this to false and copay will not be populated.
+          schema:
+            type: boolean
+        - in: query
+          name: showexpectedprocedurecodes
+          description: Show the expetcted procedurecodes.
+          schema:
+            type: boolean
+        - in: query
+          name: showinsurance
+          description: >
+            Include patient insurance information.
+            Shows insurance packages for the appointment if any are selected, and all patient packages otherwise.
+          schema:
+            type: boolean
+        - in: query
+          name: showpatientdetail
+          description: Include patient information for each patient associated with an appointment.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Array of information about appointments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppointmentInformationArray"
   /{apivariant}/{practiceid}/appointments/booked:
     get:
       summary: Get booked appointments
@@ -1684,7 +1745,7 @@ paths:
             type: string
       responses:
         '200':
-          description: Array of information about providers
+          description: Array of information about appointments
           content:
             application/json:
               schema:
