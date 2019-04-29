@@ -2904,6 +2904,256 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         }
 
         /// <summary>
+        /// Get open appointment slots
+        /// </summary>
+        /// <param name='appointmenttypeid'>
+        /// Normally, an appointment reason ID should be used which will map to the
+        /// correct underlying appointment type in athenaNet. This field will ignore
+        /// the practice's existing setup for what should be scheduled. Please consult
+        /// with athenahealth before using. Either an appointmenttypeid or a reasonid
+        /// must be specified or no results will be returned.
+        /// </param>
+        /// <param name='bypassscheduletimechecks'>
+        /// Bypass checks that usually require returned appointments to be some amount
+        /// of hours in the future (as configured by the practice, defaulting to 24
+        /// hours), and also ignores the setting that only  shows appointments for a
+        /// certain number of days in the future (also configurable by the practice,
+        /// defaulting to 90 days).
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenaNet department ID.
+        /// </param>
+        /// <param name='enddate'>
+        /// End of the appointment search date range (mm/dd/yyyy). Inclusive. Defaults
+        /// to seven days from startdate.
+        /// </param>
+        /// <param name='ignoreschedulablepermission'>
+        /// By default, we show only appointments that are are available to scheduled
+        /// via the API. This flag allows you to bypass that restriction for viewing
+        /// available appointments (but you still may not be able to schedule based on
+        /// this permission!). This flag does not, however, show the full schedule
+        /// (that is, appointments that are already booked).
+        /// </param>
+        /// <param name='providerid'>
+        /// The athenaNet provider ID. Required if a reasonid other than -1 is
+        /// specified.
+        /// </param>
+        /// <param name='reasonid'>
+        /// The athenaNet patient appointment reason ID, from GET
+        /// /patientappointmentreasons. While this is not technically required due to
+        /// some unusual use cases, it is highly recommended for most calls. We do
+        /// allow a special value of -1 for the reasonid. This reasonid will return
+        /// open, web-schedulable slots regardless of reason. However, slots returned
+        /// using a search of -1 may return slots that are not bookable by any reason
+        /// ID (they may be bookable by specific appointment type IDs instead). This
+        /// argument allows multiple valid reason IDs to be specified (e.g.
+        /// reasonid=1,2,3), so if you are looking for slots that match "any" reason,
+        /// it is recommended that you enumerate the set of reasons you are looking
+        /// for. Either a reasonid or an appointmenttypeid must be specified or no
+        /// results will be returned. If a reasonid other than -1 is specified then a
+        /// providerid must also be specified.
+        /// </param>
+        /// <param name='showfrozenslots'>
+        /// By default, we hide appointments that are frozen from being returned via
+        /// the API.  This flag allows you to show frozen slots in the set of results
+        /// returned.
+        /// </param>
+        /// <param name='startdate'>
+        /// Start of the appointment search date range (mm/dd/yyyy). Inclusive.
+        /// Defaults to today.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<AppointmentInformationList>> GetOpenAppointmentsWithHttpMessagesAsync(int? appointmenttypeid = default(int?), bool? bypassscheduletimechecks = default(bool?), int? departmentid = default(int?), string enddate = default(string), bool? ignoreschedulablepermission = default(bool?), string providerid = default(string), string reasonid = default(string), bool? showfrozenslots = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            string apiVersion = "1.0.0";
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("appointmenttypeid", appointmenttypeid);
+                tracingParameters.Add("bypassscheduletimechecks", bypassscheduletimechecks);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("enddate", enddate);
+                tracingParameters.Add("ignoreschedulablepermission", ignoreschedulablepermission);
+                tracingParameters.Add("providerid", providerid);
+                tracingParameters.Add("reasonid", reasonid);
+                tracingParameters.Add("showfrozenslots", showfrozenslots);
+                tracingParameters.Add("startdate", startdate);
+                tracingParameters.Add("apiVersion", apiVersion);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetOpenAppointments", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/appointments/open").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            List<string> _queryParameters = new List<string>();
+            if (appointmenttypeid != null)
+            {
+                _queryParameters.Add(string.Format("appointmenttypeid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(appointmenttypeid, SerializationSettings).Trim('"'))));
+            }
+            if (bypassscheduletimechecks != null)
+            {
+                _queryParameters.Add(string.Format("bypassscheduletimechecks={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(bypassscheduletimechecks, SerializationSettings).Trim('"'))));
+            }
+            if (departmentid != null)
+            {
+                _queryParameters.Add(string.Format("departmentid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(departmentid, SerializationSettings).Trim('"'))));
+            }
+            if (enddate != null)
+            {
+                _queryParameters.Add(string.Format("enddate={0}", System.Uri.EscapeDataString(enddate)));
+            }
+            if (ignoreschedulablepermission != null)
+            {
+                _queryParameters.Add(string.Format("ignoreschedulablepermission={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(ignoreschedulablepermission, SerializationSettings).Trim('"'))));
+            }
+            if (providerid != null)
+            {
+                _queryParameters.Add(string.Format("providerid={0}", System.Uri.EscapeDataString(providerid)));
+            }
+            if (reasonid != null)
+            {
+                _queryParameters.Add(string.Format("reasonid={0}", System.Uri.EscapeDataString(reasonid)));
+            }
+            if (showfrozenslots != null)
+            {
+                _queryParameters.Add(string.Format("showfrozenslots={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showfrozenslots, SerializationSettings).Trim('"'))));
+            }
+            if (startdate != null)
+            {
+                _queryParameters.Add(string.Format("startdate={0}", System.Uri.EscapeDataString(startdate)));
+            }
+            if (apiVersion != null)
+            {
+                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Set Credentials
+            if (Credentials != null)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                await Credentials.ProcessHttpRequestAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            }
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<AppointmentInformationList>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<AppointmentInformationList>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <summary>
         /// Provides the ability to add new open appointment slots
         /// </summary>
         /// <param name='appointmentdate'>

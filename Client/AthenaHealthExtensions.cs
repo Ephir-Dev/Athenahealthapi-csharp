@@ -1076,6 +1076,146 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get open appointment slots
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmenttypeid'>
+            /// Normally, an appointment reason ID should be used which will map to the
+            /// correct underlying appointment type in athenaNet. This field will ignore
+            /// the practice's existing setup for what should be scheduled. Please consult
+            /// with athenahealth before using. Either an appointmenttypeid or a reasonid
+            /// must be specified or no results will be returned.
+            /// </param>
+            /// <param name='bypassscheduletimechecks'>
+            /// Bypass checks that usually require returned appointments to be some amount
+            /// of hours in the future (as configured by the practice, defaulting to 24
+            /// hours), and also ignores the setting that only  shows appointments for a
+            /// certain number of days in the future (also configurable by the practice,
+            /// defaulting to 90 days).
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='enddate'>
+            /// End of the appointment search date range (mm/dd/yyyy). Inclusive. Defaults
+            /// to seven days from startdate.
+            /// </param>
+            /// <param name='ignoreschedulablepermission'>
+            /// By default, we show only appointments that are are available to scheduled
+            /// via the API. This flag allows you to bypass that restriction for viewing
+            /// available appointments (but you still may not be able to schedule based on
+            /// this permission!). This flag does not, however, show the full schedule
+            /// (that is, appointments that are already booked).
+            /// </param>
+            /// <param name='providerid'>
+            /// The athenaNet provider ID. Required if a reasonid other than -1 is
+            /// specified.
+            /// </param>
+            /// <param name='reasonid'>
+            /// The athenaNet patient appointment reason ID, from GET
+            /// /patientappointmentreasons. While this is not technically required due to
+            /// some unusual use cases, it is highly recommended for most calls. We do
+            /// allow a special value of -1 for the reasonid. This reasonid will return
+            /// open, web-schedulable slots regardless of reason. However, slots returned
+            /// using a search of -1 may return slots that are not bookable by any reason
+            /// ID (they may be bookable by specific appointment type IDs instead). This
+            /// argument allows multiple valid reason IDs to be specified (e.g.
+            /// reasonid=1,2,3), so if you are looking for slots that match "any" reason,
+            /// it is recommended that you enumerate the set of reasons you are looking
+            /// for. Either a reasonid or an appointmenttypeid must be specified or no
+            /// results will be returned. If a reasonid other than -1 is specified then a
+            /// providerid must also be specified.
+            /// </param>
+            /// <param name='showfrozenslots'>
+            /// By default, we hide appointments that are frozen from being returned via
+            /// the API.  This flag allows you to show frozen slots in the set of results
+            /// returned.
+            /// </param>
+            /// <param name='startdate'>
+            /// Start of the appointment search date range (mm/dd/yyyy). Inclusive.
+            /// Defaults to today.
+            /// </param>
+            public static AppointmentInformationList GetOpenAppointments(this IAthenaHealth operations, int? appointmenttypeid = default(int?), bool? bypassscheduletimechecks = default(bool?), int? departmentid = default(int?), string enddate = default(string), bool? ignoreschedulablepermission = default(bool?), string providerid = default(string), string reasonid = default(string), bool? showfrozenslots = default(bool?), string startdate = default(string))
+            {
+                return operations.GetOpenAppointmentsAsync(appointmenttypeid, bypassscheduletimechecks, departmentid, enddate, ignoreschedulablepermission, providerid, reasonid, showfrozenslots, startdate).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get open appointment slots
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmenttypeid'>
+            /// Normally, an appointment reason ID should be used which will map to the
+            /// correct underlying appointment type in athenaNet. This field will ignore
+            /// the practice's existing setup for what should be scheduled. Please consult
+            /// with athenahealth before using. Either an appointmenttypeid or a reasonid
+            /// must be specified or no results will be returned.
+            /// </param>
+            /// <param name='bypassscheduletimechecks'>
+            /// Bypass checks that usually require returned appointments to be some amount
+            /// of hours in the future (as configured by the practice, defaulting to 24
+            /// hours), and also ignores the setting that only  shows appointments for a
+            /// certain number of days in the future (also configurable by the practice,
+            /// defaulting to 90 days).
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='enddate'>
+            /// End of the appointment search date range (mm/dd/yyyy). Inclusive. Defaults
+            /// to seven days from startdate.
+            /// </param>
+            /// <param name='ignoreschedulablepermission'>
+            /// By default, we show only appointments that are are available to scheduled
+            /// via the API. This flag allows you to bypass that restriction for viewing
+            /// available appointments (but you still may not be able to schedule based on
+            /// this permission!). This flag does not, however, show the full schedule
+            /// (that is, appointments that are already booked).
+            /// </param>
+            /// <param name='providerid'>
+            /// The athenaNet provider ID. Required if a reasonid other than -1 is
+            /// specified.
+            /// </param>
+            /// <param name='reasonid'>
+            /// The athenaNet patient appointment reason ID, from GET
+            /// /patientappointmentreasons. While this is not technically required due to
+            /// some unusual use cases, it is highly recommended for most calls. We do
+            /// allow a special value of -1 for the reasonid. This reasonid will return
+            /// open, web-schedulable slots regardless of reason. However, slots returned
+            /// using a search of -1 may return slots that are not bookable by any reason
+            /// ID (they may be bookable by specific appointment type IDs instead). This
+            /// argument allows multiple valid reason IDs to be specified (e.g.
+            /// reasonid=1,2,3), so if you are looking for slots that match "any" reason,
+            /// it is recommended that you enumerate the set of reasons you are looking
+            /// for. Either a reasonid or an appointmenttypeid must be specified or no
+            /// results will be returned. If a reasonid other than -1 is specified then a
+            /// providerid must also be specified.
+            /// </param>
+            /// <param name='showfrozenslots'>
+            /// By default, we hide appointments that are frozen from being returned via
+            /// the API.  This flag allows you to show frozen slots in the set of results
+            /// returned.
+            /// </param>
+            /// <param name='startdate'>
+            /// Start of the appointment search date range (mm/dd/yyyy). Inclusive.
+            /// Defaults to today.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<AppointmentInformationList> GetOpenAppointmentsAsync(this IAthenaHealth operations, int? appointmenttypeid = default(int?), bool? bypassscheduletimechecks = default(bool?), int? departmentid = default(int?), string enddate = default(string), bool? ignoreschedulablepermission = default(bool?), string providerid = default(string), string reasonid = default(string), bool? showfrozenslots = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetOpenAppointmentsWithHttpMessagesAsync(appointmenttypeid, bypassscheduletimechecks, departmentid, enddate, ignoreschedulablepermission, providerid, reasonid, showfrozenslots, startdate, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Provides the ability to add new open appointment slots
             /// </summary>
             /// <param name='operations'>
