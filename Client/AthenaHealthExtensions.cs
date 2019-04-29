@@ -676,6 +676,172 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get booked appointments
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentstatus'>
+            /// Filter appointments by status.
+            /// </param>
+            /// <param name='appointmenttypeid'>
+            /// Filter by appointment type ID.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='enddate'>
+            /// End of the appointment search date range (mm/dd/yyyy). Inclusive.
+            /// </param>
+            /// <param name='endlastmodified'>
+            /// Identify appointments modified prior to this date/time (mm/dd/yyyy
+            /// hh:mi:ss). Inclusive. Note: This can only be used if a startlastmodified
+            /// value is supplied as well.
+            /// </param>
+            /// <param name='ignorerestrictions'>
+            /// When showing patient detail for appointments, the patient information for
+            /// patients with record restrictions and blocked patients will not be shown.
+            /// Setting this flag to true will show that information for those patients.
+            /// </param>
+            /// <param name='patientid'>
+            /// The athenaNet patient ID. If operating in a Provider Group Enterprise
+            /// practice, this should be the enterprise patient ID.
+            /// </param>
+            /// <param name='providerid'>
+            /// The athenaNet provider ID. Multiple IDs (either as a comma delimited list
+            /// or multiple POSTed values) are allowed.
+            /// </param>
+            /// <param name='scheduledenddate'>
+            /// End of the appointment scheduled search date range (mm/dd/yyyy). Inclusive.
+            /// </param>
+            /// <param name='scheduledstartdate'>
+            /// Start of the appointment scheduled search date range (mm/dd/yyyy).
+            /// Inclusive.
+            /// </param>
+            /// <param name='showcancelled'>
+            /// Include appointments that have been cancelled.
+            /// </param>
+            /// <param name='showclaimdetail'>
+            /// Include claim information, if available, associated with an appointment.
+            /// </param>
+            /// <param name='showcopay'>
+            /// By default, the expected co-pay is returned. For performance purposes, you
+            /// can set this to false and copay will not be populated.
+            /// </param>
+            /// <param name='showexpectedprocedurecodes'>
+            /// Show the expetcted procedurecodes.
+            /// </param>
+            /// <param name='showinsurance'>
+            /// Include patient insurance information. Shows insurance packages for the
+            /// appointment if any are selected, and all patient packages otherwise.
+            /// </param>
+            /// <param name='showpatientdetail'>
+            /// Include patient information for each patient associated with an
+            /// appointment.
+            /// </param>
+            /// <param name='showremindercalldetail'>
+            /// Include all remindercall related results, if available, associated with an
+            /// appointment.
+            /// </param>
+            /// <param name='startdate'>
+            /// Start of the appointment search date range (mm/dd/yyyy). Inclusive.
+            /// </param>
+            /// <param name='startlastmodified'>
+            /// Identify appointments modified after this date/time (mm/dd/yyyy hh:mi:ss).
+            /// Inclusive.
+            /// </param>
+            public static AppointmentInformationList GetBookedAppointments(this IAthenaHealth operations, string appointmentstatus = default(string), int? appointmenttypeid = default(int?), int? departmentid = default(int?), string enddate = default(string), string endlastmodified = default(string), bool? ignorerestrictions = default(bool?), int? patientid = default(int?), string providerid = default(string), string scheduledenddate = default(string), string scheduledstartdate = default(string), bool? showcancelled = default(bool?), bool? showclaimdetail = default(bool?), bool? showcopay = default(bool?), bool? showexpectedprocedurecodes = default(bool?), bool? showinsurance = default(bool?), bool? showpatientdetail = default(bool?), bool? showremindercalldetail = default(bool?), string startdate = default(string), string startlastmodified = default(string))
+            {
+                return operations.GetBookedAppointmentsAsync(appointmentstatus, appointmenttypeid, departmentid, enddate, endlastmodified, ignorerestrictions, patientid, providerid, scheduledenddate, scheduledstartdate, showcancelled, showclaimdetail, showcopay, showexpectedprocedurecodes, showinsurance, showpatientdetail, showremindercalldetail, startdate, startlastmodified).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get booked appointments
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentstatus'>
+            /// Filter appointments by status.
+            /// </param>
+            /// <param name='appointmenttypeid'>
+            /// Filter by appointment type ID.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='enddate'>
+            /// End of the appointment search date range (mm/dd/yyyy). Inclusive.
+            /// </param>
+            /// <param name='endlastmodified'>
+            /// Identify appointments modified prior to this date/time (mm/dd/yyyy
+            /// hh:mi:ss). Inclusive. Note: This can only be used if a startlastmodified
+            /// value is supplied as well.
+            /// </param>
+            /// <param name='ignorerestrictions'>
+            /// When showing patient detail for appointments, the patient information for
+            /// patients with record restrictions and blocked patients will not be shown.
+            /// Setting this flag to true will show that information for those patients.
+            /// </param>
+            /// <param name='patientid'>
+            /// The athenaNet patient ID. If operating in a Provider Group Enterprise
+            /// practice, this should be the enterprise patient ID.
+            /// </param>
+            /// <param name='providerid'>
+            /// The athenaNet provider ID. Multiple IDs (either as a comma delimited list
+            /// or multiple POSTed values) are allowed.
+            /// </param>
+            /// <param name='scheduledenddate'>
+            /// End of the appointment scheduled search date range (mm/dd/yyyy). Inclusive.
+            /// </param>
+            /// <param name='scheduledstartdate'>
+            /// Start of the appointment scheduled search date range (mm/dd/yyyy).
+            /// Inclusive.
+            /// </param>
+            /// <param name='showcancelled'>
+            /// Include appointments that have been cancelled.
+            /// </param>
+            /// <param name='showclaimdetail'>
+            /// Include claim information, if available, associated with an appointment.
+            /// </param>
+            /// <param name='showcopay'>
+            /// By default, the expected co-pay is returned. For performance purposes, you
+            /// can set this to false and copay will not be populated.
+            /// </param>
+            /// <param name='showexpectedprocedurecodes'>
+            /// Show the expetcted procedurecodes.
+            /// </param>
+            /// <param name='showinsurance'>
+            /// Include patient insurance information. Shows insurance packages for the
+            /// appointment if any are selected, and all patient packages otherwise.
+            /// </param>
+            /// <param name='showpatientdetail'>
+            /// Include patient information for each patient associated with an
+            /// appointment.
+            /// </param>
+            /// <param name='showremindercalldetail'>
+            /// Include all remindercall related results, if available, associated with an
+            /// appointment.
+            /// </param>
+            /// <param name='startdate'>
+            /// Start of the appointment search date range (mm/dd/yyyy). Inclusive.
+            /// </param>
+            /// <param name='startlastmodified'>
+            /// Identify appointments modified after this date/time (mm/dd/yyyy hh:mi:ss).
+            /// Inclusive.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<AppointmentInformationList> GetBookedAppointmentsAsync(this IAthenaHealth operations, string appointmentstatus = default(string), int? appointmenttypeid = default(int?), int? departmentid = default(int?), string enddate = default(string), string endlastmodified = default(string), bool? ignorerestrictions = default(bool?), int? patientid = default(int?), string providerid = default(string), string scheduledenddate = default(string), string scheduledstartdate = default(string), bool? showcancelled = default(bool?), bool? showclaimdetail = default(bool?), bool? showcopay = default(bool?), bool? showexpectedprocedurecodes = default(bool?), bool? showinsurance = default(bool?), bool? showpatientdetail = default(bool?), bool? showremindercalldetail = default(bool?), string startdate = default(string), string startlastmodified = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetBookedAppointmentsWithHttpMessagesAsync(appointmentstatus, appointmenttypeid, departmentid, enddate, endlastmodified, ignorerestrictions, patientid, providerid, scheduledenddate, scheduledstartdate, showcancelled, showclaimdetail, showcopay, showexpectedprocedurecodes, showinsurance, showpatientdetail, showremindercalldetail, startdate, startlastmodified, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Provides the ability to add new open appointment slots
             /// </summary>
             /// <param name='operations'>
