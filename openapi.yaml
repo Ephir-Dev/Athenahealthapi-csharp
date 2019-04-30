@@ -1182,11 +1182,9 @@ components:
           items:
             $ref: "#/components/schemas/MedicationEvent"
         structuredsig:
-          type: array
+          $ref: "#/components/schemas/DosageInformation"
           description: >
             Components of the structured sig.
-          items:
-            $ref: "#/components/schemas/DosageInformation"
         medicationentryid:
           description: >
             Primary ID for this medication entry.
@@ -1296,7 +1294,9 @@ components:
         medications:
           type: array
           items:
-            $ref: "#/components/schemas/MedicationInformation"
+            type: array
+            items:
+              $ref: "#/components/schemas/MedicationInformation"
         sectionnote:
           description: A section-wide note
           type: string
@@ -2425,8 +2425,8 @@ paths:
                 
   /{apivariant}/{practiceid}/chart/{patientId}/medications:
     get:
-      summary: Get available practice IDs
-      operationId: getPracticeInfo
+      summary: Get patient medications
+      operationId: getPatientMedications
       parameters:
         - $ref: "#/components/parameters/practiceid"
         - $ref: "#/components/parameters/apivariant"

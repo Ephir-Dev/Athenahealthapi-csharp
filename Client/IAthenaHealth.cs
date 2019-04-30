@@ -814,7 +814,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<object>> CreateAppointmentTypeWithHttpMessagesAsync(int duration, string name, bool patient, string shortname, bool? generic = default(bool?), bool? templatetypeonly = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Get available practice IDs
+        /// Get patient medications
         /// </summary>
         /// <param name='patientId'>
         /// Id of the patient for which get medications
@@ -843,7 +843,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<PatientMedicationInformation>> GetPracticeInfo1WithHttpMessagesAsync(int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<PatientMedicationInformation>> GetPatientMedicationsWithHttpMessagesAsync(int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

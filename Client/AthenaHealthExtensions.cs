@@ -1550,7 +1550,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
-            /// Get available practice IDs
+            /// Get patient medications
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1576,13 +1576,13 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// Shows the list of RxNorm Identifiers related to the medication. The list
             /// may contain both branded and generic identifiers.
             /// </param>
-            public static PatientMedicationInformation GetPracticeInfo1(this IAthenaHealth operations, int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?))
+            public static PatientMedicationInformation GetPatientMedications(this IAthenaHealth operations, int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?))
             {
-                return operations.GetPracticeInfo1Async(patientId, departmentid, medicationtype, showndc, showpend, showrxnorm).GetAwaiter().GetResult();
+                return operations.GetPatientMedicationsAsync(patientId, departmentid, medicationtype, showndc, showpend, showrxnorm).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Get available practice IDs
+            /// Get patient medications
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -1611,9 +1611,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<PatientMedicationInformation> GetPracticeInfo1Async(this IAthenaHealth operations, int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<PatientMedicationInformation> GetPatientMedicationsAsync(this IAthenaHealth operations, int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPracticeInfo1WithHttpMessagesAsync(patientId, departmentid, medicationtype, showndc, showpend, showrxnorm, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPatientMedicationsWithHttpMessagesAsync(patientId, departmentid, medicationtype, showndc, showpend, showrxnorm, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

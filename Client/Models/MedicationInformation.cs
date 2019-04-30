@@ -99,7 +99,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// to this medication. This list may contain both branded and generic
         /// identifiers</param>
         /// <param name="route">The route for the prescription.</param>
-        public MedicationInformation(IList<MedicationEvent> events, int medicationid, IList<DosageInformation> structuredsig = default(IList<DosageInformation>), string medicationentryid = default(string), string medication = default(string), bool? isstructuredsig = default(bool?), string unstructuredsig = default(string), string source = default(string), string status = default(string), string organclass = default(string), string therapeuticclass = default(string), string futuresubmitdate = default(string), int? encounterid = default(int?), string createdby = default(string), string approvedby = default(string), string billingndc = default(string), string orderingmode = default(string), int? quantity = default(int?), string quantityunit = default(string), int? refillsallowed = default(int?), bool? issafetorenew = default(bool?), string stopreason = default(string), string providernote = default(string), string patientnote = default(string), string pharmacy = default(string), string pharmacyncpdpid = default(string), string prescribedby = default(string), string ndcoptions = default(string), IList<string> rxnorm = default(IList<string>), string route = default(string))
+        public MedicationInformation(IList<MedicationEvent> events, int medicationid, DosageInformation structuredsig = default(DosageInformation), string medicationentryid = default(string), string medication = default(string), bool? isstructuredsig = default(bool?), string unstructuredsig = default(string), string source = default(string), string status = default(string), string organclass = default(string), string therapeuticclass = default(string), string futuresubmitdate = default(string), int? encounterid = default(int?), string createdby = default(string), string approvedby = default(string), string billingndc = default(string), string orderingmode = default(string), int? quantity = default(int?), string quantityunit = default(string), int? refillsallowed = default(int?), bool? issafetorenew = default(bool?), string stopreason = default(string), string providernote = default(string), string patientnote = default(string), string pharmacy = default(string), string pharmacyncpdpid = default(string), string prescribedby = default(string), string ndcoptions = default(string), IList<string> rxnorm = default(IList<string>), string route = default(string))
         {
             Events = events;
             Structuredsig = structuredsig;
@@ -152,7 +152,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         ///
         /// </summary>
         [JsonProperty(PropertyName = "structuredsig")]
-        public IList<DosageInformation> Structuredsig { get; set; }
+        public DosageInformation Structuredsig { get; set; }
 
         /// <summary>
         /// Gets or sets primary ID for this medication entry. Those starting
@@ -380,13 +380,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
             }
             if (Structuredsig != null)
             {
-                foreach (var element1 in Structuredsig)
-                {
-                    if (element1 != null)
-                    {
-                        element1.Validate();
-                    }
-                }
+                Structuredsig.Validate();
             }
         }
     }

@@ -52,7 +52,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <param name="lastdownloaddenialreason">BETA FIELD: The reason the
         /// last medication history download was denied.
         /// </param>
-        public PatientMedicationInformation(bool nomedicationsreported, IList<MedicationInformation> medications, string lastupdated, string sectionnote = default(string), bool? patientdownloadconsent = default(bool?), bool? patientneedsdownloadconsent = default(bool?), string lastdownloadeddate = default(string), bool? lastdownloaddenied = default(bool?), string lastdownloaddenialreason = default(string))
+        public PatientMedicationInformation(bool nomedicationsreported, IList<IList<MedicationInformation>> medications, string lastupdated, string sectionnote = default(string), bool? patientdownloadconsent = default(bool?), bool? patientneedsdownloadconsent = default(bool?), string lastdownloadeddate = default(string), bool? lastdownloaddenied = default(bool?), string lastdownloaddenialreason = default(string))
         {
             Nomedicationsreported = nomedicationsreported;
             Medications = medications;
@@ -81,7 +81,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "medications")]
-        public IList<MedicationInformation> Medications { get; set; }
+        public IList<IList<MedicationInformation>> Medications { get; set; }
 
         /// <summary>
         /// Gets or sets a section-wide note
@@ -161,7 +161,13 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
                 {
                     if (element != null)
                     {
-                        element.Validate();
+                        foreach (var element1 in element)
+                        {
+                            if (element1 != null)
+                            {
+                                element1.Validate();
+                            }
+                        }
                     }
                 }
             }

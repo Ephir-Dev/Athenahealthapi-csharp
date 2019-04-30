@@ -4271,7 +4271,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         }
 
         /// <summary>
-        /// Get available practice IDs
+        /// Get patient medications
         /// </summary>
         /// <param name='patientId'>
         /// Id of the patient for which get medications
@@ -4315,7 +4315,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<PatientMedicationInformation>> GetPracticeInfo1WithHttpMessagesAsync(int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<PatientMedicationInformation>> GetPatientMedicationsWithHttpMessagesAsync(int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -4337,7 +4337,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showrxnorm", showrxnorm);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetPracticeInfo1", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetPatientMedications", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
