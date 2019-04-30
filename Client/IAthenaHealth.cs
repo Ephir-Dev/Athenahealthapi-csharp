@@ -813,5 +813,37 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<object>> CreateAppointmentTypeWithHttpMessagesAsync(int duration, string name, bool patient, string shortname, bool? generic = default(bool?), bool? templatetypeonly = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Get available practice IDs
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenanet department ID
+        /// </param>
+        /// <param name='medicationtype'>
+        /// Historical or Active or Denied. Will return a list of a patient's
+        /// active or historical or denied medications.
+        /// </param>
+        /// <param name='showndc'>
+        /// Shows the list of NDC numbers related to the medication.
+        /// </param>
+        /// <param name='showpend'>
+        /// Include pending medications associated with approved future orders.
+        /// These medications have not yet been submitted.
+        /// </param>
+        /// <param name='showrxnorm'>
+        /// Shows the list of RxNorm Identifiers related to the medication. The
+        /// list may contain both branded and generic identifiers.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<PatientMedicationInformation>> GetPracticeInfo1WithHttpMessagesAsync(int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

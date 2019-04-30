@@ -1549,5 +1549,75 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get available practice IDs
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenanet department ID
+            /// </param>
+            /// <param name='medicationtype'>
+            /// Historical or Active or Denied. Will return a list of a patient's active or
+            /// historical or denied medications.
+            /// </param>
+            /// <param name='showndc'>
+            /// Shows the list of NDC numbers related to the medication.
+            /// </param>
+            /// <param name='showpend'>
+            /// Include pending medications associated with approved future orders. These
+            /// medications have not yet been submitted.
+            /// </param>
+            /// <param name='showrxnorm'>
+            /// Shows the list of RxNorm Identifiers related to the medication. The list
+            /// may contain both branded and generic identifiers.
+            /// </param>
+            public static PatientMedicationInformation GetPracticeInfo1(this IAthenaHealth operations, int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?))
+            {
+                return operations.GetPracticeInfo1Async(patientId, departmentid, medicationtype, showndc, showpend, showrxnorm).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get available practice IDs
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenanet department ID
+            /// </param>
+            /// <param name='medicationtype'>
+            /// Historical or Active or Denied. Will return a list of a patient's active or
+            /// historical or denied medications.
+            /// </param>
+            /// <param name='showndc'>
+            /// Shows the list of NDC numbers related to the medication.
+            /// </param>
+            /// <param name='showpend'>
+            /// Include pending medications associated with approved future orders. These
+            /// medications have not yet been submitted.
+            /// </param>
+            /// <param name='showrxnorm'>
+            /// Shows the list of RxNorm Identifiers related to the medication. The list
+            /// may contain both branded and generic identifiers.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PatientMedicationInformation> GetPracticeInfo1Async(this IAthenaHealth operations, int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPracticeInfo1WithHttpMessagesAsync(patientId, departmentid, medicationtype, showndc, showpend, showrxnorm, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
