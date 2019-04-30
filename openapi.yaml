@@ -1113,6 +1113,13 @@ components:
           x-ms-client-name: Appointments
           items:
             $ref: "#/components/schemas/AppointmentInformation"
+    OperationStatusData:
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          description: The status of this appointment after the operation (generally "x").
     Error:
       required:
         - error
@@ -1756,6 +1763,70 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AppointmentInformationIds"
+  /{apivariant}/{practiceid}/appointments/{appointmentId}/cancel:
+    put:
+      summary: Cancel an existing appointment.
+      operationId: cancelAppointmentById
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: appointmentId
+          description: Id of the appointment.
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - patientid
+              properties:
+                patientid:
+                  description: The athenaNet patient ID.
+                  type: integer
+                appointmentcancelreasonid:
+                  description: >
+                    Passing in this parameter will override the default cancel reason.
+                    Valid reasons can be retrieved via a call to the GET /appointmentcancelreasons endpoint.
+                  type: integer
+                cancellationreason:
+                  description: A text explanation why the appointment is being cancelled
+                  type: string
+                departmentid:
+                  description: The athenaNet department ID.
+                  type: integer
+                ignoreschedulablepermission:
+                  description: >
+                    By default, we allow booking of appointments marked as schedulable via the web.
+                    This flag allows you to bypass that restriction for booking.
+                  type: boolean
+                nopatientcase:
+                  description: >
+                    By default, we create a patient case upon booking an appointment for new patients. Setting this to true bypasses that patient case.
+                  type: boolean
+      responses:
+        '200':
+          description: Result of operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OperationStatusData"
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /{apivariant}/{practiceid}/appointments/booked:
     get:
       summary: Get booked appointments

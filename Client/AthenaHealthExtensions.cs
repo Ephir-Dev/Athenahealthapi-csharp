@@ -946,6 +946,84 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Cancel an existing appointment.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientid'>
+            /// The athenaNet patient ID.
+            /// </param>
+            /// <param name='appointmentId'>
+            /// Id of the appointment.
+            /// </param>
+            /// <param name='appointmentcancelreasonid'>
+            /// Passing in this parameter will override the default cancel reason. Valid
+            /// reasons can be retrieved via a call to the GET /appointmentcancelreasons
+            /// endpoint.
+            /// </param>
+            /// <param name='cancellationreason'>
+            /// A text explanation why the appointment is being cancelled
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='ignoreschedulablepermission'>
+            /// By default, we allow booking of appointments marked as schedulable via the
+            /// web. This flag allows you to bypass that restriction for booking.
+            /// </param>
+            /// <param name='nopatientcase'>
+            /// By default, we create a patient case upon booking an appointment for new
+            /// patients. Setting this to true bypasses that patient case.
+            /// </param>
+            public static object CancelAppointmentById(this IAthenaHealth operations, int patientid, int appointmentId, int? appointmentcancelreasonid = default(int?), string cancellationreason = default(string), int? departmentid = default(int?), bool? ignoreschedulablepermission = default(bool?), bool? nopatientcase = default(bool?))
+            {
+                return operations.CancelAppointmentByIdAsync(patientid, appointmentId, appointmentcancelreasonid, cancellationreason, departmentid, ignoreschedulablepermission, nopatientcase).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Cancel an existing appointment.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientid'>
+            /// The athenaNet patient ID.
+            /// </param>
+            /// <param name='appointmentId'>
+            /// Id of the appointment.
+            /// </param>
+            /// <param name='appointmentcancelreasonid'>
+            /// Passing in this parameter will override the default cancel reason. Valid
+            /// reasons can be retrieved via a call to the GET /appointmentcancelreasons
+            /// endpoint.
+            /// </param>
+            /// <param name='cancellationreason'>
+            /// A text explanation why the appointment is being cancelled
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID.
+            /// </param>
+            /// <param name='ignoreschedulablepermission'>
+            /// By default, we allow booking of appointments marked as schedulable via the
+            /// web. This flag allows you to bypass that restriction for booking.
+            /// </param>
+            /// <param name='nopatientcase'>
+            /// By default, we create a patient case upon booking an appointment for new
+            /// patients. Setting this to true bypasses that patient case.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CancelAppointmentByIdAsync(this IAthenaHealth operations, int patientid, int appointmentId, int? appointmentcancelreasonid = default(int?), string cancellationreason = default(string), int? departmentid = default(int?), bool? ignoreschedulablepermission = default(bool?), bool? nopatientcase = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CancelAppointmentByIdWithHttpMessagesAsync(patientid, appointmentId, appointmentcancelreasonid, cancellationreason, departmentid, ignoreschedulablepermission, nopatientcase, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get booked appointments
             /// </summary>
             /// <param name='operations'>
