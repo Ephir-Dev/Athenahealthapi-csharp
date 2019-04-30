@@ -499,6 +499,21 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<object>> BookAppointmentByIdWithHttpMessagesAsync(int patientid, int appointmentId, int? appointmenttypeid = default(int?), string bookingnote = default(string), int? departmentid = default(int?), bool? donotsendconfirmationemail = default(bool?), bool? ignoreschedulablepermission = default(bool?), string insurancecompany = default(string), string insurancegroupid = default(string), string insuranceidnumber = default(string), string insurancenote = default(string), string insurancephone = default(string), string insuranceplanname = default(string), string insurancepolicyholder = default(string), bool? nopatientcase = default(bool?), int? reasonid = default(int?), bool? urgentyn = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Delete information about a single patient's appointment by id. Only
+        /// open appointments can be deleted.
+        /// </summary>
+        /// <param name='appointmentId'>
+        /// Id of the appointment.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<int?>>> DeleteAppointmentByIdWithHttpMessagesAsync(int appointmentId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get booked appointments
         /// </summary>
         /// <param name='appointmentstatus'>

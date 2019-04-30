@@ -1091,6 +1091,10 @@ components:
           x-ms-client-name: AppointmentTypes
           items:
             $ref: "#/components/schemas/AppointmentTypeInformation"
+    AppointmentInformationIds:
+      type: array
+      items:
+        type: integer
     AppointmentInformationArray:
       type: array
       items:
@@ -1733,6 +1737,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete information about a single patient's appointment by id. Only open appointments can be deleted.
+      operationId: deleteAppointmentById
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: appointmentId
+          description: Id of the appointment.
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Array of information about appointments which was affected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppointmentInformationIds"
   /{apivariant}/{practiceid}/appointments/booked:
     get:
       summary: Get booked appointments

@@ -910,6 +910,42 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Delete information about a single patient's appointment by id. Only open
+            /// appointments can be deleted.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentId'>
+            /// Id of the appointment.
+            /// </param>
+            public static IList<int?> DeleteAppointmentById(this IAthenaHealth operations, int appointmentId)
+            {
+                return operations.DeleteAppointmentByIdAsync(appointmentId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Delete information about a single patient's appointment by id. Only open
+            /// appointments can be deleted.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentId'>
+            /// Id of the appointment.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<int?>> DeleteAppointmentByIdAsync(this IAthenaHealth operations, int appointmentId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.DeleteAppointmentByIdWithHttpMessagesAsync(appointmentId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get booked appointments
             /// </summary>
             /// <param name='operations'>
