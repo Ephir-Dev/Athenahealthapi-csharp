@@ -1801,5 +1801,113 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get patient medical history
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenanet department ID
+            /// </param>
+            /// <param name='allresultsbyencounterid'>
+            /// ID used to return lab results for a specific encounter.
+            /// </param>
+            /// <param name='analyteresultstatus'>
+            /// Filter the results based on the analyte's result status. Since the result
+            /// status is a free text field, this list is not exhaustive, but does
+            /// represent a majority of the used statuses.
+            /// </param>
+            /// <param name='enddate'>
+            /// Filter lab orders not individual results that are on or before this date.
+            /// Example: enddate=1/21/2018. If no enddate is specified, all lab orders
+            /// found since startdate will be included if specified.
+            /// </param>
+            /// <param name='labresultstatus'>
+            /// Filter the results based on the lab result's result status. Since the
+            /// result status is a free text field, this list is not exhaustive, but does
+            /// represent a majority of the used statuses.
+            /// </param>
+            /// <param name='showabnormaldetails'>
+            /// Include the translation of the abnormalflag into HL7 code standards.
+            /// </param>
+            /// <param name='showhidden'>
+            /// Includes the lab results and analytes marked as hidden. Hidden lab results
+            /// and analytes are created when they are manually entered, for example on the
+            /// qm tab or in flowsheets.
+            /// </param>
+            /// <param name='showtemplate'>
+            /// If true, interpretation template added to the document is also returned.
+            /// </param>
+            /// <param name='startdate'>
+            /// Filter lab orders not individual results that are on or after this date.
+            /// Example: startdate=6/21/2015. If no startdate is specified, all prior lab
+            /// orders will be included until enddate if specified.
+            /// </param>
+            public static IList<LabResultList> GetPatientMedicalHistory2(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string))
+            {
+                return operations.GetPatientMedicalHistory2Async(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get patient medical history
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenanet department ID
+            /// </param>
+            /// <param name='allresultsbyencounterid'>
+            /// ID used to return lab results for a specific encounter.
+            /// </param>
+            /// <param name='analyteresultstatus'>
+            /// Filter the results based on the analyte's result status. Since the result
+            /// status is a free text field, this list is not exhaustive, but does
+            /// represent a majority of the used statuses.
+            /// </param>
+            /// <param name='enddate'>
+            /// Filter lab orders not individual results that are on or before this date.
+            /// Example: enddate=1/21/2018. If no enddate is specified, all lab orders
+            /// found since startdate will be included if specified.
+            /// </param>
+            /// <param name='labresultstatus'>
+            /// Filter the results based on the lab result's result status. Since the
+            /// result status is a free text field, this list is not exhaustive, but does
+            /// represent a majority of the used statuses.
+            /// </param>
+            /// <param name='showabnormaldetails'>
+            /// Include the translation of the abnormalflag into HL7 code standards.
+            /// </param>
+            /// <param name='showhidden'>
+            /// Includes the lab results and analytes marked as hidden. Hidden lab results
+            /// and analytes are created when they are manually entered, for example on the
+            /// qm tab or in flowsheets.
+            /// </param>
+            /// <param name='showtemplate'>
+            /// If true, interpretation template added to the document is also returned.
+            /// </param>
+            /// <param name='startdate'>
+            /// Filter lab orders not individual results that are on or after this date.
+            /// Example: startdate=6/21/2015. If no startdate is specified, all prior lab
+            /// orders will be included until enddate if specified.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<LabResultList>> GetPatientMedicalHistory2Async(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientMedicalHistory2WithHttpMessagesAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }

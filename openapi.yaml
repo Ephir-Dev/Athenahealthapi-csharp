@@ -765,6 +765,81 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Analyte"
+    LabResult:
+      required:
+        - labresultid
+      properties:
+        analytes:
+          type: array
+          description: Individual lab result observations/analytes
+          items:
+            $ref: "#/components/schemas/Analyte"
+        providerid:
+          description: The provider ID for this document.
+          type: string
+        #interpretationtemplate:
+        #  description: The interpretation template added to the lab result.
+        #  type: string
+        attachmentexists:
+          description: This flag depicts if the lab result has a scanned document attachment or not.
+          type: boolean
+        labresultdatetime:
+          description: >
+            The observation date and time associated with this lab result.
+            Returned in mm/dd/yyyy hh24:mi:ss format.
+          type: string
+        priority:
+          description: >
+            Document priority, when available. 1 is high, 2 is normal.
+            Some labs use other numbers or characters that are lab-specific.
+          type: string
+        patientnote:
+          description: The external note for the patient.
+          type: string
+        internalnote:
+          description: The 'Internal Note' attached to this document.
+          type: string
+        facilityid:
+          description: >
+            The ID of the clinical provider associated with this clinical document.
+            Clinical providers are a master list of providers throughout the country.
+            These include providers as well as radiology centers, labs and pharmacies.
+          type: integer
+        labresultid:
+          description: Athena ID for this lab result
+          type: string
+        orderid:
+          description: The athena ID of the associated order document
+          type: string
+        description:
+          description: Description for this lab result
+          type: string
+        labresultloinc:
+          description: The LOINC for the result document or associated order.
+          type: string
+        labresultdate:
+          description: Observation date associated with this lab result
+          type: string
+        labresultnote:
+          description: Additional note associated with this lab result, if any
+          type: string
+        resultstatus:
+          description: The status of the result (e.g., "final", "preliminary", "corrected", etc.)
+          type: string
+    LabResultList:
+      required:
+        - totalcount
+        - results
+      properties:
+        totalcount:
+          type: integer
+          format: int32
+          x-ms-client-name: TotalCount
+        results:
+          type: array
+          x-ms-client-name: Results
+          items:
+            $ref: "#/components/schemas/LabResult"
     ProviderInformation:
       properties:
         billable:
@@ -2713,6 +2788,94 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AnalytesList"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/chart/{patientId}/labresults:
+    get:
+      summary: Get patient medical history
+      operationId: getPatientMedicalHistory
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: patientId
+          in: path
+          description: Id of the patient for which get medications
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: departmentid
+          in: query
+          description: The athenanet department ID	
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: allresultsbyencounterid
+          in: query
+          description: ID used to return lab results for a specific encounter.
+          schema:
+            type: integer
+        - name: analyteresultstatus
+          in: query
+          description: >
+            Filter the results based on the analyte's result status.
+            Since the result status is a free text field, this list is not exhaustive, but does represent a majority of the used statuses.
+          schema:
+            type: string
+        - name: enddate
+          in: query
+          description: >
+            Filter lab orders not individual results that are on or before this date.
+            Example: enddate=1/21/2018.
+            If no enddate is specified, all lab orders found since startdate will be included if specified.
+          schema:
+            type: string
+        - name: labresultstatus
+          in: query
+          description: >
+            Filter the results based on the lab result's result status.
+            Since the result status is a free text field, this list is not exhaustive, but does represent a majority of the used statuses.
+          schema:
+            type: string
+        - name: showabnormaldetails
+          in: query
+          description: Include the translation of the abnormalflag into HL7 code standards.
+          schema:
+            type: boolean
+        - name: showhidden
+          in: query
+          description: >
+            Includes the lab results and analytes marked as hidden.
+            Hidden lab results and analytes are created when they are manually entered, for example on the qm tab or in flowsheets.
+          schema:
+            type: boolean
+        - name: showtemplate
+          in: query
+          description: If true, interpretation template added to the document is also returned.
+          schema:
+            type: boolean
+        - name: startdate
+          in: query
+          description: >
+            Filter lab orders not individual results that are on or after this date.
+            Example: startdate=6/21/2015.
+            If no startdate is specified, all prior lab orders will be included until enddate if specified.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Information about patient medications
+          content:
+            application/json:    
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LabResultList"
         default:
           description: unexpected error
           content:
