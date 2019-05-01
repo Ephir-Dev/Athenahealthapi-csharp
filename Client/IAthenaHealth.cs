@@ -1050,5 +1050,36 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Get encounters for the speicic patient.
+        /// </summary>
+        /// <param name='encounterid'>
+        /// The encounter ID.
+        /// </param>
+        /// <param name='allowdischargetype'>
+        /// If set, this will allow getting orders for a discharge encounter
+        /// type.
+        /// </param>
+        /// <param name='showclinicalprovider'>
+        /// If set, this will show the information about the provider receiving
+        /// the order.
+        /// </param>
+        /// <param name='showdeclinedorders'>
+        /// If set, include orders that were declined
+        /// </param>
+        /// <param name='showexternalcodes'>
+        /// If set, translate the order information to relevant external
+        /// vocabularies, where available. Examples are medictions to RxNorm
+        /// and NDC, vaccines to CVX and MVX, labs to LOINC, etc. Our mappings
+        /// are not exhaustive.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<EncounterDiagnosesList>>> GetPatientEncounters1WithHttpMessagesAsync(int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

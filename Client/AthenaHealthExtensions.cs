@@ -2057,5 +2057,69 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get encounters for the speicic patient.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            /// <param name='allowdischargetype'>
+            /// If set, this will allow getting orders for a discharge encounter type.
+            /// </param>
+            /// <param name='showclinicalprovider'>
+            /// If set, this will show the information about the provider receiving the
+            /// order.
+            /// </param>
+            /// <param name='showdeclinedorders'>
+            /// If set, include orders that were declined
+            /// </param>
+            /// <param name='showexternalcodes'>
+            /// If set, translate the order information to relevant external vocabularies,
+            /// where available. Examples are medictions to RxNorm and NDC, vaccines to CVX
+            /// and MVX, labs to LOINC, etc. Our mappings are not exhaustive.
+            /// </param>
+            public static IList<EncounterDiagnosesList> GetPatientEncounters1(this IAthenaHealth operations, int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?))
+            {
+                return operations.GetPatientEncounters1Async(encounterid, allowdischargetype, showclinicalprovider, showdeclinedorders, showexternalcodes).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get encounters for the speicic patient.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            /// <param name='allowdischargetype'>
+            /// If set, this will allow getting orders for a discharge encounter type.
+            /// </param>
+            /// <param name='showclinicalprovider'>
+            /// If set, this will show the information about the provider receiving the
+            /// order.
+            /// </param>
+            /// <param name='showdeclinedorders'>
+            /// If set, include orders that were declined
+            /// </param>
+            /// <param name='showexternalcodes'>
+            /// If set, translate the order information to relevant external vocabularies,
+            /// where available. Examples are medictions to RxNorm and NDC, vaccines to CVX
+            /// and MVX, labs to LOINC, etc. Our mappings are not exhaustive.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<EncounterDiagnosesList>> GetPatientEncounters1Async(this IAthenaHealth operations, int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientEncounters1WithHttpMessagesAsync(encounterid, allowdischargetype, showclinicalprovider, showdeclinedorders, showexternalcodes, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
