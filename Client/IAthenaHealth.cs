@@ -859,5 +859,22 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<PatientMedicationInformation>> GetPatientMedicationsWithHttpMessagesAsync(int patientId, int departmentid, string medicationtype = default(string), bool? showndc = default(bool?), bool? showpend = default(bool?), bool? showrxnorm = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Get patient medical history
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenanet department ID
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<PatientMedicalHistory>> GetPatientMedicalHistoryWithHttpMessagesAsync(int patientId, int departmentid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

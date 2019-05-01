@@ -672,6 +672,42 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PatientInformation"
+    PatientMedicalHistoryQuestion:
+      required:
+        - questionid
+      properties:
+        questionid:
+          description: Athena ID for the question
+          type: integer
+          format: int32
+          x-ms-client-name: QuestionId
+        question:
+          description: Disease being inquired about
+          type: string
+        answer:
+          description: The answer given by the patient to the question
+          type: string
+        note:
+          description: Any special notes
+          type: string
+        diagnosiscode:
+          description: Diagnosis code
+          type: string
+        codeset:
+          description: Codeset the diagnosis code belongs to
+          type: string
+        description:
+          description: Description of the code
+          type: string
+    PatientMedicalHistory:
+      properties:
+        sectionnote:
+          description: Additional notes for the entire medical history section, if any
+          type: string
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/PatientMedicalHistoryQuestion"
     ProviderInformation:
       properties:
         billable:
@@ -2498,6 +2534,40 @@ paths:
             application/json:    
               schema:
                 $ref: "#/components/schemas/PatientMedicationInformation"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"                
+  /{apivariant}/{practiceid}/chart/{patientId}/medicalhistory:
+    get:
+      summary: Get patient medical history
+      operationId: getPatientMedicalHistory
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: patientId
+          in: path
+          description: Id of the patient for which get medications
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: departmentid
+          in: query
+          description: The athenanet department ID	
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Information about patient medications
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/PatientMedicalHistory"
         default:
           description: unexpected error
           content:

@@ -1653,5 +1653,45 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get patient medical history
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenanet department ID
+            /// </param>
+            public static PatientMedicalHistory GetPatientMedicalHistory(this IAthenaHealth operations, int patientId, int departmentid)
+            {
+                return operations.GetPatientMedicalHistoryAsync(patientId, departmentid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get patient medical history
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenanet department ID
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PatientMedicalHistory> GetPatientMedicalHistoryAsync(this IAthenaHealth operations, int patientId, int departmentid, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientMedicalHistoryWithHttpMessagesAsync(patientId, departmentid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
