@@ -546,6 +546,11 @@ components:
         #zip:
         #  description: message
         #  type: string
+    PatientCcdaInformation:
+      properties:
+        ccda:
+          type: string
+          description: Content of CCDA record for the patient.
     PatientBalanceInformation:
       properties:
         contracts:
@@ -1599,6 +1604,28 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/PatientInformation"
+  /{apivariant}/{practiceid}/patients/{patientId}/ccda:
+    get:
+      summary: Get a patient CCDA informtion by ID
+      operationId: getPatientCcdaRecord
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: patientId
+          description: Id of the patient for which get information
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Array of information about patient's CCDA records'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PatientCcdaInformation"
   /{apivariant}/{practiceid}/providers:
     get:
       summary: Get a providers

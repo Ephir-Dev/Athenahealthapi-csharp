@@ -346,6 +346,40 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get a patient CCDA informtion by ID
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            public static IList<PatientCcdaInformation> GetPatientCcdaRecord(this IAthenaHealth operations, int patientId)
+            {
+                return operations.GetPatientCcdaRecordAsync(patientId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get a patient CCDA informtion by ID
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<PatientCcdaInformation>> GetPatientCcdaRecordAsync(this IAthenaHealth operations, int patientId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientCcdaRecordWithHttpMessagesAsync(patientId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get a providers
             /// </summary>
             /// <param name='operations'>
