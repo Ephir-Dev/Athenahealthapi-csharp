@@ -4807,7 +4807,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<AnalytesList>>> GetPatientMedicalHistory1WithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<AnalytesList>>> GetPatientAnalytesWithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -4833,7 +4833,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("startdate", startdate);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetPatientMedicalHistory1", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetPatientAnalytes", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
@@ -5047,7 +5047,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<LabResultList>>> GetPatientMedicalHistory2WithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<LabResultList>>> GetPatientLabResultsWithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -5073,7 +5073,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("startdate", startdate);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetPatientMedicalHistory2", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetPatientLabResults", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;

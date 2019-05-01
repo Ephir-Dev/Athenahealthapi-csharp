@@ -2816,7 +2816,7 @@ paths:
   /{apivariant}/{practiceid}/chart/{patientId}/analytes:
     get:
       summary: Get patient medical history
-      operationId: getPatientMedicalHistory
+      operationId: getPatientAnalytes
       parameters:
         - $ref: "#/components/parameters/practiceid"
         - $ref: "#/components/parameters/apivariant"
@@ -2904,7 +2904,7 @@ paths:
   /{apivariant}/{practiceid}/chart/{patientId}/labresults:
     get:
       summary: Get patient medical history
-      operationId: getPatientMedicalHistory
+      operationId: getPatientLabResults
       parameters:
         - $ref: "#/components/parameters/practiceid"
         - $ref: "#/components/parameters/apivariant"

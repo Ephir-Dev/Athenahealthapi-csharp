@@ -1739,9 +1739,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// Example: startdate=6/21/2015. If no startdate is specified, all prior lab
             /// orders will be included until enddate if specified.
             /// </param>
-            public static IList<AnalytesList> GetPatientMedicalHistory1(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string))
+            public static IList<AnalytesList> GetPatientAnalytes(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string))
             {
-                return operations.GetPatientMedicalHistory1Async(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate).GetAwaiter().GetResult();
+                return operations.GetPatientAnalytesAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -1793,9 +1793,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<AnalytesList>> GetPatientMedicalHistory1Async(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<AnalytesList>> GetPatientAnalytesAsync(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPatientMedicalHistory1WithHttpMessagesAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPatientAnalytesWithHttpMessagesAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -1847,9 +1847,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// Example: startdate=6/21/2015. If no startdate is specified, all prior lab
             /// orders will be included until enddate if specified.
             /// </param>
-            public static IList<LabResultList> GetPatientMedicalHistory2(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string))
+            public static IList<LabResultList> GetPatientLabResults(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string))
             {
-                return operations.GetPatientMedicalHistory2Async(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate).GetAwaiter().GetResult();
+                return operations.GetPatientLabResultsAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -1901,9 +1901,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<LabResultList>> GetPatientMedicalHistory2Async(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<LabResultList>> GetPatientLabResultsAsync(this IAthenaHealth operations, int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPatientMedicalHistory2WithHttpMessagesAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPatientLabResultsWithHttpMessagesAsync(patientId, departmentid, allresultsbyencounterid, analyteresultstatus, enddate, labresultstatus, showabnormaldetails, showhidden, showtemplate, startdate, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

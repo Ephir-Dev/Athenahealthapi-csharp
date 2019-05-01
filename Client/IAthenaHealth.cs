@@ -927,7 +927,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<AnalytesList>>> GetPatientMedicalHistory1WithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<AnalytesList>>> GetPatientAnalytesWithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get patient medical history
@@ -980,7 +980,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<LabResultList>>> GetPatientMedicalHistory2WithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<LabResultList>>> GetPatientLabResultsWithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get patient medical history
