@@ -1007,7 +1007,48 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<LabResultList>>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<VitalsList>>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Get encounters for the speicic patient.
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The department for this patient. A patient may have multiple
+        /// charts, and the department determines which chart to retrieve.
+        /// </param>
+        /// <param name='appointmentid'>
+        /// Find the encounter for this appointment.
+        /// </param>
+        /// <param name='providerid'>
+        /// The ID of the provider for this encounter
+        /// </param>
+        /// <param name='enddate'>
+        /// Omit any encounters later than this date
+        /// </param>
+        /// <param name='startdate'>
+        /// Omit any encounters earlier than this date
+        /// </param>
+        /// <param name='showallstatuses'>
+        /// By default only encounters in OPEN, CLOSED, or REVIEW status are
+        /// retrieved, with this flag, encounters aren't filtered by status.
+        /// </param>
+        /// <param name='showallstatuses1'>
+        /// Retrieve all encounter types, by default only VISIT and ORDERSONLY
+        /// are retrieved.
+        /// </param>
+        /// <param name='showallstatuses2'>
+        /// Query diagnosis information for every encounter
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

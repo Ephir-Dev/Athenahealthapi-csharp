@@ -1931,7 +1931,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='startdate'>
             /// Only retrieve vitals that were taking on or after this date
             /// </param>
-            public static IList<LabResultList> GetPatientVitals(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string))
+            public static IList<VitalsList> GetPatientVitals(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string))
             {
                 return operations.GetPatientVitalsAsync(patientId, departmentid, enddate, showemptyvitals, startdate).GetAwaiter().GetResult();
             }
@@ -1961,9 +1961,97 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<LabResultList>> GetPatientVitalsAsync(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<VitalsList>> GetPatientVitalsAsync(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetPatientVitalsWithHttpMessagesAsync(patientId, departmentid, enddate, showemptyvitals, startdate, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Get encounters for the speicic patient.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department for this patient. A patient may have multiple charts, and
+            /// the department determines which chart to retrieve.
+            /// </param>
+            /// <param name='appointmentid'>
+            /// Find the encounter for this appointment.
+            /// </param>
+            /// <param name='providerid'>
+            /// The ID of the provider for this encounter
+            /// </param>
+            /// <param name='enddate'>
+            /// Omit any encounters later than this date
+            /// </param>
+            /// <param name='startdate'>
+            /// Omit any encounters earlier than this date
+            /// </param>
+            /// <param name='showallstatuses'>
+            /// By default only encounters in OPEN, CLOSED, or REVIEW status are retrieved,
+            /// with this flag, encounters aren't filtered by status.
+            /// </param>
+            /// <param name='showallstatuses1'>
+            /// Retrieve all encounter types, by default only VISIT and ORDERSONLY are
+            /// retrieved.
+            /// </param>
+            /// <param name='showallstatuses2'>
+            /// Query diagnosis information for every encounter
+            /// </param>
+            public static IList<EncountersList> GetPatientEncounters(this IAthenaHealth operations, int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?))
+            {
+                return operations.GetPatientEncountersAsync(patientId, departmentid, appointmentid, providerid, enddate, startdate, showallstatuses, showallstatuses1, showallstatuses2).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get encounters for the speicic patient.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department for this patient. A patient may have multiple charts, and
+            /// the department determines which chart to retrieve.
+            /// </param>
+            /// <param name='appointmentid'>
+            /// Find the encounter for this appointment.
+            /// </param>
+            /// <param name='providerid'>
+            /// The ID of the provider for this encounter
+            /// </param>
+            /// <param name='enddate'>
+            /// Omit any encounters later than this date
+            /// </param>
+            /// <param name='startdate'>
+            /// Omit any encounters earlier than this date
+            /// </param>
+            /// <param name='showallstatuses'>
+            /// By default only encounters in OPEN, CLOSED, or REVIEW status are retrieved,
+            /// with this flag, encounters aren't filtered by status.
+            /// </param>
+            /// <param name='showallstatuses1'>
+            /// Retrieve all encounter types, by default only VISIT and ORDERSONLY are
+            /// retrieved.
+            /// </param>
+            /// <param name='showallstatuses2'>
+            /// Query diagnosis information for every encounter
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<EncountersList>> GetPatientEncountersAsync(this IAthenaHealth operations, int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientEncountersWithHttpMessagesAsync(patientId, departmentid, appointmentid, providerid, enddate, startdate, showallstatuses, showallstatuses1, showallstatuses2, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
