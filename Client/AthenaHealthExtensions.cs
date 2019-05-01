@@ -1909,5 +1909,65 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get patient medical history
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department for this patient. A patient may have multiple charts, and
+            /// the department determines which chart to retrieve.
+            /// </param>
+            /// <param name='enddate'>
+            /// Only retrieve vitals that were taking on or before this date
+            /// </param>
+            /// <param name='showemptyvitals'>
+            /// Show configured vitals that have no readings for this patient.
+            /// </param>
+            /// <param name='startdate'>
+            /// Only retrieve vitals that were taking on or after this date
+            /// </param>
+            public static IList<LabResultList> GetPatientVitals(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string))
+            {
+                return operations.GetPatientVitalsAsync(patientId, departmentid, enddate, showemptyvitals, startdate).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get patient medical history
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department for this patient. A patient may have multiple charts, and
+            /// the department determines which chart to retrieve.
+            /// </param>
+            /// <param name='enddate'>
+            /// Only retrieve vitals that were taking on or before this date
+            /// </param>
+            /// <param name='showemptyvitals'>
+            /// Show configured vitals that have no readings for this patient.
+            /// </param>
+            /// <param name='startdate'>
+            /// Only retrieve vitals that were taking on or after this date
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<LabResultList>> GetPatientVitalsAsync(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientVitalsWithHttpMessagesAsync(patientId, departmentid, enddate, showemptyvitals, startdate, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }

@@ -982,5 +982,32 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<IList<LabResultList>>> GetPatientMedicalHistory2WithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Get patient medical history
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The department for this patient. A patient may have multiple
+        /// charts, and the department determines which chart to retrieve.
+        /// </param>
+        /// <param name='enddate'>
+        /// Only retrieve vitals that were taking on or before this date
+        /// </param>
+        /// <param name='showemptyvitals'>
+        /// Show configured vitals that have no readings for this patient.
+        /// </param>
+        /// <param name='startdate'>
+        /// Only retrieve vitals that were taking on or after this date
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<LabResultList>>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }
