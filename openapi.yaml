@@ -2257,6 +2257,7 @@ paths:
                 npinumber:
                   description: The NPI of the provider.
                   type: integer
+                  format: int64
                 practiceroleid:
                   description: The practice role ID for the provider.
                   type: integer
