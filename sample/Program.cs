@@ -114,8 +114,8 @@ namespace sample
         private static async Task<IAthenaHealth> GetApiAsync(int practiceId)
         {
             await EnsureTokenObtainedAsync();
-            var credentials = new TokenCredentials(tokenKey);
-            var api = new AthenaHealth(new Uri($"https://api.athenahealth.com/"), credentials);
+            var api = new AthenaHealth(new Uri($"https://api.athenahealth.com/"));
+            api.HttpClient.SetBearerToken(tokenKey);
             api.Apivariant = "preview1";
             api.Practiceid = practiceId;
             return api;
