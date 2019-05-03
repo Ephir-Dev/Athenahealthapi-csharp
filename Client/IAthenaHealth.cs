@@ -58,12 +58,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </summary>
         string ApiVersion { get; }
 
-        /// <summary>
-        /// Subscription credentials which uniquely identify client
-        /// subscription.
-        /// </summary>
-        ServiceClientCredentials Credentials { get; }
-
 
         /// <summary>
         /// Get available practice IDs

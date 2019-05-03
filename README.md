@@ -7,7 +7,6 @@ use-extension:
   "@microsoft.azure/autorest.csharp": "2.3.84"
 
 input-file: openapi.yaml
-add-credentials: true
 csharp:
   namespace: AndriiKurdiumov.AuthenaHealth.Client
   output-folder: Client
