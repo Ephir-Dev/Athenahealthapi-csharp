@@ -108,7 +108,7 @@ components:
         latitude:
           type: string
         departmentid:
-          type: string
+          type: integer
         address:
           type: string
         placeofservicetypeid:
@@ -1184,6 +1184,8 @@ components:
           items:
             $ref: "#/components/schemas/EncounterDiagnosis"
     ProviderInformation:
+      required:
+        - providerid
       properties:
         billable:
           type: boolean
@@ -1261,8 +1263,9 @@ components:
           type: string
           description: The provider's last name.
         npi:
-          type: integer
           description: The NPI for this provider, if available.
+          type: integer
+          format: int64
         providergrouplist:
           type: string
           description: >
@@ -2332,6 +2335,54 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/providers/{providerId}:
+    get:
+      summary: Get a providers
+      operationId: getProviderById
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: providerId
+          description: Id of the provider for which get information
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: showallproviderids
+          description: >
+            In athenaNet's internal data structures, a single provider can be represented by multiple IDs.
+            These IDs are used in certain external messages (e.g. HL7) and thus these IDs may need to be known by the API user as well.
+            When set to true, a list of all of these ancillary IDs will be provided.
+          schema:
+            type: boolean
+        - in: query
+          name: showfederalidnumber
+          description: >
+            Include the provider's federal ID number in results.
+          schema:
+            type: integer
+        - in: query
+          name: showusualdepartmentguessthreshold
+          description: >
+            There are situations where determining where a provider "normally" practices is desired.
+            Unfortuantely, there is no such concept in athenaNet since providers often practice in multiple locations.
+            However, we can use some intelligence to determine this by looking back over the previous few months (90 days) to see actual practice.
+            To enable this, set this value between 0 and 1; it is highly recommended to be at least .5.
+            This is the ratio of appointments in a given department to the total number of appointments for that provider.
+            A value of .5 means "the provider's appointments are 50% in the department guessed."
+            Setting this to 1 would only return a department if ALL of the provider's appointments were in one department.
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Array of information about providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProviderInformation"
   /{apivariant}/{practiceid}/appointments/{appointmentId}:
     get:
       summary: Get Information about a single patient's appointment by id

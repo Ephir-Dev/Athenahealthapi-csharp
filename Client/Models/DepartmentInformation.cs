@@ -25,7 +25,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// Initializes a new instance of the DepartmentInformation class.
         /// </summary>
-        public DepartmentInformation(IList<string> creditcardtypes, int timezoneoffset, string singleappointmentcontractmax = default(string), string state = default(string), bool? placeofservicefacility = default(bool?), string latitude = default(string), string departmentid = default(string), string address = default(string), string placeofservicetypeid = default(string), string longitude = default(string), string clinicals = default(string), int? timezone = default(int?), string name = default(string), string patientdepartmentname = default(string), string chartsharinggroupid = default(string), string placeofservicetypename = default(string), string zip = default(string), string timezonename = default(string), string communicatorbrandid = default(string), bool? medicationhistoryconsent = default(bool?), bool? ishospitaldepartment = default(bool?), string providergroupid = default(string), string portalurl = default(string), string city = default(string), bool? servicedepartment = default(bool?), string oneyearcontractmax = default(string), string fax = default(string), string providergroupname = default(string), string doesnotobservedst = default(string), string phone = default(string), IList<string> ecommercecreditcardtypes = default(IList<string>))
+        public DepartmentInformation(IList<string> creditcardtypes, int timezoneoffset, string singleappointmentcontractmax = default(string), string state = default(string), bool? placeofservicefacility = default(bool?), string latitude = default(string), int? departmentid = default(int?), string address = default(string), string placeofservicetypeid = default(string), string longitude = default(string), string clinicals = default(string), int? timezone = default(int?), string name = default(string), string patientdepartmentname = default(string), string chartsharinggroupid = default(string), string placeofservicetypename = default(string), string zip = default(string), string timezonename = default(string), string communicatorbrandid = default(string), bool? medicationhistoryconsent = default(bool?), bool? ishospitaldepartment = default(bool?), string providergroupid = default(string), string portalurl = default(string), string city = default(string), bool? servicedepartment = default(bool?), string oneyearcontractmax = default(string), string fax = default(string), string providergroupname = default(string), string doesnotobservedst = default(string), string phone = default(string), IList<string> ecommercecreditcardtypes = default(IList<string>))
         {
             Creditcardtypes = creditcardtypes;
             Timezoneoffset = timezoneoffset;
@@ -99,7 +99,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "departmentid")]
-        public string Departmentid { get; set; }
+        public int? Departmentid { get; set; }
 
         /// <summary>
         /// </summary>

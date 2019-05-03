@@ -22,6 +22,11 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// Initializes a new instance of the ProviderInformation class.
         /// </summary>
+        /// <param name="providerid">The ID to be used for this provider. Note
+        /// that in athenaNet, an individual provider (as defined by a unique
+        /// NPI) may have multiple provider IDs. For the API, we have collapsed
+        /// these to a single canonical ID.
+        /// </param>
         /// <param name="billable">Indicates if this is a billable
         /// provider.</param>
         /// <param name="ansispecialtycode">This is the ANSI code for this
@@ -41,11 +46,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <param name="homedepartment">For certain purposes, this can be
         /// considered to be the "home" or default department for a
         /// provider.</param>
-        /// <param name="providerid">The ID to be used for this provider. Note
-        /// that in athenaNet, an individual provider (as defined by a unique
-        /// NPI) may have multiple provider IDs. For the API, we have collapsed
-        /// these to a single canonical ID.
-        /// </param>
         /// <param name="providertypeid">This is just the ID (a text string)
         /// such as "NP" or "NP S" for the provider type.</param>
         /// <param name="providerusername">The username of the
@@ -92,7 +92,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// if SHOWFEDERALIDNUMBER is set.</param>
         /// <param name="supervisingproviderusername">The username of the
         /// supervising provider.</param>
-        public ProviderInformation(bool? billable = default(bool?), string ansispecialtycode = default(string), string firstname = default(string), string entitytype = default(string), string otherprovideridlist = default(string), string ansinamecode = default(string), string displayname = default(string), string homedepartment = default(string), int? providerid = default(int?), string providertypeid = default(string), string providerusername = default(string), int? supervisingproviderid = default(int?), string providertype = default(string), string createencounterprovideridlist = default(string), string schedulingname = default(string), string usualdepartmentid = default(string), bool? createencounteroncheckinyn = default(bool?), string specialty = default(string), bool? hideinportalyn = default(bool?), string lastname = default(string), int? npi = default(int?), string providergrouplist = default(string), string federalidnumber = default(string), string supervisingproviderusername = default(string))
+        public ProviderInformation(int providerid, bool? billable = default(bool?), string ansispecialtycode = default(string), string firstname = default(string), string entitytype = default(string), string otherprovideridlist = default(string), string ansinamecode = default(string), string displayname = default(string), string homedepartment = default(string), string providertypeid = default(string), string providerusername = default(string), int? supervisingproviderid = default(int?), string providertype = default(string), string createencounterprovideridlist = default(string), string schedulingname = default(string), string usualdepartmentid = default(string), bool? createencounteroncheckinyn = default(bool?), string specialty = default(string), bool? hideinportalyn = default(bool?), string lastname = default(string), long? npi = default(long?), string providergrouplist = default(string), string federalidnumber = default(string), string supervisingproviderusername = default(string))
         {
             Billable = billable;
             Ansispecialtycode = ansispecialtycode;
@@ -189,7 +189,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         ///
         /// </summary>
         [JsonProperty(PropertyName = "providerid")]
-        public int? Providerid { get; set; }
+        public int Providerid { get; set; }
 
         /// <summary>
         /// Gets or sets this is just the ID (a text string) such as "NP" or
@@ -282,7 +282,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// Gets or sets the NPI for this provider, if available.
         /// </summary>
         [JsonProperty(PropertyName = "npi")]
-        public int? Npi { get; set; }
+        public long? Npi { get; set; }
 
         /// <summary>
         /// Gets or sets when showallproviderids is set to true, a list of all
@@ -307,5 +307,15 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         [JsonProperty(PropertyName = "supervisingproviderusername")]
         public string Supervisingproviderusername { get; set; }
 
+        /// <summary>
+        /// Validate the object.
+        /// </summary>
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown if validation fails
+        /// </exception>
+        public virtual void Validate()
+        {
+            //Nothing to validate
+        }
     }
 }

@@ -710,6 +710,86 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get a providers
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='providerId'>
+            /// Id of the provider for which get information
+            /// </param>
+            /// <param name='showallproviderids'>
+            /// In athenaNet's internal data structures, a single provider can be
+            /// represented by multiple IDs. These IDs are used in certain external
+            /// messages (e.g. HL7) and thus these IDs may need to be known by the API user
+            /// as well. When set to true, a list of all of these ancillary IDs will be
+            /// provided.
+            /// </param>
+            /// <param name='showfederalidnumber'>
+            /// Include the provider's federal ID number in results.
+            /// </param>
+            /// <param name='showusualdepartmentguessthreshold'>
+            /// There are situations where determining where a provider "normally"
+            /// practices is desired. Unfortuantely, there is no such concept in athenaNet
+            /// since providers often practice in multiple locations. However, we can use
+            /// some intelligence to determine this by looking back over the previous few
+            /// months (90 days) to see actual practice. To enable this, set this value
+            /// between 0 and 1; it is highly recommended to be at least .5. This is the
+            /// ratio of appointments in a given department to the total number of
+            /// appointments for that provider. A value of .5 means "the provider's
+            /// appointments are 50% in the department guessed." Setting this to 1 would
+            /// only return a department if ALL of the provider's appointments were in one
+            /// department.
+            /// </param>
+            public static IList<ProviderInformation> GetProviderById(this IAthenaHealth operations, int providerId, bool? showallproviderids = default(bool?), int? showfederalidnumber = default(int?), double? showusualdepartmentguessthreshold = default(double?))
+            {
+                return operations.GetProviderByIdAsync(providerId, showallproviderids, showfederalidnumber, showusualdepartmentguessthreshold).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get a providers
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='providerId'>
+            /// Id of the provider for which get information
+            /// </param>
+            /// <param name='showallproviderids'>
+            /// In athenaNet's internal data structures, a single provider can be
+            /// represented by multiple IDs. These IDs are used in certain external
+            /// messages (e.g. HL7) and thus these IDs may need to be known by the API user
+            /// as well. When set to true, a list of all of these ancillary IDs will be
+            /// provided.
+            /// </param>
+            /// <param name='showfederalidnumber'>
+            /// Include the provider's federal ID number in results.
+            /// </param>
+            /// <param name='showusualdepartmentguessthreshold'>
+            /// There are situations where determining where a provider "normally"
+            /// practices is desired. Unfortuantely, there is no such concept in athenaNet
+            /// since providers often practice in multiple locations. However, we can use
+            /// some intelligence to determine this by looking back over the previous few
+            /// months (90 days) to see actual practice. To enable this, set this value
+            /// between 0 and 1; it is highly recommended to be at least .5. This is the
+            /// ratio of appointments in a given department to the total number of
+            /// appointments for that provider. A value of .5 means "the provider's
+            /// appointments are 50% in the department guessed." Setting this to 1 would
+            /// only return a department if ALL of the provider's appointments were in one
+            /// department.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<ProviderInformation>> GetProviderByIdAsync(this IAthenaHealth operations, int providerId, bool? showallproviderids = default(bool?), int? showfederalidnumber = default(int?), double? showusualdepartmentguessthreshold = default(double?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetProviderByIdWithHttpMessagesAsync(providerId, showallproviderids, showfederalidnumber, showusualdepartmentguessthreshold, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get Information about a single patient's appointment by id
             /// </summary>
             /// <param name='operations'>

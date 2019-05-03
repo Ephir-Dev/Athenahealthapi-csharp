@@ -389,6 +389,44 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<object>> CreateProviderWithHttpMessagesAsync(bool billable, int entitytypeid, int medicalgroupid, int providergroupid, string schedulingname, bool signatureonfileflag, string alternatephone = default(string), string ansicode = default(string), string billednamecase = default(string), string communicatordisplayname = default(string), int? communicatorhomedepartment = default(int?), bool? crdreferring = default(bool?), bool? createencounteroncheckin = default(bool?), string directaddress = default(string), string firstname = default(string), bool? hideinportal = default(bool?), string lastname = default(string), string middleinitial = default(string), string namesuffix = default(string), string ndctatnumber = default(string), int? npinumber = default(int?), int? practiceroleid = default(int?), string providerprofileid = default(string), string providertype = default(string), string reportingname = default(string), int? scheduleresourcetypeid = default(int?), string schedulingnote = default(string), string sex = default(string), string specialtyid = default(string), int? ssn = default(int?), bool? staffbucket = default(bool?), int? supervisingproviderid = default(int?), string supervisingprovidertype = default(string), bool? trackmissingslips = default(bool?), string username = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Get a providers
+        /// </summary>
+        /// <param name='providerId'>
+        /// Id of the provider for which get information
+        /// </param>
+        /// <param name='showallproviderids'>
+        /// In athenaNet's internal data structures, a single provider can be
+        /// represented by multiple IDs. These IDs are used in certain external
+        /// messages (e.g. HL7) and thus these IDs may need to be known by the
+        /// API user as well. When set to true, a list of all of these
+        /// ancillary IDs will be provided.
+        /// </param>
+        /// <param name='showfederalidnumber'>
+        /// Include the provider's federal ID number in results.
+        /// </param>
+        /// <param name='showusualdepartmentguessthreshold'>
+        /// There are situations where determining where a provider "normally"
+        /// practices is desired. Unfortuantely, there is no such concept in
+        /// athenaNet since providers often practice in multiple locations.
+        /// However, we can use some intelligence to determine this by looking
+        /// back over the previous few months (90 days) to see actual practice.
+        /// To enable this, set this value between 0 and 1; it is highly
+        /// recommended to be at least .5. This is the ratio of appointments in
+        /// a given department to the total number of appointments for that
+        /// provider. A value of .5 means "the provider's appointments are 50%
+        /// in the department guessed." Setting this to 1 would only return a
+        /// department if ALL of the provider's appointments were in one
+        /// department.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<ProviderInformation>>> GetProviderByIdWithHttpMessagesAsync(int providerId, bool? showallproviderids = default(bool?), int? showfederalidnumber = default(int?), double? showusualdepartmentguessthreshold = default(double?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get Information about a single patient's appointment by id
         /// </summary>
         /// <param name='appointmentId'>
