@@ -2,6 +2,8 @@
 
 > see https://aka.ms/autorest
 
+[![Build Status](https://codevision.visualstudio.com/athenahealth/_apis/build/status/kant2002.Athenahealthapi-csharp?branchName=master)](https://codevision.visualstudio.com/athenahealth/_build/latest?definitionId=97&branchName=master)
+
 ``` yaml 
 use-extension:
   "@microsoft.azure/autorest.csharp": "2.3.84"
