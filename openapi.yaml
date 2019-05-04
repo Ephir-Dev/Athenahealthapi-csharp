@@ -193,7 +193,7 @@ components:
           type: string
           description: Alternate first name that differs from legal name.
         ethnicitycode:
-          type: integer
+          type: string
           description: >
             Ethnicity of the patient, using the 2.16.840.1.113883.5.50 codeset.
             See http://www.hl7.org/implement/standards/fhir/terminologies-v3.html
@@ -202,7 +202,7 @@ components:
           type: integer
           description: Industry of the patient, using the US Census industry code (code system 2.16.840.1.113883.6.310). "other" can be used as well.
         language6392code:
-          type: integer
+          type: string
           description: >
             Language of the patient, using the ISO 639.2 code. (http://www.loc.gov/standards/iso639-2/php/code_list.php; "T" or terminology code)
             Special case: use "declined" to indicate that the patient declined to answer.
