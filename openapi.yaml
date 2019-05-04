@@ -921,7 +921,9 @@ components:
             List of vital attribute readings.
             One entry per attribute (so the temperature and where the temperature was taken are two different readings, tied together by the readingid
           items:
-            $ref: "#/components/schemas/VitalAttributeReading"
+            type: array
+            items:
+              $ref: "#/components/schemas/VitalAttributeReading"
         key:
           description: Key for this vital group. E.g., HEIGHT.
           type: string
@@ -3323,9 +3325,7 @@ paths:
           content:
             application/json:    
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/VitalsList"
+                $ref: "#/components/schemas/VitalsList"
         default:
           description: unexpected error
           content:
@@ -3411,7 +3411,7 @@ paths:
   /{apivariant}/{practiceid}/chart/encounter/{encounterid}/orders:
     get:
       summary: Get encounters for the speicic patient.
-      operationId: getPatientEncounters
+      operationId: getPatientEncounterOrders
       parameters:
         - $ref: "#/components/parameters/practiceid"
         - $ref: "#/components/parameters/apivariant"

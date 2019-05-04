@@ -1039,7 +1039,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<VitalsList>>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<VitalsList>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get encounters for the speicic patient.
@@ -1111,7 +1111,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<EncounterDiagnosesList>>> GetPatientEncounters1WithHttpMessagesAsync(int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<EncounterDiagnosesList>>> GetPatientEncounterOrdersWithHttpMessagesAsync(int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

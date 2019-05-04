@@ -5169,7 +5169,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<VitalsList>>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<VitalsList>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -5286,7 +5286,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<IList<VitalsList>>();
+            var _result = new HttpOperationResponse<VitalsList>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -5295,7 +5295,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<IList<VitalsList>>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<VitalsList>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -5575,7 +5575,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<EncounterDiagnosesList>>> GetPatientEncounters1WithHttpMessagesAsync(int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<EncounterDiagnosesList>>> GetPatientEncounterOrdersWithHttpMessagesAsync(int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -5596,7 +5596,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showexternalcodes", showexternalcodes);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetPatientEncounters1", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "GetPatientEncounterOrders", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;

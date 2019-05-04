@@ -2011,7 +2011,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='startdate'>
             /// Only retrieve vitals that were taking on or after this date
             /// </param>
-            public static IList<VitalsList> GetPatientVitals(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string))
+            public static VitalsList GetPatientVitals(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string))
             {
                 return operations.GetPatientVitalsAsync(patientId, departmentid, enddate, showemptyvitals, startdate).GetAwaiter().GetResult();
             }
@@ -2041,7 +2041,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<VitalsList>> GetPatientVitalsAsync(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<VitalsList> GetPatientVitalsAsync(this IAthenaHealth operations, int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetPatientVitalsWithHttpMessagesAsync(patientId, departmentid, enddate, showemptyvitals, startdate, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -2161,9 +2161,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// where available. Examples are medictions to RxNorm and NDC, vaccines to CVX
             /// and MVX, labs to LOINC, etc. Our mappings are not exhaustive.
             /// </param>
-            public static IList<EncounterDiagnosesList> GetPatientEncounters1(this IAthenaHealth operations, int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?))
+            public static IList<EncounterDiagnosesList> GetPatientEncounterOrders(this IAthenaHealth operations, int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?))
             {
-                return operations.GetPatientEncounters1Async(encounterid, allowdischargetype, showclinicalprovider, showdeclinedorders, showexternalcodes).GetAwaiter().GetResult();
+                return operations.GetPatientEncounterOrdersAsync(encounterid, allowdischargetype, showclinicalprovider, showdeclinedorders, showexternalcodes).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -2193,9 +2193,9 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<EncounterDiagnosesList>> GetPatientEncounters1Async(this IAthenaHealth operations, int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<EncounterDiagnosesList>> GetPatientEncounterOrdersAsync(this IAthenaHealth operations, int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPatientEncounters1WithHttpMessagesAsync(encounterid, allowdischargetype, showclinicalprovider, showdeclinedorders, showexternalcodes, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPatientEncounterOrdersWithHttpMessagesAsync(encounterid, allowdischargetype, showclinicalprovider, showdeclinedorders, showexternalcodes, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

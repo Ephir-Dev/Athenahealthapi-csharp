@@ -33,7 +33,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// vital group. E.g., Ht.</param>
         /// <param name="ordering">Configured order for this vital
         /// group</param>
-        public PatientVital(IList<VitalAttributeReading> readings = default(IList<VitalAttributeReading>), string key = default(string), string abbreviation = default(string), int? ordering = default(int?))
+        public PatientVital(IList<IList<VitalAttributeReading>> readings = default(IList<IList<VitalAttributeReading>>), string key = default(string), string abbreviation = default(string), int? ordering = default(int?))
         {
             Readings = readings;
             Key = key;
@@ -54,7 +54,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         ///
         /// </summary>
         [JsonProperty(PropertyName = "readings")]
-        public IList<VitalAttributeReading> Readings { get; set; }
+        public IList<IList<VitalAttributeReading>> Readings { get; set; }
 
         /// <summary>
         /// Gets or sets key for this vital group. E.g., HEIGHT.
