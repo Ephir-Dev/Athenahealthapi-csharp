@@ -3270,9 +3270,7 @@ paths:
           content:
             application/json:    
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/LabResultList"
+                $ref: "#/components/schemas/LabResultList"
         default:
           description: unexpected error
           content:

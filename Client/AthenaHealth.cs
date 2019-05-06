@@ -4959,7 +4959,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<LabResultList>>> GetPatientLabResultsWithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<LabResultList>> GetPatientLabResultsWithHttpMessagesAsync(int patientId, int departmentid, int? allresultsbyencounterid = default(int?), string analyteresultstatus = default(string), string enddate = default(string), string labresultstatus = default(string), bool? showabnormaldetails = default(bool?), bool? showhidden = default(bool?), bool? showtemplate = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -5101,7 +5101,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<IList<LabResultList>>();
+            var _result = new HttpOperationResponse<LabResultList>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -5110,7 +5110,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<IList<LabResultList>>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LabResultList>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
