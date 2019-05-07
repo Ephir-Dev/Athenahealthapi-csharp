@@ -1393,6 +1393,117 @@ components:
         result:
           description: A description of what happened during the call attempt.
           type: string
+    AppointmentInsurancePayer:
+      properties:
+        primarypatientinsuranceid:
+          description: Id of the payer
+          type: string
+        secondarypatientinsuranceid:
+          description: Id of the payer
+          type: string
+        note:
+          description: The note that is attached to this status.
+          type: string
+        status:
+          description: The status associated with this responsible payer.
+          type: string
+    AppointmentDiagnosis:
+      properties:
+        diagnosisid:
+          description: A unique ID related to this diagnosis.
+          type: integer
+        diagnosisdescription:
+          description: A description of this diagnosis.
+          type: string
+        diagnosisrawcode:
+          description: The raw ICD-9 code. This will migrate to ICD-10 in the future.
+          type: string
+        diagnosiscategory:
+          description: The category for this diagnosis.
+          type: string
+        deleteddiagnosis:
+          description: >
+            In certain cases, diagnoses may be added and then removed from a particular claim.
+            In normal circumstances, this will be false. However, if a diagnosis was removed, this will be true.
+          type: string
+        diagnosiscodeset:
+          description: Either ICD9 or ICD10.
+          type: string
+    AppointmentProcedure:
+      properties:
+        procedurecategory:
+          description: The category name associated with this procedure.
+          type: string
+        allowablemin:
+          description: The minimum amount expected from payer for all services from this procedure.
+          type: string
+        proceduredescription:
+          description: A description of this procedure.
+          type: string
+        chargeamount:
+          description: The amount charged for this procedure.
+          type: string
+        transactionid:
+          description: The ID of the last transaction associated with the claim.
+          type: integer
+        procedurecode:
+          description: The CPT code associated with this procedure.
+          type: string
+        allowablemax:
+          description: The maximum amount expected from payer for all services from this procedure.
+          type: string
+        allowableamount:
+          description: The total amount expected from payer for all services from this procedure.
+          type: string
+    AppointmentClaim:
+      properties:
+        referringproviderid:
+          description: The referring provider ID for this claim. See /referringproviders. This is not the same as the ID from the /providers call.
+          type: integer
+        primaryinsurancepayer:
+          description: The status and notes of a responsible payer. This payer is the primary insurace.
+          $ref: "#/components/schemas/AppointmentInsurancePayer"
+        secondaryinsurancepayer:
+          description: The status and notes of a responsible payer. This payer is the secondary insurace.
+          $ref: "#/components/schemas/AppointmentInsurancePayer"
+        diagnoses:
+          description: message
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentDiagnosis"
+        #patientpayer:
+        #  description: The status and notes of a responsible payer. This payer is the patient.
+        #  type: string
+        claimcreateddate:
+          description: The date the claim was created.
+          type: string
+        procedures:
+          description: >
+            Procedures is an array of all procedures. /ccda is a better clinical representation. These fields are:
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentProcedure"
+        billedservicedate:
+          description: The billed date of service.
+          type: string
+        billedproviderid:
+          description: The provider ID of the billing provider for this claim.
+          type: integer
+        appointmentid:
+          description: The appointment ID associated with this claim.
+          type: integer
+        chargeamount:
+          description: The total amount billed for all services from this claim.
+          type: string
+        #transactiondetails:
+        #  description: A hash of ids ("transactionid") to amounts; these should sum to the chargeamount. Please note that this has been deprecated in lieu of the data being available in the procedures section.
+        #  type: string
+        transactionid:
+          description: A unique ID for the primary transaction this claim represents. May be useful for debugging.
+          type: integer
+        claimid:
+          description: athenaNet's internal ID for this claim, specific to the practice.
+          type: integer
     AppointmentInformation:
       properties:
         reasonid:
@@ -1564,9 +1675,11 @@ components:
         supervisingproviderid:
           description: The supervising provider ID.
           type: string
-        #claims:
-        #  description: As detailed in /claims, if requested.
-        #  type: array
+        claims:
+          description: As detailed in /claims, if requested.
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentClaim"
         #insurances:
         #  description: List of active patient insurance packages. Only shown for single or multiple booked appointments if SHOWINSURANCE is set.
         #  type: array

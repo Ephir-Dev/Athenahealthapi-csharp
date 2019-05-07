@@ -147,6 +147,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// ID.</param>
         /// <param name="supervisingproviderid">The supervising provider
         /// ID.</param>
+        /// <param name="claims">As detailed in /claims, if requested.</param>
         /// <param name="patientlocationid">The location of the patient. See
         /// /patientlocation for practice list. Only present for appointments
         /// with Clinicals that have been checked in.</param>
@@ -169,7 +170,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// find the original ID.</param>
         /// <param name="patientid">The athenaNet patient ID for this
         /// appointment</param>
-        public AppointmentInformation(int? reasonId = default(int?), IList<AppointmentNoteInformation> appointmentnotes = default(IList<AppointmentNoteInformation>), string appointmentstatus = default(string), string cancelleddatetime = default(string), bool? chargeentrynotrequired = default(bool?), int? hl7providerid = default(int?), string cancelreasonname = default(string), string chargeentrynotrequiredreason = default(string), string lastmodified = default(string), int? departmentid = default(int?), string checkoutdatetime = default(string), string copay = default(string), string encounterid = default(string), string scheduledby = default(string), string checkindatetime = default(string), string cancelledby = default(string), string stopintakedatetime = default(string), string encounterstatus = default(string), bool? frozenyn = default(bool?), string appointmenttype = default(string), int? appointmenttypeid = default(int?), int? cancelreasonid = default(int?), bool? cancelreasonnoshow = default(bool?), bool? cancelreasonslotavailable = default(bool?), bool? coordinatorenterpriseyn = default(bool?), int? duration = default(int?), string scheduleddatetime = default(string), bool? urgentyn = default(bool?), string startcheckin = default(string), int? appointmentconfirmationid = default(int?), string suggestedoverbooking = default(string), IList<AppointmentCopayInformation> appointmentcopay = default(IList<AppointmentCopayInformation>), int? appointmentid = default(int?), string date = default(string), string patient = default(string), string startcheckoutdatetime = default(string), string appointmentconfirmationname = default(string), IList<ProcedureCode> useexpectedprocedurecodes = default(IList<ProcedureCode>), string lastmodifiedby = default(string), string patientappointmenttypename = default(string), string starttime = default(string), string stopcheckin = default(string), int? providerid = default(int?), string stopexamdatetime = default(string), int? renderingproviderid = default(int?), string supervisingproviderid = default(string), int? patientlocationid = default(int?), string encounterstate = default(string), int? rescheduledappointmentid = default(int?), int? referringproviderid = default(int?), IList<MessageResult> reminderdetails = default(IList<MessageResult>), int? templateappointmenttypeid = default(int?), int? templateappointmentid = default(int?), int? patientid = default(int?))
+        public AppointmentInformation(int? reasonId = default(int?), IList<AppointmentNoteInformation> appointmentnotes = default(IList<AppointmentNoteInformation>), string appointmentstatus = default(string), string cancelleddatetime = default(string), bool? chargeentrynotrequired = default(bool?), int? hl7providerid = default(int?), string cancelreasonname = default(string), string chargeentrynotrequiredreason = default(string), string lastmodified = default(string), int? departmentid = default(int?), string checkoutdatetime = default(string), string copay = default(string), string encounterid = default(string), string scheduledby = default(string), string checkindatetime = default(string), string cancelledby = default(string), string stopintakedatetime = default(string), string encounterstatus = default(string), bool? frozenyn = default(bool?), string appointmenttype = default(string), int? appointmenttypeid = default(int?), int? cancelreasonid = default(int?), bool? cancelreasonnoshow = default(bool?), bool? cancelreasonslotavailable = default(bool?), bool? coordinatorenterpriseyn = default(bool?), int? duration = default(int?), string scheduleddatetime = default(string), bool? urgentyn = default(bool?), string startcheckin = default(string), int? appointmentconfirmationid = default(int?), string suggestedoverbooking = default(string), IList<AppointmentCopayInformation> appointmentcopay = default(IList<AppointmentCopayInformation>), int? appointmentid = default(int?), string date = default(string), string patient = default(string), string startcheckoutdatetime = default(string), string appointmentconfirmationname = default(string), IList<ProcedureCode> useexpectedprocedurecodes = default(IList<ProcedureCode>), string lastmodifiedby = default(string), string patientappointmenttypename = default(string), string starttime = default(string), string stopcheckin = default(string), int? providerid = default(int?), string stopexamdatetime = default(string), int? renderingproviderid = default(int?), string supervisingproviderid = default(string), IList<AppointmentClaim> claims = default(IList<AppointmentClaim>), int? patientlocationid = default(int?), string encounterstate = default(string), int? rescheduledappointmentid = default(int?), int? referringproviderid = default(int?), IList<MessageResult> reminderdetails = default(IList<MessageResult>), int? templateappointmenttypeid = default(int?), int? templateappointmentid = default(int?), int? patientid = default(int?))
         {
             ReasonId = reasonId;
             Appointmentnotes = appointmentnotes;
@@ -217,6 +218,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
             Stopexamdatetime = stopexamdatetime;
             Renderingproviderid = renderingproviderid;
             Supervisingproviderid = supervisingproviderid;
+            Claims = claims;
             Patientlocationid = patientlocationid;
             Encounterstate = encounterstate;
             Rescheduledappointmentid = rescheduledappointmentid;
@@ -570,6 +572,12 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// </summary>
         [JsonProperty(PropertyName = "supervisingproviderid")]
         public string Supervisingproviderid { get; set; }
+
+        /// <summary>
+        /// Gets or sets as detailed in /claims, if requested.
+        /// </summary>
+        [JsonProperty(PropertyName = "claims")]
+        public IList<AppointmentClaim> Claims { get; set; }
 
         /// <summary>
         /// Gets or sets the location of the patient. See /patientlocation for
