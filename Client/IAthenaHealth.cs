@@ -1042,6 +1042,53 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<VitalsList>> GetPatientVitalsWithHttpMessagesAsync(int patientId, int departmentid, string enddate = default(string), bool? showemptyvitals = default(bool?), string startdate = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Get patient medical history
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The department for this patient. A patient may have multiple
+        /// charts, and the department determines which chart to retrieve.
+        /// </param>
+        /// <param name='showdiagnosisinfo'>
+        /// If true, will include every encounter and associated diagnosis with
+        /// each problem.  Also fills the bestmatchicd10code field with the
+        /// best conversion from the problem SNOMED  code to ICD10 code if
+        /// there is no user-selected ICD10 code in an encounter diagnosis
+        /// event. Please note that the bestmatchicd10code may not always be
+        /// accurate.
+        /// </param>
+        /// <param name='showinactive'>
+        /// Also show inactive (but not soft deleted) problems.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ProblemsList>> GetPatientProblemsWithHttpMessagesAsync(int patientId, int departmentid, bool? showdiagnosisinfo = default(bool?), bool? showinactive = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Get patient medical history
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The department for this patient. A patient may have multiple
+        /// charts, and the department determines which chart to retrieve.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ProceduresList>> GetPatientSurgicalHistoryWithHttpMessagesAsync(int patientId, int departmentid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get encounters for the speicic patient.
         /// </summary>
         /// <param name='patientId'>
