@@ -1160,5 +1160,47 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// </param>
         Task<HttpOperationResponse<IList<EncounterDiagnosesList>>> GetPatientEncounterOrdersWithHttpMessagesAsync(int encounterid, bool? allowdischargetype = default(bool?), bool? showclinicalprovider = default(bool?), bool? showdeclinedorders = default(bool?), bool? showexternalcodes = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
+        /// <summary>
+        /// Get claims
+        /// </summary>
+        /// <param name='appointmentid'>
+        /// One or more appointment IDs.
+        /// </param>
+        /// <param name='providerid'>
+        /// Will match either the provider or the supervising provider.
+        /// </param>
+        /// <param name='departmentid'>
+        /// The department ID of the service department for the claims being
+        /// searched for.
+        /// </param>
+        /// <param name='createdenddate'>
+        /// The claim creation date, end of range, inclusive.
+        /// </param>
+        /// <param name='createdstartdate'>
+        /// The claim creation date, start of range, inclusive.
+        /// </param>
+        /// <param name='patientid'>
+        /// The patient ID associated with the claims to search for
+        /// </param>
+        /// <param name='procedurecodes'>
+        /// One or more procedure codes
+        /// </param>
+        /// <param name='serviceenddate'>
+        /// The service date, end of range, inclusive.
+        /// </param>
+        /// <param name='servicestartdate'>
+        /// The service date, start of range, inclusive.
+        /// </param>
+        /// <param name='showcustomfields'>
+        /// Include custom fields for the claims.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ClaimsList>> GetClaimsWithHttpMessagesAsync(int? appointmentid = default(int?), int? providerid = default(int?), int? departmentid = default(int?), string createdenddate = default(string), string createdstartdate = default(string), int? patientid = default(int?), string procedurecodes = default(string), string serviceenddate = default(string), string servicestartdate = default(string), bool? showcustomfields = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
     }
 }

@@ -1884,6 +1884,19 @@ components:
           x-ms-client-name: Appointments
           items:
             $ref: "#/components/schemas/AppointmentInformation"
+    ClaimsList:
+      required:
+        - totalcount
+        - claims
+      properties:
+        totalcount:
+          type: integer
+          format: int32
+          x-ms-client-name: TotalCount
+        claims:
+          type: array
+          items:
+            $ref: "#/components/schemas/AppointmentClaim"
     MedicationEvent:
       required:
         - type
@@ -3795,3 +3808,67 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/claims:
+    get:
+      summary: Get claims
+      operationId: getClaims
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: query
+          name: appointmentid
+          description: One or more appointment IDs.
+          schema:
+            type: integer
+        - in: query
+          name: providerid
+          description: Will match either the provider or the supervising provider.
+          schema:
+            type: integer
+        - in: query
+          name: departmentid
+          description: The department ID of the service department for the claims being searched for.
+          schema:
+            type: integer
+        - in: query
+          name: createdenddate
+          description: The claim creation date, end of range, inclusive.
+          schema:
+            type: string
+        - in: query
+          name: createdstartdate
+          description: The claim creation date, start of range, inclusive.
+          schema:
+            type: string
+        - in: query
+          name: patientid
+          description: The patient ID associated with the claims to search for
+          schema:
+            type: integer
+        - in: query
+          name: procedurecodes
+          description: One or more procedure codes
+          schema:
+            type: string
+        - in: query
+          name: serviceenddate
+          description: The service date, end of range, inclusive.
+          schema:
+            type: string
+        - in: query
+          name: servicestartdate
+          description: The service date, start of range, inclusive.
+          schema:
+            type: string
+        - in: query
+          name: showcustomfields
+          description: Include custom fields for the claims.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Array of information about appointments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClaimsList"

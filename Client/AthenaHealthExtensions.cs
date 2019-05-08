@@ -2305,5 +2305,95 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 }
             }
 
+            /// <summary>
+            /// Get claims
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentid'>
+            /// One or more appointment IDs.
+            /// </param>
+            /// <param name='providerid'>
+            /// Will match either the provider or the supervising provider.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department ID of the service department for the claims being searched
+            /// for.
+            /// </param>
+            /// <param name='createdenddate'>
+            /// The claim creation date, end of range, inclusive.
+            /// </param>
+            /// <param name='createdstartdate'>
+            /// The claim creation date, start of range, inclusive.
+            /// </param>
+            /// <param name='patientid'>
+            /// The patient ID associated with the claims to search for
+            /// </param>
+            /// <param name='procedurecodes'>
+            /// One or more procedure codes
+            /// </param>
+            /// <param name='serviceenddate'>
+            /// The service date, end of range, inclusive.
+            /// </param>
+            /// <param name='servicestartdate'>
+            /// The service date, start of range, inclusive.
+            /// </param>
+            /// <param name='showcustomfields'>
+            /// Include custom fields for the claims.
+            /// </param>
+            public static ClaimsList GetClaims(this IAthenaHealth operations, int? appointmentid = default(int?), int? providerid = default(int?), int? departmentid = default(int?), string createdenddate = default(string), string createdstartdate = default(string), int? patientid = default(int?), string procedurecodes = default(string), string serviceenddate = default(string), string servicestartdate = default(string), bool? showcustomfields = default(bool?))
+            {
+                return operations.GetClaimsAsync(appointmentid, providerid, departmentid, createdenddate, createdstartdate, patientid, procedurecodes, serviceenddate, servicestartdate, showcustomfields).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get claims
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='appointmentid'>
+            /// One or more appointment IDs.
+            /// </param>
+            /// <param name='providerid'>
+            /// Will match either the provider or the supervising provider.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department ID of the service department for the claims being searched
+            /// for.
+            /// </param>
+            /// <param name='createdenddate'>
+            /// The claim creation date, end of range, inclusive.
+            /// </param>
+            /// <param name='createdstartdate'>
+            /// The claim creation date, start of range, inclusive.
+            /// </param>
+            /// <param name='patientid'>
+            /// The patient ID associated with the claims to search for
+            /// </param>
+            /// <param name='procedurecodes'>
+            /// One or more procedure codes
+            /// </param>
+            /// <param name='serviceenddate'>
+            /// The service date, end of range, inclusive.
+            /// </param>
+            /// <param name='servicestartdate'>
+            /// The service date, start of range, inclusive.
+            /// </param>
+            /// <param name='showcustomfields'>
+            /// Include custom fields for the claims.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ClaimsList> GetClaimsAsync(this IAthenaHealth operations, int? appointmentid = default(int?), int? providerid = default(int?), int? departmentid = default(int?), string createdenddate = default(string), string createdstartdate = default(string), int? patientid = default(int?), string procedurecodes = default(string), string serviceenddate = default(string), string servicestartdate = default(string), bool? showcustomfields = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetClaimsWithHttpMessagesAsync(appointmentid, providerid, departmentid, createdenddate, createdstartdate, patientid, procedurecodes, serviceenddate, servicestartdate, showcustomfields, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
     }
 }
