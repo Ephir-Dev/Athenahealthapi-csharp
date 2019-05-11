@@ -1084,6 +1084,61 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PatientProcedure"
+    TemplateInformation:
+      required:
+        - templateid
+        - templatename
+      properties:
+        templateid:
+          type: integer
+          description: ID for this social history template
+        templatename:
+          type: string
+          description: Name for this social history template
+    SocialHistoryAnswer:
+      properties:
+        answer:
+          type: string
+          description: The patient answer to this question
+        questionid:
+          type: integer
+          description: Unique ID for this question within this template.
+        key:
+          type: string
+          description: Unique key for this question, can exist in multiple templates.
+        question:
+          type: string
+          description: Human readable question
+        ordering:
+          type: integer
+          description: Display ordering for this question within this template
+        templateid:
+          type: integer
+          description: The template where this question is listed. If it exists on multiple templates, then only one of them.
+        note:
+          type: string
+          description: The notes associated with this question.
+        lastupdated:
+          type: string
+          description: The date this answer was last updated (or first answered if never updated).
+        notelastupdateddate:
+          type: string
+          description: The date this note was last updated (or first added if never updated).
+        #notperformedreason:
+        #  type: string
+        #  description: The reason this question was not performed.
+    SocialHistoryList:
+      properties:
+        sectionnote:
+          type: string
+        templates:
+          type: array
+          items:
+            $ref: "#/components/schemas/TemplateInformation"
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/SocialHistoryAnswer"
     CodeInformation:
       required:
         - codeset
@@ -3637,6 +3692,58 @@ paths:
             application/json:    
               schema:
                 $ref: "#/components/schemas/ProblemsList"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/chart/{patientId}/socialhistory:
+    get:
+      summary: List of social history data for this patient.
+      operationId: getPatientSocialHistory
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: patientId
+          in: path
+          description: Id of the patient for which get medications
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: departmentid
+          in: query
+          description: >
+            The department for this patient.
+            A patient may have multiple charts, and the department determines which chart to retrieve.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: recipientcategory
+          in: query
+          description: >
+            The intended audience for the data. If given, questions marked as confidential for this audience will be withheld.	
+          schema:
+            type: string
+        - name: shownotperformedquestions
+          in: query
+          description: Include questions that the provider did not perform.
+          schema:
+            type: boolean
+        - name: showunansweredquestions
+          in: query
+          description: Include questions where there is no current answer.	
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Information about patient social history
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/SocialHistoryList"
         default:
           description: unexpected error
           content:

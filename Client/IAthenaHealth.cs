@@ -1071,6 +1071,34 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<ProblemsList>> GetPatientProblemsWithHttpMessagesAsync(int patientId, int departmentid, bool? showdiagnosisinfo = default(bool?), bool? showinactive = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// List of social history data for this patient.
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get medications
+        /// </param>
+        /// <param name='departmentid'>
+        /// The department for this patient. A patient may have multiple
+        /// charts, and the department determines which chart to retrieve.
+        /// </param>
+        /// <param name='recipientcategory'>
+        /// The intended audience for the data. If given, questions marked as
+        /// confidential for this audience will be withheld.
+        /// </param>
+        /// <param name='shownotperformedquestions'>
+        /// Include questions that the provider did not perform.
+        /// </param>
+        /// <param name='showunansweredquestions'>
+        /// Include questions where there is no current answer.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<SocialHistoryList>> GetPatientSocialHistoryWithHttpMessagesAsync(int patientId, int departmentid, string recipientcategory = default(string), bool? shownotperformedquestions = default(bool?), bool? showunansweredquestions = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get patient medical history
         /// </summary>
         /// <param name='patientId'>

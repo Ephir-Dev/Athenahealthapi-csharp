@@ -2112,6 +2112,68 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// List of social history data for this patient.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department for this patient. A patient may have multiple charts, and
+            /// the department determines which chart to retrieve.
+            /// </param>
+            /// <param name='recipientcategory'>
+            /// The intended audience for the data. If given, questions marked as
+            /// confidential for this audience will be withheld.
+            /// </param>
+            /// <param name='shownotperformedquestions'>
+            /// Include questions that the provider did not perform.
+            /// </param>
+            /// <param name='showunansweredquestions'>
+            /// Include questions where there is no current answer.
+            /// </param>
+            public static SocialHistoryList GetPatientSocialHistory(this IAthenaHealth operations, int patientId, int departmentid, string recipientcategory = default(string), bool? shownotperformedquestions = default(bool?), bool? showunansweredquestions = default(bool?))
+            {
+                return operations.GetPatientSocialHistoryAsync(patientId, departmentid, recipientcategory, shownotperformedquestions, showunansweredquestions).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// List of social history data for this patient.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get medications
+            /// </param>
+            /// <param name='departmentid'>
+            /// The department for this patient. A patient may have multiple charts, and
+            /// the department determines which chart to retrieve.
+            /// </param>
+            /// <param name='recipientcategory'>
+            /// The intended audience for the data. If given, questions marked as
+            /// confidential for this audience will be withheld.
+            /// </param>
+            /// <param name='shownotperformedquestions'>
+            /// Include questions that the provider did not perform.
+            /// </param>
+            /// <param name='showunansweredquestions'>
+            /// Include questions where there is no current answer.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SocialHistoryList> GetPatientSocialHistoryAsync(this IAthenaHealth operations, int patientId, int departmentid, string recipientcategory = default(string), bool? shownotperformedquestions = default(bool?), bool? showunansweredquestions = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientSocialHistoryWithHttpMessagesAsync(patientId, departmentid, recipientcategory, shownotperformedquestions, showunansweredquestions, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get patient medical history
             /// </summary>
             /// <param name='operations'>
