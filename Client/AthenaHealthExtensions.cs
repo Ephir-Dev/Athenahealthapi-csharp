@@ -320,9 +320,50 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='patientId'>
             /// Id of the patient for which get information
             /// </param>
-            public static IList<PatientInformation> GetPatientById(this IAthenaHealth operations, int patientId)
+            /// <param name='departmentid'>
+            /// This is the ID for the department of the patient you are retrieving. If you
+            /// are calling this on an enterprise practice with multiple financial groups
+            /// (also called "provider groups"), this  will ensure you are retrieving the
+            /// correct patient and not a copy that is in a different department.
+            /// </param>
+            /// <param name='ignorerestrictions'>
+            /// Set to true to allow ability to find patients with record restrictions and
+            /// blocked patients. This should only be used when there is no reflection to
+            /// the patient at all that a match was found or not found.
+            /// </param>
+            /// <param name='show2015edcehrtvalues'>
+            /// Use 2015 Ed. CEHRT compliant strings for describing gender identity and
+            /// sexual orientation.
+            /// </param>
+            /// <param name='showallclaims'>
+            /// Include information on claims where there is no outstanding patient
+            /// balance. (Only to be used when showbalancedetails is selected.)
+            /// </param>
+            /// <param name='showallpatientdepartmentstatus'>
+            /// Include an array of all departments the patient is a part of along with all
+            /// statuses for those departments.
+            /// </param>
+            /// <param name='showbalancedetails'>
+            /// Show detailed information on patient balances.
+            /// </param>
+            /// <param name='showcustomfields'>
+            /// Include custom fields for the patient.
+            /// </param>
+            /// <param name='showfullssn'>
+            /// If set, will show full SSN instead of a masked number.
+            /// </param>
+            /// <param name='showinsurance'>
+            /// Include patient insurance information.
+            /// </param>
+            /// <param name='showlocalpatientid'>
+            /// If set, will show local patient id.
+            /// </param>
+            /// <param name='showportalstatus'>
+            /// If set, will include portal enrollment status in response.
+            /// </param>
+            public static IList<PatientInformation> GetPatientById(this IAthenaHealth operations, int patientId, int? departmentid = default(int?), bool? ignorerestrictions = default(bool?), bool? show2015edcehrtvalues = default(bool?), bool? showallclaims = default(bool?), bool? showallpatientdepartmentstatus = default(bool?), bool? showbalancedetails = default(bool?), bool? showcustomfields = default(bool?), bool? showfullssn = default(bool?), bool? showinsurance = default(bool?), bool? showlocalpatientid = default(bool?), bool? showportalstatus = default(bool?))
             {
-                return operations.GetPatientByIdAsync(patientId).GetAwaiter().GetResult();
+                return operations.GetPatientByIdAsync(patientId, departmentid, ignorerestrictions, show2015edcehrtvalues, showallclaims, showallpatientdepartmentstatus, showbalancedetails, showcustomfields, showfullssn, showinsurance, showlocalpatientid, showportalstatus).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -334,12 +375,53 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='patientId'>
             /// Id of the patient for which get information
             /// </param>
+            /// <param name='departmentid'>
+            /// This is the ID for the department of the patient you are retrieving. If you
+            /// are calling this on an enterprise practice with multiple financial groups
+            /// (also called "provider groups"), this  will ensure you are retrieving the
+            /// correct patient and not a copy that is in a different department.
+            /// </param>
+            /// <param name='ignorerestrictions'>
+            /// Set to true to allow ability to find patients with record restrictions and
+            /// blocked patients. This should only be used when there is no reflection to
+            /// the patient at all that a match was found or not found.
+            /// </param>
+            /// <param name='show2015edcehrtvalues'>
+            /// Use 2015 Ed. CEHRT compliant strings for describing gender identity and
+            /// sexual orientation.
+            /// </param>
+            /// <param name='showallclaims'>
+            /// Include information on claims where there is no outstanding patient
+            /// balance. (Only to be used when showbalancedetails is selected.)
+            /// </param>
+            /// <param name='showallpatientdepartmentstatus'>
+            /// Include an array of all departments the patient is a part of along with all
+            /// statuses for those departments.
+            /// </param>
+            /// <param name='showbalancedetails'>
+            /// Show detailed information on patient balances.
+            /// </param>
+            /// <param name='showcustomfields'>
+            /// Include custom fields for the patient.
+            /// </param>
+            /// <param name='showfullssn'>
+            /// If set, will show full SSN instead of a masked number.
+            /// </param>
+            /// <param name='showinsurance'>
+            /// Include patient insurance information.
+            /// </param>
+            /// <param name='showlocalpatientid'>
+            /// If set, will show local patient id.
+            /// </param>
+            /// <param name='showportalstatus'>
+            /// If set, will include portal enrollment status in response.
+            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<PatientInformation>> GetPatientByIdAsync(this IAthenaHealth operations, int patientId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<PatientInformation>> GetPatientByIdAsync(this IAthenaHealth operations, int patientId, int? departmentid = default(int?), bool? ignorerestrictions = default(bool?), bool? show2015edcehrtvalues = default(bool?), bool? showallclaims = default(bool?), bool? showallpatientdepartmentstatus = default(bool?), bool? showbalancedetails = default(bool?), bool? showcustomfields = default(bool?), bool? showfullssn = default(bool?), bool? showinsurance = default(bool?), bool? showlocalpatientid = default(bool?), bool? showportalstatus = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPatientByIdWithHttpMessagesAsync(patientId, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPatientByIdWithHttpMessagesAsync(patientId, departmentid, ignorerestrictions, show2015edcehrtvalues, showallclaims, showallpatientdepartmentstatus, showbalancedetails, showcustomfields, showfullssn, showinsurance, showlocalpatientid, showportalstatus, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

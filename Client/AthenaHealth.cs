@@ -1044,6 +1044,47 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='patientId'>
         /// Id of the patient for which get information
         /// </param>
+        /// <param name='departmentid'>
+        /// This is the ID for the department of the patient you are retrieving. If you
+        /// are calling this on an enterprise practice with multiple financial groups
+        /// (also called "provider groups"), this  will ensure you are retrieving the
+        /// correct patient and not a copy that is in a different department.
+        /// </param>
+        /// <param name='ignorerestrictions'>
+        /// Set to true to allow ability to find patients with record restrictions and
+        /// blocked patients. This should only be used when there is no reflection to
+        /// the patient at all that a match was found or not found.
+        /// </param>
+        /// <param name='show2015edcehrtvalues'>
+        /// Use 2015 Ed. CEHRT compliant strings for describing gender identity and
+        /// sexual orientation.
+        /// </param>
+        /// <param name='showallclaims'>
+        /// Include information on claims where there is no outstanding patient
+        /// balance. (Only to be used when showbalancedetails is selected.)
+        /// </param>
+        /// <param name='showallpatientdepartmentstatus'>
+        /// Include an array of all departments the patient is a part of along with all
+        /// statuses for those departments.
+        /// </param>
+        /// <param name='showbalancedetails'>
+        /// Show detailed information on patient balances.
+        /// </param>
+        /// <param name='showcustomfields'>
+        /// Include custom fields for the patient.
+        /// </param>
+        /// <param name='showfullssn'>
+        /// If set, will show full SSN instead of a masked number.
+        /// </param>
+        /// <param name='showinsurance'>
+        /// Include patient insurance information.
+        /// </param>
+        /// <param name='showlocalpatientid'>
+        /// If set, will show local patient id.
+        /// </param>
+        /// <param name='showportalstatus'>
+        /// If set, will include portal enrollment status in response.
+        /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
         /// </param>
@@ -1065,7 +1106,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<PatientInformation>>> GetPatientByIdWithHttpMessagesAsync(int patientId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<PatientInformation>>> GetPatientByIdWithHttpMessagesAsync(int patientId, int? departmentid = default(int?), bool? ignorerestrictions = default(bool?), bool? show2015edcehrtvalues = default(bool?), bool? showallclaims = default(bool?), bool? showallpatientdepartmentstatus = default(bool?), bool? showbalancedetails = default(bool?), bool? showcustomfields = default(bool?), bool? showfullssn = default(bool?), bool? showinsurance = default(bool?), bool? showlocalpatientid = default(bool?), bool? showportalstatus = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -1080,6 +1121,17 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("patientId", patientId);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("ignorerestrictions", ignorerestrictions);
+                tracingParameters.Add("show2015edcehrtvalues", show2015edcehrtvalues);
+                tracingParameters.Add("showallclaims", showallclaims);
+                tracingParameters.Add("showallpatientdepartmentstatus", showallpatientdepartmentstatus);
+                tracingParameters.Add("showbalancedetails", showbalancedetails);
+                tracingParameters.Add("showcustomfields", showcustomfields);
+                tracingParameters.Add("showfullssn", showfullssn);
+                tracingParameters.Add("showinsurance", showinsurance);
+                tracingParameters.Add("showlocalpatientid", showlocalpatientid);
+                tracingParameters.Add("showportalstatus", showportalstatus);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientById", tracingParameters);
@@ -1091,6 +1143,50 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
+            if (departmentid != null)
+            {
+                _queryParameters.Add(string.Format("departmentid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(departmentid, SerializationSettings).Trim('"'))));
+            }
+            if (ignorerestrictions != null)
+            {
+                _queryParameters.Add(string.Format("ignorerestrictions={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(ignorerestrictions, SerializationSettings).Trim('"'))));
+            }
+            if (show2015edcehrtvalues != null)
+            {
+                _queryParameters.Add(string.Format("show2015edcehrtvalues={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(show2015edcehrtvalues, SerializationSettings).Trim('"'))));
+            }
+            if (showallclaims != null)
+            {
+                _queryParameters.Add(string.Format("showallclaims={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showallclaims, SerializationSettings).Trim('"'))));
+            }
+            if (showallpatientdepartmentstatus != null)
+            {
+                _queryParameters.Add(string.Format("showallpatientdepartmentstatus={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showallpatientdepartmentstatus, SerializationSettings).Trim('"'))));
+            }
+            if (showbalancedetails != null)
+            {
+                _queryParameters.Add(string.Format("showbalancedetails={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showbalancedetails, SerializationSettings).Trim('"'))));
+            }
+            if (showcustomfields != null)
+            {
+                _queryParameters.Add(string.Format("showcustomfields={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showcustomfields, SerializationSettings).Trim('"'))));
+            }
+            if (showfullssn != null)
+            {
+                _queryParameters.Add(string.Format("showfullssn={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showfullssn, SerializationSettings).Trim('"'))));
+            }
+            if (showinsurance != null)
+            {
+                _queryParameters.Add(string.Format("showinsurance={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showinsurance, SerializationSettings).Trim('"'))));
+            }
+            if (showlocalpatientid != null)
+            {
+                _queryParameters.Add(string.Format("showlocalpatientid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showlocalpatientid, SerializationSettings).Trim('"'))));
+            }
+            if (showportalstatus != null)
+            {
+                _queryParameters.Add(string.Format("showportalstatus={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showportalstatus, SerializationSettings).Trim('"'))));
+            }
             if (apiVersion != null)
             {
                 _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));

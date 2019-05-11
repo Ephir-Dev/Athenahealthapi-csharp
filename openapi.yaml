@@ -2429,6 +2429,68 @@ paths:
           schema:
             type: integer
           required: true
+        - in: query
+          name: departmentid
+          description: >
+            This is the ID for the department of the patient you are retrieving.
+            If you are calling this on an enterprise practice with multiple financial groups (also called "provider groups"), this 
+            will ensure you are retrieving the correct patient and not a copy that is in a different department.
+          schema:
+            type: integer
+        - in: query
+          name: ignorerestrictions
+          description: >
+            Set to true to allow ability to find patients with record restrictions and blocked patients.
+            This should only be used when there is no reflection to the patient at all that a match was found or not found.
+          schema:
+            type: boolean
+        - in: query
+          name: show2015edcehrtvalues
+          description: Use 2015 Ed. CEHRT compliant strings for describing gender identity and sexual orientation.
+          schema:
+            type: boolean
+        - in: query
+          name: showallclaims
+          description: >
+            Include information on claims where there is no outstanding patient balance.
+            (Only to be used when showbalancedetails is selected.)
+          schema:
+            type: boolean
+        - in: query
+          name: showallpatientdepartmentstatus
+          description: Include an array of all departments the patient is a part of along with all statuses for those departments.
+          schema:
+            type: boolean
+        - in: query
+          name: showbalancedetails
+          description: Show detailed information on patient balances.
+          schema:
+            type: boolean
+        - in: query
+          name: showcustomfields
+          description: Include custom fields for the patient.
+          schema:
+            type: boolean
+        - in: query
+          name: showfullssn
+          description: If set, will show full SSN instead of a masked number.
+          schema:
+            type: boolean
+        - in: query
+          name: showinsurance
+          description: Include patient insurance information.
+          schema:
+            type: boolean
+        - in: query
+          name: showlocalpatientid
+          description: If set, will show local patient id.
+          schema:
+            type: boolean
+        - in: query
+          name: showportalstatus
+          description: If set, will include portal enrollment status in response.
+          schema:
+            type: boolean
       responses:
         '200':
           description: Array of information about patient
