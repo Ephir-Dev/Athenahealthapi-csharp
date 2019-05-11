@@ -5964,11 +5964,11 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// By default only encounters in OPEN, CLOSED, or REVIEW status are retrieved,
         /// with this flag, encounters aren't filtered by status.
         /// </param>
-        /// <param name='showallstatuses1'>
+        /// <param name='showalltypes'>
         /// Retrieve all encounter types, by default only VISIT and ORDERSONLY are
         /// retrieved.
         /// </param>
-        /// <param name='showallstatuses2'>
+        /// <param name='showdiagnoses'>
         /// Query diagnosis information for every encounter
         /// </param>
         /// <param name='customHeaders'>
@@ -5992,7 +5992,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showalltypes = default(bool?), bool? showdiagnoses = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -6013,8 +6013,8 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("enddate", enddate);
                 tracingParameters.Add("startdate", startdate);
                 tracingParameters.Add("showallstatuses", showallstatuses);
-                tracingParameters.Add("showallstatuses1", showallstatuses1);
-                tracingParameters.Add("showallstatuses2", showallstatuses2);
+                tracingParameters.Add("showalltypes", showalltypes);
+                tracingParameters.Add("showdiagnoses", showdiagnoses);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientEncounters", tracingParameters);
@@ -6047,13 +6047,13 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 _queryParameters.Add(string.Format("showallstatuses={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showallstatuses, SerializationSettings).Trim('"'))));
             }
-            if (showallstatuses1 != null)
+            if (showalltypes != null)
             {
-                _queryParameters.Add(string.Format("showallstatuses={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showallstatuses1, SerializationSettings).Trim('"'))));
+                _queryParameters.Add(string.Format("showalltypes={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showalltypes, SerializationSettings).Trim('"'))));
             }
-            if (showallstatuses2 != null)
+            if (showdiagnoses != null)
             {
-                _queryParameters.Add(string.Format("showallstatuses={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showallstatuses2, SerializationSettings).Trim('"'))));
+                _queryParameters.Add(string.Format("showdiagnoses={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showdiagnoses, SerializationSettings).Trim('"'))));
             }
             if (apiVersion != null)
             {

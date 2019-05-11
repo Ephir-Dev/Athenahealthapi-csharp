@@ -181,6 +181,20 @@ components:
           type: integer
           format: int32
           x-ms-client-name: PatientId
+    PatientDeparmentStatus:
+      required:
+        - patientId
+      properties:
+        departmentid:
+          type: integer
+          format: int32
+          description: The ID of a department that this patient is registered in.
+        primaryproviderid:
+          type: string
+          description: The "primary" provider for this patient, if set.
+        status:
+          type: string
+          description: The "status" of the patient, one of active, inactive, prospective, or deleted.
     PatientInformation:
       properties:
         homeboundyn:
@@ -236,9 +250,11 @@ components:
         #claimbalancedetails:
         #  description: Claim level details on patient balances. (This is only included when SHOWBALANCEDETAILS is set.)
         #  type: array
-        #allpatientstatuses:
-        #  description: message
-        #  type: array
+        allpatientstatuses:
+          description: message
+          type: array
+          items:
+            $ref: '#/components/schemas/PatientDeparmentStatus'
         donotcallyn:
           description: Warning! This patient will not receive any communication from the practice if this field is set to true.
           type: boolean
@@ -3899,12 +3915,12 @@ paths:
             By default only encounters in OPEN, CLOSED, or REVIEW status are retrieved, with this flag, encounters aren't filtered by status.
           schema:
             type: boolean
-        - name: showallstatuses
+        - name: showalltypes
           in: query
           description: Retrieve all encounter types, by default only VISIT and ORDERSONLY are retrieved.
           schema:
             type: boolean
-        - name: showallstatuses
+        - name: showdiagnoses
           in: query
           description: Query diagnosis information for every encounter
           schema:

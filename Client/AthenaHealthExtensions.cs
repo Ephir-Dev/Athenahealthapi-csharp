@@ -2326,16 +2326,16 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// By default only encounters in OPEN, CLOSED, or REVIEW status are retrieved,
             /// with this flag, encounters aren't filtered by status.
             /// </param>
-            /// <param name='showallstatuses1'>
+            /// <param name='showalltypes'>
             /// Retrieve all encounter types, by default only VISIT and ORDERSONLY are
             /// retrieved.
             /// </param>
-            /// <param name='showallstatuses2'>
+            /// <param name='showdiagnoses'>
             /// Query diagnosis information for every encounter
             /// </param>
-            public static IList<EncountersList> GetPatientEncounters(this IAthenaHealth operations, int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?))
+            public static IList<EncountersList> GetPatientEncounters(this IAthenaHealth operations, int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showalltypes = default(bool?), bool? showdiagnoses = default(bool?))
             {
-                return operations.GetPatientEncountersAsync(patientId, departmentid, appointmentid, providerid, enddate, startdate, showallstatuses, showallstatuses1, showallstatuses2).GetAwaiter().GetResult();
+                return operations.GetPatientEncountersAsync(patientId, departmentid, appointmentid, providerid, enddate, startdate, showallstatuses, showalltypes, showdiagnoses).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -2367,19 +2367,19 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// By default only encounters in OPEN, CLOSED, or REVIEW status are retrieved,
             /// with this flag, encounters aren't filtered by status.
             /// </param>
-            /// <param name='showallstatuses1'>
+            /// <param name='showalltypes'>
             /// Retrieve all encounter types, by default only VISIT and ORDERSONLY are
             /// retrieved.
             /// </param>
-            /// <param name='showallstatuses2'>
+            /// <param name='showdiagnoses'>
             /// Query diagnosis information for every encounter
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<EncountersList>> GetPatientEncountersAsync(this IAthenaHealth operations, int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<EncountersList>> GetPatientEncountersAsync(this IAthenaHealth operations, int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showalltypes = default(bool?), bool? showdiagnoses = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.GetPatientEncountersWithHttpMessagesAsync(patientId, departmentid, appointmentid, providerid, enddate, startdate, showallstatuses, showallstatuses1, showallstatuses2, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.GetPatientEncountersWithHttpMessagesAsync(patientId, departmentid, appointmentid, providerid, enddate, startdate, showallstatuses, showalltypes, showdiagnoses, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

@@ -1185,11 +1185,11 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// By default only encounters in OPEN, CLOSED, or REVIEW status are
         /// retrieved, with this flag, encounters aren't filtered by status.
         /// </param>
-        /// <param name='showallstatuses1'>
+        /// <param name='showalltypes'>
         /// Retrieve all encounter types, by default only VISIT and ORDERSONLY
         /// are retrieved.
         /// </param>
-        /// <param name='showallstatuses2'>
+        /// <param name='showdiagnoses'>
         /// Query diagnosis information for every encounter
         /// </param>
         /// <param name='customHeaders'>
@@ -1198,7 +1198,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showallstatuses1 = default(bool?), bool? showallstatuses2 = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showalltypes = default(bool?), bool? showdiagnoses = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Get encounters for the speicic patient.
