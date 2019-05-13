@@ -6,7 +6,6 @@
 
 namespace AndriiKurdiumov.AuthenaHealth.Client.Models
 {
-    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
@@ -59,7 +58,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// lab result, if any</param>
         /// <param name="resultstatus">The status of the result (e.g., "final",
         /// "preliminary", "corrected", etc.)</param>
-        public LabResult(string labresultid, IList<Analyte> analytes = default(IList<Analyte>), string providerid = default(string), bool? attachmentexists = default(bool?), string labresultdatetime = default(string), string priority = default(string), string patientnote = default(string), string internalnote = default(string), int? facilityid = default(int?), string orderid = default(string), string description = default(string), string labresultloinc = default(string), string labresultdate = default(string), string labresultnote = default(string), string resultstatus = default(string))
+        public LabResult(int labresultid, IList<Analyte> analytes = default(IList<Analyte>), int? providerid = default(int?), bool? attachmentexists = default(bool?), string labresultdatetime = default(string), string priority = default(string), string patientnote = default(string), string internalnote = default(string), int? facilityid = default(int?), string orderid = default(string), string description = default(string), string labresultloinc = default(string), string labresultdate = default(string), string labresultnote = default(string), string resultstatus = default(string))
         {
             Analytes = analytes;
             Providerid = providerid;
@@ -94,7 +93,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// Gets or sets the provider ID for this document.
         /// </summary>
         [JsonProperty(PropertyName = "providerid")]
-        public string Providerid { get; set; }
+        public int? Providerid { get; set; }
 
         /// <summary>
         /// Gets or sets this flag depicts if the lab result has a scanned
@@ -146,7 +145,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// Gets or sets athena ID for this lab result
         /// </summary>
         [JsonProperty(PropertyName = "labresultid")]
-        public string Labresultid { get; set; }
+        public int Labresultid { get; set; }
 
         /// <summary>
         /// Gets or sets the athena ID of the associated order document
@@ -189,15 +188,11 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="ValidationException">
+        /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
-            if (Labresultid == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Labresultid");
-            }
             if (Analytes != null)
             {
                 foreach (var element in Analytes)

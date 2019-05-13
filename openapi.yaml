@@ -792,7 +792,7 @@ components:
             $ref: "#/components/schemas/Analyte"
         providerid:
           description: The provider ID for this document.
-          type: string
+          type: integer
         #interpretationtemplate:
         #  description: The interpretation template added to the lab result.
         #  type: string
@@ -823,7 +823,7 @@ components:
           type: integer
         labresultid:
           description: Athena ID for this lab result
-          type: string
+          type: integer
         orderid:
           description: The athena ID of the associated order document
           type: string
