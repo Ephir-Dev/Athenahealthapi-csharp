@@ -50,7 +50,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// <param name="dosagedurationunit">The unit of the duration. Example:
         /// days. So take this for days.
         /// </param>
-        public DosageInformation(string dosageaction, int dosagequantityvalue, string dosagequantityunit, int? dosagefrequencyvalue = default(int?), string dosagefrequencyunit = default(string), string dosagefrequencydescription = default(string), string dosageroute = default(string), string dosageadditionalinstructions = default(string), int? dosagedurationvalue = default(int?), string dosagedurationunit = default(string))
+        public DosageInformation(string dosageaction, double dosagequantityvalue, string dosagequantityunit, double? dosagefrequencyvalue = default(double?), string dosagefrequencyunit = default(string), string dosagefrequencydescription = default(string), string dosageroute = default(string), string dosageadditionalinstructions = default(string), int? dosagedurationvalue = default(int?), string dosagedurationunit = default(string))
         {
             Dosageaction = dosageaction;
             Dosagequantityvalue = dosagequantityvalue;
@@ -81,7 +81,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// Gets or sets how many of this med is taken.
         /// </summary>
         [JsonProperty(PropertyName = "dosagequantityvalue")]
-        public int Dosagequantityvalue { get; set; }
+        public double Dosagequantityvalue { get; set; }
 
         /// <summary>
         /// Gets or sets the unit of the quantity. Example: tablets, sprays,
@@ -96,7 +96,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// taken.
         /// </summary>
         [JsonProperty(PropertyName = "dosagefrequencyvalue")]
-        public int? Dosagefrequencyvalue { get; set; }
+        public double? Dosagefrequencyvalue { get; set; }
 
         /// <summary>
         /// Gets or sets the unit of the frequency. Example: per day, per week.

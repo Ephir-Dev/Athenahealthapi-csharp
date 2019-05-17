@@ -1993,14 +1993,14 @@ components:
           type: string
         dosagequantityvalue:
           description: How many of this med is taken.
-          type: integer
+          type: number
         dosagequantityunit:
           description: >
             The unit of the quantity. Example: tablets, sprays, etc.
           type: string
         dosagefrequencyvalue:
           description: How many times (in the given time unit) this should be taken.
-          type: integer
+          type: number
         dosagefrequencyunit:
           description: >
             The unit of the frequency. Example: per day, per week.
