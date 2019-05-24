@@ -3147,6 +3147,127 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AppointmentInformationList"
+  /{apivariant}/{practiceid}/appointments/booked/multipledepartment:
+    get:
+      summary: Get booked appointments
+      operationId: getBookedAppointmentsFromMultipleDepartments
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: query
+          name: appointmentstatus
+          description: Filter appointments by status.
+          schema:
+            type: string
+        - in: query
+          name: appointmenttypeid
+          description: Filter by appointment type ID.
+          schema:
+            type: integer
+        - in: query
+          name: departmentid
+          description: The athenaNet department ID. Multiple IDs (either as a comma delimited list or multiple POSTed values) are allowed.
+          schema:
+            type: string
+        - in: query
+          name: enddate
+          description: End of the appointment search date range (mm/dd/yyyy). Inclusive.
+          schema:
+            type: string
+        - in: query
+          name: endlastmodified
+          description: >
+            Identify appointments modified prior to this date/time (mm/dd/yyyy hh:mi:ss). Inclusive.
+            Note: This can only be used if a startlastmodified value is supplied as well.
+          schema:
+            type: string
+        - in: query
+          name: ignorerestrictions
+          description: >
+            When showing patient detail for appointments, the patient information for patients with record restrictions and blocked patients will not be shown.
+            Setting this flag to true will show that information for those patients.
+          schema:
+            type: boolean
+        - in: query
+          name: patientid
+          description: >
+            The athenaNet patient ID.
+            If operating in a Provider Group Enterprise practice, this should be the enterprise patient ID.
+          schema:
+            type: integer
+        - in: query
+          name: providerid
+          description: The athenaNet provider ID. Multiple IDs (either as a comma delimited list or multiple POSTed values) are allowed.
+          schema:
+            type: string
+        - in: query
+          name: scheduledenddate
+          description: End of the appointment scheduled search date range (mm/dd/yyyy). Inclusive.
+          schema:
+            type: string
+        - in: query
+          name: scheduledstartdate
+          description: Start of the appointment scheduled search date range (mm/dd/yyyy). Inclusive.
+          schema:
+            type: string
+        - in: query
+          name: showcancelled
+          description: Include appointments that have been cancelled.
+          schema:
+            type: boolean
+        - in: query
+          name: showclaimdetail
+          description: >
+            Include claim information, if available, associated with an appointment.
+          schema:
+            type: boolean
+        - in: query
+          name: showcopay
+          description: >
+            By default, the expected co-pay is returned.
+            For performance purposes, you can set this to false and copay will not be populated.
+          schema:
+            type: boolean
+        - in: query
+          name: showexpectedprocedurecodes
+          description: Show the expetcted procedurecodes.
+          schema:
+            type: boolean
+        - in: query
+          name: showinsurance
+          description: >
+            Include patient insurance information.
+            Shows insurance packages for the appointment if any are selected, and all patient packages otherwise.
+          schema:
+            type: boolean
+        - in: query
+          name: showpatientdetail
+          description: Include patient information for each patient associated with an appointment.
+          schema:
+            type: boolean
+        - in: query
+          name: showremindercalldetail
+          description: >
+            Include all remindercall related results, if available, associated with an appointment.
+          schema:
+            type: boolean
+        - in: query
+          name: startdate
+          description: Start of the appointment search date range (mm/dd/yyyy). Inclusive.
+          schema:
+            type: string
+        - in: query
+          name: startlastmodified
+          description: Identify appointments modified after this date/time (mm/dd/yyyy hh:mi:ss). Inclusive.	
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Array of information about appointments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AppointmentInformationList"
   /{apivariant}/{practiceid}/appointments/open:
     get:
       summary: Get open appointment slots
