@@ -1064,6 +1064,21 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PatientProblem"
+    CreatePatientProblemResponse:
+      required:
+        - success
+      properties:
+        problemid:
+          description: If successful, the athena ID of the newly created problem
+          type: integer
+          format: int32
+          x-ms-client-name: ProblemId
+        success:
+          description: Whether the operation was successful or not.
+          type: boolean
+        errormessage:
+          description: If the operation failed, this will contain any error messages.
+          type: string
     PatientProcedure:
       required:
         - procedureid
@@ -3891,6 +3906,66 @@ paths:
             application/json:    
               schema:
                 $ref: "#/components/schemas/ProblemsList"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+       summary: Adds problem to patient chart.
+       operationId: createPatientProblem
+       parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: patientId
+          in: path
+          description: Id of the patient for which get medications
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: departmentid
+          in: query
+          description: >
+            The department for this patient.
+            A patient may have multiple charts, and the department determines which chart to retrieve.
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: laterality
+          in: query
+          description: Update the laterality of this problem. Can be null, LEFT, RIGHT, or BILATERAL.
+          schema:
+            type: string
+        - name: note
+          in: query
+          description: The note to be attached to this problem.
+          schema:
+            type: string
+        - name: snomedcode
+          in: query
+          description: The SNOMED code of the problem you are adding.
+          schema:
+            type: string
+        - name: startdate
+          in: query
+          description: The onset date to be updated for this problem in MM/DD/YYYY format.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Whether the problem is chronic or acute.
+          schema:
+            type: string
+       responses:
+        '200':
+          description: Status of patient problem registration
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/CreatePatientProblemResponse"
         default:
           description: unexpected error
           content:
