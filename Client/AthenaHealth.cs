@@ -5899,25 +5899,24 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='patientId'>
         /// Id of the patient for which get medications
         /// </param>
-        /// <param name='departmentid'>
-        /// The department for this patient. A patient may have multiple charts, and
-        /// the department determines which chart to retrieve.
-        /// </param>
-        /// <param name='laterality'>
-        /// Update the laterality of this problem. Can be null, LEFT, RIGHT, or
-        /// BILATERAL.
-        /// </param>
-        /// <param name='note'>
-        /// The note to be attached to this problem.
-        /// </param>
-        /// <param name='snomedcode'>
-        /// The SNOMED code of the problem you are adding.
+        /// <param name='status'>
+        /// Whether the problem is chronic or acute.
         /// </param>
         /// <param name='startdate'>
         /// The onset date to be updated for this problem in MM/DD/YYYY format.
         /// </param>
-        /// <param name='status'>
-        /// Whether the problem is chronic or acute.
+        /// <param name='snomedcode'>
+        /// The SNOMED code of the problem you are adding.
+        /// </param>
+        /// <param name='departmentid'>
+        /// Primary (registration) department ID.
+        /// </param>
+        /// <param name='note'>
+        /// The note to be attached to this problem.
+        /// </param>
+        /// <param name='laterality'>
+        /// Update the laterality of this problem. Can be null, LEFT, RIGHT, or
+        /// BILATERAL.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -5940,7 +5939,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CreatePatientProblemResponse>> CreatePatientProblemWithHttpMessagesAsync(int patientId, int departmentid, string laterality = default(string), string note = default(string), string snomedcode = default(string), string startdate = default(string), string status = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CreatePatientProblemResponse>> CreatePatientProblemWithHttpMessagesAsync(int patientId, string status = default(string), string startdate = default(string), int? snomedcode = default(int?), int? departmentid = default(int?), string note = default(string), string laterality = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Apivariant == null)
             {
@@ -5954,13 +5953,13 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("patientId", patientId);
-                tracingParameters.Add("departmentid", departmentid);
-                tracingParameters.Add("laterality", laterality);
-                tracingParameters.Add("note", note);
-                tracingParameters.Add("snomedcode", snomedcode);
-                tracingParameters.Add("startdate", startdate);
                 tracingParameters.Add("status", status);
+                tracingParameters.Add("startdate", startdate);
+                tracingParameters.Add("snomedcode", snomedcode);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("note", note);
+                tracingParameters.Add("laterality", laterality);
+                tracingParameters.Add("patientId", patientId);
                 tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreatePatientProblem", tracingParameters);
@@ -5972,27 +5971,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
-            _queryParameters.Add(string.Format("departmentid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(departmentid, SerializationSettings).Trim('"'))));
-            if (laterality != null)
-            {
-                _queryParameters.Add(string.Format("laterality={0}", System.Uri.EscapeDataString(laterality)));
-            }
-            if (note != null)
-            {
-                _queryParameters.Add(string.Format("note={0}", System.Uri.EscapeDataString(note)));
-            }
-            if (snomedcode != null)
-            {
-                _queryParameters.Add(string.Format("snomedcode={0}", System.Uri.EscapeDataString(snomedcode)));
-            }
-            if (startdate != null)
-            {
-                _queryParameters.Add(string.Format("startdate={0}", System.Uri.EscapeDataString(startdate)));
-            }
-            if (status != null)
-            {
-                _queryParameters.Add(string.Format("status={0}", System.Uri.EscapeDataString(status)));
-            }
             if (apiVersion != null)
             {
                 _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
@@ -6023,6 +6001,33 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
 
             // Serialize Request
             string _requestContent = null;
+            var values = new List<KeyValuePair<string, string>>();
+            if(status != null)
+            {
+                values.Add(new KeyValuePair<string,string>("status", status));
+            }
+            if(startdate != null)
+            {
+                values.Add(new KeyValuePair<string,string>("startdate", startdate));
+            }
+            if(snomedcode != null)
+            {
+                values.Add(new KeyValuePair<string,string>("snomedcode", snomedcode?.ToString()));
+            }
+            if(departmentid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("departmentid", departmentid?.ToString()));
+            }
+            if(note != null)
+            {
+                values.Add(new KeyValuePair<string,string>("note", note));
+            }
+            if(laterality != null)
+            {
+                values.Add(new KeyValuePair<string,string>("laterality", laterality));
+            }
+            var _formContent = new FormUrlEncodedContent(values);
+            _httpRequest.Content = _formContent;
             // Send Request
             if (_shouldTrace)
             {

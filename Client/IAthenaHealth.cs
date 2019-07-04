@@ -1200,25 +1200,24 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='patientId'>
         /// Id of the patient for which get medications
         /// </param>
-        /// <param name='departmentid'>
-        /// The department for this patient. A patient may have multiple
-        /// charts, and the department determines which chart to retrieve.
-        /// </param>
-        /// <param name='laterality'>
-        /// Update the laterality of this problem. Can be null, LEFT, RIGHT, or
-        /// BILATERAL.
-        /// </param>
-        /// <param name='note'>
-        /// The note to be attached to this problem.
-        /// </param>
-        /// <param name='snomedcode'>
-        /// The SNOMED code of the problem you are adding.
+        /// <param name='status'>
+        /// Whether the problem is chronic or acute.
         /// </param>
         /// <param name='startdate'>
         /// The onset date to be updated for this problem in MM/DD/YYYY format.
         /// </param>
-        /// <param name='status'>
-        /// Whether the problem is chronic or acute.
+        /// <param name='snomedcode'>
+        /// The SNOMED code of the problem you are adding.
+        /// </param>
+        /// <param name='departmentid'>
+        /// Primary (registration) department ID.
+        /// </param>
+        /// <param name='note'>
+        /// The note to be attached to this problem.
+        /// </param>
+        /// <param name='laterality'>
+        /// Update the laterality of this problem. Can be null, LEFT, RIGHT, or
+        /// BILATERAL.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -1226,7 +1225,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<CreatePatientProblemResponse>> CreatePatientProblemWithHttpMessagesAsync(int patientId, int departmentid, string laterality = default(string), string note = default(string), string snomedcode = default(string), string startdate = default(string), string status = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CreatePatientProblemResponse>> CreatePatientProblemWithHttpMessagesAsync(int patientId, string status = default(string), string startdate = default(string), int? snomedcode = default(int?), int? departmentid = default(int?), string note = default(string), string laterality = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// List of social history data for this patient.

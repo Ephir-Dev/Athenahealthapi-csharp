@@ -2370,29 +2370,28 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='patientId'>
             /// Id of the patient for which get medications
             /// </param>
+            /// <param name='status'>
+            /// Whether the problem is chronic or acute.
+            /// </param>
+            /// <param name='startdate'>
+            /// The onset date to be updated for this problem in MM/DD/YYYY format.
+            /// </param>
+            /// <param name='snomedcode'>
+            /// The SNOMED code of the problem you are adding.
+            /// </param>
             /// <param name='departmentid'>
-            /// The department for this patient. A patient may have multiple charts, and
-            /// the department determines which chart to retrieve.
+            /// Primary (registration) department ID.
+            /// </param>
+            /// <param name='note'>
+            /// The note to be attached to this problem.
             /// </param>
             /// <param name='laterality'>
             /// Update the laterality of this problem. Can be null, LEFT, RIGHT, or
             /// BILATERAL.
             /// </param>
-            /// <param name='note'>
-            /// The note to be attached to this problem.
-            /// </param>
-            /// <param name='snomedcode'>
-            /// The SNOMED code of the problem you are adding.
-            /// </param>
-            /// <param name='startdate'>
-            /// The onset date to be updated for this problem in MM/DD/YYYY format.
-            /// </param>
-            /// <param name='status'>
-            /// Whether the problem is chronic or acute.
-            /// </param>
-            public static CreatePatientProblemResponse CreatePatientProblem(this IAthenaHealth operations, int patientId, int departmentid, string laterality = default(string), string note = default(string), string snomedcode = default(string), string startdate = default(string), string status = default(string))
+            public static CreatePatientProblemResponse CreatePatientProblem(this IAthenaHealth operations, int patientId, string status = default(string), string startdate = default(string), int? snomedcode = default(int?), int? departmentid = default(int?), string note = default(string), string laterality = default(string))
             {
-                return operations.CreatePatientProblemAsync(patientId, departmentid, laterality, note, snomedcode, startdate, status).GetAwaiter().GetResult();
+                return operations.CreatePatientProblemAsync(patientId, status, startdate, snomedcode, departmentid, note, laterality).GetAwaiter().GetResult();
             }
 
             /// <summary>
@@ -2404,32 +2403,31 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             /// <param name='patientId'>
             /// Id of the patient for which get medications
             /// </param>
+            /// <param name='status'>
+            /// Whether the problem is chronic or acute.
+            /// </param>
+            /// <param name='startdate'>
+            /// The onset date to be updated for this problem in MM/DD/YYYY format.
+            /// </param>
+            /// <param name='snomedcode'>
+            /// The SNOMED code of the problem you are adding.
+            /// </param>
             /// <param name='departmentid'>
-            /// The department for this patient. A patient may have multiple charts, and
-            /// the department determines which chart to retrieve.
+            /// Primary (registration) department ID.
+            /// </param>
+            /// <param name='note'>
+            /// The note to be attached to this problem.
             /// </param>
             /// <param name='laterality'>
             /// Update the laterality of this problem. Can be null, LEFT, RIGHT, or
             /// BILATERAL.
             /// </param>
-            /// <param name='note'>
-            /// The note to be attached to this problem.
-            /// </param>
-            /// <param name='snomedcode'>
-            /// The SNOMED code of the problem you are adding.
-            /// </param>
-            /// <param name='startdate'>
-            /// The onset date to be updated for this problem in MM/DD/YYYY format.
-            /// </param>
-            /// <param name='status'>
-            /// Whether the problem is chronic or acute.
-            /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CreatePatientProblemResponse> CreatePatientProblemAsync(this IAthenaHealth operations, int patientId, int departmentid, string laterality = default(string), string note = default(string), string snomedcode = default(string), string startdate = default(string), string status = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CreatePatientProblemResponse> CreatePatientProblemAsync(this IAthenaHealth operations, int patientId, string status = default(string), string startdate = default(string), int? snomedcode = default(int?), int? departmentid = default(int?), string note = default(string), string laterality = default(string), CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CreatePatientProblemWithHttpMessagesAsync(patientId, departmentid, laterality, note, snomedcode, startdate, status, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CreatePatientProblemWithHttpMessagesAsync(patientId, status, startdate, snomedcode, departmentid, note, laterality, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

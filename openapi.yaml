@@ -3925,40 +3925,32 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: departmentid
-          in: query
-          description: >
-            The department for this patient.
-            A patient may have multiple charts, and the department determines which chart to retrieve.
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: laterality
-          in: query
-          description: Update the laterality of this problem. Can be null, LEFT, RIGHT, or BILATERAL.
-          schema:
-            type: string
-        - name: note
-          in: query
-          description: The note to be attached to this problem.
-          schema:
-            type: string
-        - name: snomedcode
-          in: query
-          description: The SNOMED code of the problem you are adding.
-          schema:
-            type: string
-        - name: startdate
-          in: query
-          description: The onset date to be updated for this problem in MM/DD/YYYY format.
-          schema:
-            type: string
-        - name: status
-          in: query
-          description: Whether the problem is chronic or acute.
-          schema:
-            type: string
+       requestBody:
+         required: true
+         content:
+           'application/x-www-form-urlencoded':
+             schema:
+               type: object
+               properties:
+                 status:
+                   description: Whether the problem is chronic or acute.
+                   type: string
+                 startdate:
+                   description: The onset date to be updated for this problem in MM/DD/YYYY format.
+                   type: string
+                 snomedcode:
+                   description: The SNOMED code of the problem you are adding.
+                   type: integer
+                 departmentid:
+                   description: Primary (registration) department ID.
+                   type: integer
+                   format: int32
+                 note:
+                   description: The note to be attached to this problem.
+                   type: string
+                 laterality:
+                   description: Update the laterality of this problem. Can be null, LEFT, RIGHT, or BILATERAL.
+                   type: string
        responses:
         '200':
           description: Status of patient problem registration
