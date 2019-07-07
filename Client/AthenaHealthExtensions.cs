@@ -462,6 +462,242 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get a patient lab results documents
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department id.
+            /// </param>
+            /// <param name='documentsubclass'>
+            /// The document subclass to filter document results.
+            /// </param>
+            /// <param name='encounterid'>
+            /// Show only documents attached to this encounter.
+            /// </param>
+            /// <param name='showdeleted'>
+            /// The document subclass to filter document results.
+            /// </param>
+            /// <param name='showtemplate'>
+            /// If true, interpretation template added to the document is also returned.
+            /// </param>
+            /// <param name='status'>
+            /// The status of the task to filter document results.
+            /// </param>
+            public static PatientLabResultDocumentList GetPatientLabResultDocuments(this IAthenaHealth operations, int patientId, int? departmentid = default(int?), string documentsubclass = default(string), int? encounterid = default(int?), bool? showdeleted = default(bool?), bool? showtemplate = default(bool?), string status = default(string))
+            {
+                return operations.GetPatientLabResultDocumentsAsync(patientId, departmentid, documentsubclass, encounterid, showdeleted, showtemplate, status).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get a patient lab results documents
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department id.
+            /// </param>
+            /// <param name='documentsubclass'>
+            /// The document subclass to filter document results.
+            /// </param>
+            /// <param name='encounterid'>
+            /// Show only documents attached to this encounter.
+            /// </param>
+            /// <param name='showdeleted'>
+            /// The document subclass to filter document results.
+            /// </param>
+            /// <param name='showtemplate'>
+            /// If true, interpretation template added to the document is also returned.
+            /// </param>
+            /// <param name='status'>
+            /// The status of the task to filter document results.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<PatientLabResultDocumentList> GetPatientLabResultDocumentsAsync(this IAthenaHealth operations, int patientId, int? departmentid = default(int?), string documentsubclass = default(string), int? encounterid = default(int?), bool? showdeleted = default(bool?), bool? showtemplate = default(bool?), string status = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientLabResultDocumentsWithHttpMessagesAsync(patientId, departmentid, documentsubclass, encounterid, showdeleted, showtemplate, status, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Create single lab result
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='accessionid'>
+            /// A unique identifier given to a document to track it over time.
+            /// </param>
+            /// <param name='analytes'>
+            /// message
+            /// </param>
+            /// <param name='attachmentcontents'>
+            /// The file contents that will be attached to this document. Currently PDFs
+            /// and PNGs are supported. PNG files must be Base64 encoded.
+            /// </param>
+            /// <param name='attachmenttype'>
+            /// The file type of the attachment. Currently PDFs and PNGs are supported.
+            /// Defaults to PDF.
+            /// </param>
+            /// <param name='autoclose'>
+            /// Documents will, normally, automatically appear in the clinical inbox for
+            /// providers to review.  In some cases, you might want to force the document
+            /// to skip the clinical inbox, and go directly to the patient chart with a
+            /// "closed" status. For that case, set this to true.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID associated with the uploaded document.
+            /// </param>
+            /// <param name='documenttypeid'>
+            /// A specific document type identifier.
+            /// </param>
+            /// <param name='facilityid'>
+            /// The ID of the facility or clinical provider who received the order.
+            /// </param>
+            /// <param name='internalnote'>
+            /// An internal note for the provider or staff. Updating this will append to
+            /// any previous notes.
+            /// </param>
+            /// <param name='interpretation'>
+            /// The practice entered interpretation of this result. Updating this will
+            /// append to any previous values.
+            /// </param>
+            /// <param name='observationdate'>
+            /// The date an observation was made (mm/dd/yyyy).
+            /// </param>
+            /// <param name='observationtime'>
+            /// The time an observation was made (hh24:mi). 24 hour time.
+            /// </param>
+            /// <param name='priority'>
+            /// Priority of this result. 1 is high; 2 is normal.
+            /// </param>
+            /// <param name='providerid'>
+            /// The ID of the ordering provider.
+            /// </param>
+            /// <param name='reportstatus'>
+            /// The status of the report.
+            /// </param>
+            /// <param name='resultstatus'>
+            /// The status of the result.
+            /// </param>
+            /// <param name='specimenreceiveddatetime'>
+            /// Date-time indicating when the specimen was received in format
+            /// (yyyy-mm-ddThh:mm:ss).
+            /// </param>
+            /// <param name='specimenreporteddatetime'>
+            /// Date-time indicating when the specimen was reported in format
+            /// (yyyy-mm-ddThh:mm:ss).
+            /// </param>
+            /// <param name='tietoorderid'>
+            /// Tie the result document to this order.
+            /// </param>
+            public static object CreatePatientLabResultDocument(this IAthenaHealth operations, int patientId, string accessionid = default(string), string analytes = default(string), string attachmentcontents = default(string), string attachmenttype = default(string), string autoclose = default(string), int? departmentid = default(int?), int? documenttypeid = default(int?), int? facilityid = default(int?), string internalnote = default(string), string interpretation = default(string), string observationdate = default(string), string observationtime = default(string), string priority = default(string), int? providerid = default(int?), string reportstatus = default(string), string resultstatus = default(string), string specimenreceiveddatetime = default(string), string specimenreporteddatetime = default(string), int? tietoorderid = default(int?))
+            {
+                return operations.CreatePatientLabResultDocumentAsync(patientId, accessionid, analytes, attachmentcontents, attachmenttype, autoclose, departmentid, documenttypeid, facilityid, internalnote, interpretation, observationdate, observationtime, priority, providerid, reportstatus, resultstatus, specimenreceiveddatetime, specimenreporteddatetime, tietoorderid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Create single lab result
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='accessionid'>
+            /// A unique identifier given to a document to track it over time.
+            /// </param>
+            /// <param name='analytes'>
+            /// message
+            /// </param>
+            /// <param name='attachmentcontents'>
+            /// The file contents that will be attached to this document. Currently PDFs
+            /// and PNGs are supported. PNG files must be Base64 encoded.
+            /// </param>
+            /// <param name='attachmenttype'>
+            /// The file type of the attachment. Currently PDFs and PNGs are supported.
+            /// Defaults to PDF.
+            /// </param>
+            /// <param name='autoclose'>
+            /// Documents will, normally, automatically appear in the clinical inbox for
+            /// providers to review.  In some cases, you might want to force the document
+            /// to skip the clinical inbox, and go directly to the patient chart with a
+            /// "closed" status. For that case, set this to true.
+            /// </param>
+            /// <param name='departmentid'>
+            /// The athenaNet department ID associated with the uploaded document.
+            /// </param>
+            /// <param name='documenttypeid'>
+            /// A specific document type identifier.
+            /// </param>
+            /// <param name='facilityid'>
+            /// The ID of the facility or clinical provider who received the order.
+            /// </param>
+            /// <param name='internalnote'>
+            /// An internal note for the provider or staff. Updating this will append to
+            /// any previous notes.
+            /// </param>
+            /// <param name='interpretation'>
+            /// The practice entered interpretation of this result. Updating this will
+            /// append to any previous values.
+            /// </param>
+            /// <param name='observationdate'>
+            /// The date an observation was made (mm/dd/yyyy).
+            /// </param>
+            /// <param name='observationtime'>
+            /// The time an observation was made (hh24:mi). 24 hour time.
+            /// </param>
+            /// <param name='priority'>
+            /// Priority of this result. 1 is high; 2 is normal.
+            /// </param>
+            /// <param name='providerid'>
+            /// The ID of the ordering provider.
+            /// </param>
+            /// <param name='reportstatus'>
+            /// The status of the report.
+            /// </param>
+            /// <param name='resultstatus'>
+            /// The status of the result.
+            /// </param>
+            /// <param name='specimenreceiveddatetime'>
+            /// Date-time indicating when the specimen was received in format
+            /// (yyyy-mm-ddThh:mm:ss).
+            /// </param>
+            /// <param name='specimenreporteddatetime'>
+            /// Date-time indicating when the specimen was reported in format
+            /// (yyyy-mm-ddThh:mm:ss).
+            /// </param>
+            /// <param name='tietoorderid'>
+            /// Tie the result document to this order.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CreatePatientLabResultDocumentAsync(this IAthenaHealth operations, int patientId, string accessionid = default(string), string analytes = default(string), string attachmentcontents = default(string), string attachmenttype = default(string), string autoclose = default(string), int? departmentid = default(int?), int? documenttypeid = default(int?), int? facilityid = default(int?), string internalnote = default(string), string interpretation = default(string), string observationdate = default(string), string observationtime = default(string), string priority = default(string), int? providerid = default(int?), string reportstatus = default(string), string resultstatus = default(string), string specimenreceiveddatetime = default(string), string specimenreporteddatetime = default(string), int? tietoorderid = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreatePatientLabResultDocumentWithHttpMessagesAsync(patientId, accessionid, analytes, attachmentcontents, attachmenttype, autoclose, departmentid, documenttypeid, facilityid, internalnote, interpretation, observationdate, observationtime, priority, providerid, reportstatus, resultstatus, specimenreceiveddatetime, specimenreporteddatetime, tietoorderid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get a providers
             /// </summary>
             /// <param name='operations'>

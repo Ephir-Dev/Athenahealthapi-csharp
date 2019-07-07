@@ -193,16 +193,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Analytes != null)
-            {
-                foreach (var element in Analytes)
-                {
-                    if (element != null)
-                    {
-                        element.Validate();
-                    }
-                }
-            }
         }
     }
 }

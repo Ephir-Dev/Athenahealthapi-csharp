@@ -52,7 +52,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// "preliminary", "corrected", etc.)</param>
         /// <param name="labresultstatus">The status of the underlying lab
         /// result</param>
-        public Analyte(int analyteId, string analytename = default(string), string loinc = default(string), string value = default(string), string units = default(string), string analytedate = default(string), string description = default(string), string note = default(string), string abnormalflag = default(string), string abnormalhl7code = default(string), string abnormalhl7name = default(string), string valuestatus = default(string), string referencerange = default(string), string resultstatus = default(string), string labresultstatus = default(string))
+        public Analyte(int? analyteId = default(int?), string analytename = default(string), string loinc = default(string), string value = default(string), string units = default(string), string analytedate = default(string), string description = default(string), string note = default(string), string abnormalflag = default(string), string abnormalhl7code = default(string), string abnormalhl7name = default(string), string valuestatus = default(string), string referencerange = default(string), string resultstatus = default(string), string labresultstatus = default(string))
         {
             AnalyteId = analyteId;
             Analytename = analytename;
@@ -81,7 +81,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         /// Gets or sets athena ID for the given lab result observation/analyte
         /// </summary>
         [JsonProperty(PropertyName = "analyteid")]
-        public int AnalyteId { get; set; }
+        public int? AnalyteId { get; set; }
 
         /// <summary>
         /// Gets or sets name / description specific to this analyte
@@ -173,15 +173,5 @@ namespace AndriiKurdiumov.AuthenaHealth.Client.Models
         [JsonProperty(PropertyName = "labresultstatus")]
         public string Labresultstatus { get; set; }
 
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public virtual void Validate()
-        {
-            //Nothing to validate
-        }
     }
 }

@@ -1425,6 +1425,557 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         }
 
         /// <summary>
+        /// Get a patient lab results documents
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get information
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenaNet department id.
+        /// </param>
+        /// <param name='documentsubclass'>
+        /// The document subclass to filter document results.
+        /// </param>
+        /// <param name='encounterid'>
+        /// Show only documents attached to this encounter.
+        /// </param>
+        /// <param name='showdeleted'>
+        /// The document subclass to filter document results.
+        /// </param>
+        /// <param name='showtemplate'>
+        /// If true, interpretation template added to the document is also returned.
+        /// </param>
+        /// <param name='status'>
+        /// The status of the task to filter document results.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="HttpOperationException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<PatientLabResultDocumentList>> GetPatientLabResultDocumentsWithHttpMessagesAsync(int patientId, int? departmentid = default(int?), string documentsubclass = default(string), int? encounterid = default(int?), bool? showdeleted = default(bool?), bool? showtemplate = default(bool?), string status = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            string apiVersion = "1.0.0";
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("patientId", patientId);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("documentsubclass", documentsubclass);
+                tracingParameters.Add("encounterid", encounterid);
+                tracingParameters.Add("showdeleted", showdeleted);
+                tracingParameters.Add("showtemplate", showtemplate);
+                tracingParameters.Add("status", status);
+                tracingParameters.Add("apiVersion", apiVersion);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetPatientLabResultDocuments", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/patients/{patientId}/documents/labresult").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
+            List<string> _queryParameters = new List<string>();
+            if (departmentid != null)
+            {
+                _queryParameters.Add(string.Format("departmentid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(departmentid, SerializationSettings).Trim('"'))));
+            }
+            if (documentsubclass != null)
+            {
+                _queryParameters.Add(string.Format("documentsubclass={0}", System.Uri.EscapeDataString(documentsubclass)));
+            }
+            if (encounterid != null)
+            {
+                _queryParameters.Add(string.Format("encounterid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(encounterid, SerializationSettings).Trim('"'))));
+            }
+            if (showdeleted != null)
+            {
+                _queryParameters.Add(string.Format("showdeleted={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showdeleted, SerializationSettings).Trim('"'))));
+            }
+            if (showtemplate != null)
+            {
+                _queryParameters.Add(string.Format("showtemplate={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showtemplate, SerializationSettings).Trim('"'))));
+            }
+            if (status != null)
+            {
+                _queryParameters.Add(string.Format("status={0}", System.Uri.EscapeDataString(status)));
+            }
+            if (apiVersion != null)
+            {
+                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new HttpOperationException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                if (_httpResponse.Content != null) {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                }
+                else {
+                    _responseContent = string.Empty;
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<PatientLabResultDocumentList>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<PatientLabResultDocumentList>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <summary>
+        /// Create single lab result
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get information
+        /// </param>
+        /// <param name='accessionid'>
+        /// A unique identifier given to a document to track it over time.
+        /// </param>
+        /// <param name='analytes'>
+        /// message
+        /// </param>
+        /// <param name='attachmentcontents'>
+        /// The file contents that will be attached to this document. Currently PDFs
+        /// and PNGs are supported. PNG files must be Base64 encoded.
+        /// </param>
+        /// <param name='attachmenttype'>
+        /// The file type of the attachment. Currently PDFs and PNGs are supported.
+        /// Defaults to PDF.
+        /// </param>
+        /// <param name='autoclose'>
+        /// Documents will, normally, automatically appear in the clinical inbox for
+        /// providers to review.  In some cases, you might want to force the document
+        /// to skip the clinical inbox, and go directly to the patient chart with a
+        /// "closed" status. For that case, set this to true.
+        /// </param>
+        /// <param name='departmentid'>
+        /// The athenaNet department ID associated with the uploaded document.
+        /// </param>
+        /// <param name='documenttypeid'>
+        /// A specific document type identifier.
+        /// </param>
+        /// <param name='facilityid'>
+        /// The ID of the facility or clinical provider who received the order.
+        /// </param>
+        /// <param name='internalnote'>
+        /// An internal note for the provider or staff. Updating this will append to
+        /// any previous notes.
+        /// </param>
+        /// <param name='interpretation'>
+        /// The practice entered interpretation of this result. Updating this will
+        /// append to any previous values.
+        /// </param>
+        /// <param name='observationdate'>
+        /// The date an observation was made (mm/dd/yyyy).
+        /// </param>
+        /// <param name='observationtime'>
+        /// The time an observation was made (hh24:mi). 24 hour time.
+        /// </param>
+        /// <param name='priority'>
+        /// Priority of this result. 1 is high; 2 is normal.
+        /// </param>
+        /// <param name='providerid'>
+        /// The ID of the ordering provider.
+        /// </param>
+        /// <param name='reportstatus'>
+        /// The status of the report.
+        /// </param>
+        /// <param name='resultstatus'>
+        /// The status of the result.
+        /// </param>
+        /// <param name='specimenreceiveddatetime'>
+        /// Date-time indicating when the specimen was received in format
+        /// (yyyy-mm-ddThh:mm:ss).
+        /// </param>
+        /// <param name='specimenreporteddatetime'>
+        /// Date-time indicating when the specimen was reported in format
+        /// (yyyy-mm-ddThh:mm:ss).
+        /// </param>
+        /// <param name='tietoorderid'>
+        /// Tie the result document to this order.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="ErrorException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<object>> CreatePatientLabResultDocumentWithHttpMessagesAsync(int patientId, string accessionid = default(string), string analytes = default(string), string attachmentcontents = default(string), string attachmenttype = default(string), string autoclose = default(string), int? departmentid = default(int?), int? documenttypeid = default(int?), int? facilityid = default(int?), string internalnote = default(string), string interpretation = default(string), string observationdate = default(string), string observationtime = default(string), string priority = default(string), int? providerid = default(int?), string reportstatus = default(string), string resultstatus = default(string), string specimenreceiveddatetime = default(string), string specimenreporteddatetime = default(string), int? tietoorderid = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            string apiVersion = "1.0.0";
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("accessionid", accessionid);
+                tracingParameters.Add("analytes", analytes);
+                tracingParameters.Add("attachmentcontents", attachmentcontents);
+                tracingParameters.Add("attachmenttype", attachmenttype);
+                tracingParameters.Add("autoclose", autoclose);
+                tracingParameters.Add("departmentid", departmentid);
+                tracingParameters.Add("documenttypeid", documenttypeid);
+                tracingParameters.Add("facilityid", facilityid);
+                tracingParameters.Add("internalnote", internalnote);
+                tracingParameters.Add("interpretation", interpretation);
+                tracingParameters.Add("observationdate", observationdate);
+                tracingParameters.Add("observationtime", observationtime);
+                tracingParameters.Add("priority", priority);
+                tracingParameters.Add("providerid", providerid);
+                tracingParameters.Add("reportstatus", reportstatus);
+                tracingParameters.Add("resultstatus", resultstatus);
+                tracingParameters.Add("specimenreceiveddatetime", specimenreceiveddatetime);
+                tracingParameters.Add("specimenreporteddatetime", specimenreporteddatetime);
+                tracingParameters.Add("tietoorderid", tietoorderid);
+                tracingParameters.Add("patientId", patientId);
+                tracingParameters.Add("apiVersion", apiVersion);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "CreatePatientLabResultDocument", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/patients/{patientId}/documents/labresult").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
+            List<string> _queryParameters = new List<string>();
+            if (apiVersion != null)
+            {
+                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("POST");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            var values = new List<KeyValuePair<string, string>>();
+            if(accessionid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("accessionid", accessionid));
+            }
+            if(analytes != null)
+            {
+                values.Add(new KeyValuePair<string,string>("analytes", analytes));
+            }
+            if(attachmentcontents != null)
+            {
+                values.Add(new KeyValuePair<string,string>("attachmentcontents", attachmentcontents));
+            }
+            if(attachmenttype != null)
+            {
+                values.Add(new KeyValuePair<string,string>("attachmenttype", attachmenttype));
+            }
+            if(autoclose != null)
+            {
+                values.Add(new KeyValuePair<string,string>("autoclose", autoclose));
+            }
+            if(departmentid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("departmentid", departmentid?.ToString()));
+            }
+            if(documenttypeid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("documenttypeid", documenttypeid?.ToString()));
+            }
+            if(facilityid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("facilityid", facilityid?.ToString()));
+            }
+            if(internalnote != null)
+            {
+                values.Add(new KeyValuePair<string,string>("internalnote", internalnote));
+            }
+            if(interpretation != null)
+            {
+                values.Add(new KeyValuePair<string,string>("interpretation", interpretation));
+            }
+            if(observationdate != null)
+            {
+                values.Add(new KeyValuePair<string,string>("observationdate", observationdate));
+            }
+            if(observationtime != null)
+            {
+                values.Add(new KeyValuePair<string,string>("observationtime", observationtime));
+            }
+            if(priority != null)
+            {
+                values.Add(new KeyValuePair<string,string>("priority", priority));
+            }
+            if(providerid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("providerid", providerid?.ToString()));
+            }
+            if(reportstatus != null)
+            {
+                values.Add(new KeyValuePair<string,string>("reportstatus", reportstatus));
+            }
+            if(resultstatus != null)
+            {
+                values.Add(new KeyValuePair<string,string>("resultstatus", resultstatus));
+            }
+            if(specimenreceiveddatetime != null)
+            {
+                values.Add(new KeyValuePair<string,string>("specimenreceiveddatetime", specimenreceiveddatetime));
+            }
+            if(specimenreporteddatetime != null)
+            {
+                values.Add(new KeyValuePair<string,string>("specimenreporteddatetime", specimenreporteddatetime));
+            }
+            if(tietoorderid != null)
+            {
+                values.Add(new KeyValuePair<string,string>("tietoorderid", tietoorderid?.ToString()));
+            }
+            var _formContent = new FormUrlEncodedContent(values);
+            _httpRequest.Content = _formContent;
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200 && (int)_statusCode != 400 && (int)_statusCode != 500)
+            {
+                var ex = new ErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                try
+                {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    Error _errorBody =  SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                    if (_errorBody != null)
+                    {
+                        ex.Body = _errorBody;
+                    }
+                }
+                catch (JsonException)
+                {
+                    // Ignore the exception
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<object>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<CreateLabResultDocumentResponse>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 400)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 500)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <summary>
         /// Get a providers
         /// </summary>
         /// <param name='name'>
