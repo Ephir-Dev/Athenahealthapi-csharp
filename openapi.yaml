@@ -858,7 +858,169 @@ components:
           x-ms-client-name: LabResults
           items:
             $ref: "#/components/schemas/PatientLabResultDocument"
+    PatientLabResultDocumentDetails:
+      properties:
+        createddate:
+          type: string
+          description: Date the document was created. Please use createddatetime instead.
+        documentroute:
+          type: string
+          description: >
+            Explains method by which the document was entered into the AthenaNet (INTERFACE (digital), FAX, etc.)
+        resultstatus:
+          type: string
+          description: The status of the result.
+        providerid:
+          type: integer
+          description: Provider ID for this document
+        externalaccessionid:
+          type: string
+          description: The external accession ID for this document. Format depends on the system the ID belongs to.
+        ordertype:
+          type: string
+          description: Order type group name
+        resultnotes:
+          type: string
+          description: Result note on a document.
+        status:
+          type: string
+          description: Status of the document
+        lastmodifieduser:
+          type: string
+          description: The user who last modified this document.
+        externalnoteonly:
+          type: string
+          description: External note for the patient.
+        actionnote:
+          type: string
+          description: The most recent action note for a document
+        providerusername:
+          type: string
+          description: The username of the provider associated with this lab result document.
+        internalaccessionid:
+          type: string
+          description: The internal accession ID for this document. Format depends on the system the ID belongs to.
+        isconfidential:
+          type: boolean
+          description: If true, this result document should not be shown to the patient.
+        createddatetime:
+          type: string
+          description: Date/Time (ISO 8601) the document was created
+        documentsubclass:
+          type: string
+          description: Specific type of document
+        encounterid:
+          type: string
+          description: Encounter ID
+        interpretation:
+          type: string
+          description: The practice entered interpretation of this result.
+        labresultid:
+          type: string
+          description: The primary key for labresult class of documents
+        labresultloinc:
+          type: string
+          description: Laboratory code that identifies the overall result.
+        lastmodifieddatetime:
+          type: string
+          description: Date/time (ISO 8601) the document was last modified
+        notefromlab:
+          type: string
+          description: A note from lab.
+        observations:
+          type: array
+          description: Individual observation details
+          items:
+            $ref: "#/components/schemas/Analyte"
+        priority:
+          type: string
+          description: >
+            Document priority, when available. 1 is high, 2 is normal.
+            Some labs use other numbers or characters that are lab-specific.
+        observationdatetime:
+          type: string
+          description: Date/time (ISO 8601) the observation was taken
+        description:
+          type: string
+          description: Description of the document type
+        alarmdays:
+          type: string
+          description: >
+            The number days, weeks, months, or year until a lab result document will go into followup after being sent to the portal.
+        documentsource:
+          type: string
+          description: Explains where this document originated.
+        reportstatus:
+          type: string
+          description: The status of the report.
+        subject:
+          type: string
+          description: Subject of the document
+        documenttypeid:
+          type: integer
+          description: The ID of the description for this document
+        appointmentid:
+          type: integer
+          description: The appointment ID for this document
+        departmentid:
+          type: string
+          description: Department for the document
+        #interpretationtemplate:
+        #  type: string
+        #  description: The interpretation template added to the imaging result.
+        #pages:
+        #  type: string
+        #  description: An array of image pages associated with this document.
+        assignedto:
+          type: string
+          description: Person the document is assigned to
+        createduser:
+          type: string
+          description: The user who created this document.
+        deleteddatetime:
+          type: string
+          description: Date/time (ISO 8601) the document was deleted
+        observationdate:
+          type: string
+          description: Date/time the observation was taken
+        documentclass:
+          type: string
+          description: Class of document
+        lastmodifieddate:
+          type: string
+          description: Date/time (ISO 8601) the document was last modified
+        encounterdate:
+          type: string
+          description: Date of the encounter associated with this document
+        facilityid:
+          type: integer
+          description: >
+            The ID of the clinical provider associated with this clinical document.
+            Clinical providers are a master list of providers throughout the country.
+            These include providers as well as radiology centers, labs and pharmacies.
+        internalnote:
+          type: string
+          description: The 'Internal Note' attached to this document
+        patientnote:
+          type: string
+          description: A note about this lab result for the patient. This may or may not have been sent to the patient.
+        tietoorderid:
+          type: string
+          description: Order ID of the order this document is tied to, if any
     CreateLabResultDocumentResponse:
+      required:
+        - success
+      properties:
+        labresultid:
+          type: integer
+          format: int32
+        errormessage:
+          type: string
+          description: If the operation failed, this will contain an error message.
+        success:
+          type: boolean
+          description: Returns true/false if the operation was successful.
+    DeleteLabResultDocumentResponse:
       required:
         - success
       properties:
@@ -2858,6 +3020,65 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/patients/{patientId}/documents/labresult/{labResultId}:
+    get:
+      summary: Get information about patient lab result document
+      operationId: getPatientLabResultDocument
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: patientId
+          description: Id of the patient for which get information
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: labResultId
+          description: Id of the lab result
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: showtemplate
+          description: >
+            If true, interpretation template added to the document is also returned.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Details lab result
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PatientLabResultDocumentDetails"
+    delete:
+      summary: Delete single lab result
+      operationId: deleteePatientLabResultDocument
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - in: path
+          name: patientId
+          description: Id of the patient for which get information
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: labResultId
+          description: Id of the lab result
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Details lab result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteLabResultDocumentResponse"
   /{apivariant}/{practiceid}/providers:
     get:
       summary: Get a providers

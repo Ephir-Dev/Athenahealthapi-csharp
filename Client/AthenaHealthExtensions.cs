@@ -698,6 +698,92 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get information about patient lab result document
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='labResultId'>
+            /// Id of the lab result
+            /// </param>
+            /// <param name='showtemplate'>
+            /// If true, interpretation template added to the document is also returned.
+            /// </param>
+            public static IList<PatientLabResultDocumentDetails> GetPatientLabResultDocument(this IAthenaHealth operations, int patientId, int labResultId, bool? showtemplate = default(bool?))
+            {
+                return operations.GetPatientLabResultDocumentAsync(patientId, labResultId, showtemplate).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get information about patient lab result document
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='labResultId'>
+            /// Id of the lab result
+            /// </param>
+            /// <param name='showtemplate'>
+            /// If true, interpretation template added to the document is also returned.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<PatientLabResultDocumentDetails>> GetPatientLabResultDocumentAsync(this IAthenaHealth operations, int patientId, int labResultId, bool? showtemplate = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetPatientLabResultDocumentWithHttpMessagesAsync(patientId, labResultId, showtemplate, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Delete single lab result
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='labResultId'>
+            /// Id of the lab result
+            /// </param>
+            public static DeleteLabResultDocumentResponse DeleteePatientLabResultDocument(this IAthenaHealth operations, int patientId, int labResultId)
+            {
+                return operations.DeleteePatientLabResultDocumentAsync(patientId, labResultId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Delete single lab result
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='patientId'>
+            /// Id of the patient for which get information
+            /// </param>
+            /// <param name='labResultId'>
+            /// Id of the lab result
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<DeleteLabResultDocumentResponse> DeleteePatientLabResultDocumentAsync(this IAthenaHealth operations, int patientId, int labResultId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.DeleteePatientLabResultDocumentWithHttpMessagesAsync(patientId, labResultId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get a providers
             /// </summary>
             /// <param name='operations'>

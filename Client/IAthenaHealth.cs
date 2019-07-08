@@ -380,6 +380,44 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<object>> CreatePatientLabResultDocumentWithHttpMessagesAsync(int patientId, string accessionid = default(string), string analytes = default(string), string attachmentcontents = default(string), string attachmenttype = default(string), string autoclose = default(string), int? departmentid = default(int?), int? documenttypeid = default(int?), int? facilityid = default(int?), string internalnote = default(string), string interpretation = default(string), string observationdate = default(string), string observationtime = default(string), string priority = default(string), int? providerid = default(int?), string reportstatus = default(string), string resultstatus = default(string), string specimenreceiveddatetime = default(string), string specimenreporteddatetime = default(string), int? tietoorderid = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Get information about patient lab result document
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get information
+        /// </param>
+        /// <param name='labResultId'>
+        /// Id of the lab result
+        /// </param>
+        /// <param name='showtemplate'>
+        /// If true, interpretation template added to the document is also
+        /// returned.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<PatientLabResultDocumentDetails>>> GetPatientLabResultDocumentWithHttpMessagesAsync(int patientId, int labResultId, bool? showtemplate = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Delete single lab result
+        /// </summary>
+        /// <param name='patientId'>
+        /// Id of the patient for which get information
+        /// </param>
+        /// <param name='labResultId'>
+        /// Id of the lab result
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<DeleteLabResultDocumentResponse>> DeleteePatientLabResultDocumentWithHttpMessagesAsync(int patientId, int labResultId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get a providers
         /// </summary>
         /// <param name='name'>
