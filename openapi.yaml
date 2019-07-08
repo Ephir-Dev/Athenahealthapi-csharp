@@ -773,7 +773,7 @@ components:
           type: integer
         documentsource:
           description: Explains where this document originated.
-          type: integer
+          type: string
         documenttypeid:
           description: The ID of the description for this document
           type: integer
