@@ -2948,6 +2948,40 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Get encounter by id.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            public static IList<EncounterInformation> GetEncounter(this IAthenaHealth operations, int encounterid)
+            {
+                return operations.GetEncounterAsync(encounterid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Get encounter by id.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<EncounterInformation>> GetEncounterAsync(this IAthenaHealth operations, int encounterid, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetEncounterWithHttpMessagesAsync(encounterid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Get encounters for the speicic patient.
             /// </summary>
             /// <param name='operations'>

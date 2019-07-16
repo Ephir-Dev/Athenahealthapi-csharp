@@ -214,7 +214,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.InclusiveMaximum, "limit", 5000);
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -224,7 +223,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("limit", limit);
                 tracingParameters.Add("offset", offset);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPracticeInfo", tracingParameters);
             }
@@ -241,10 +239,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (offset != null)
             {
                 _queryParameters.Add(string.Format("offset={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(offset, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -395,7 +389,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.InclusiveMaximum, "limit", 5000);
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -408,7 +401,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("hospitalonly", hospitalonly);
                 tracingParameters.Add("showalldepartments", showalldepartments);
                 tracingParameters.Add("providerlist", providerlist);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetDepartments", tracingParameters);
             }
@@ -437,10 +429,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (providerlist != null)
             {
                 _queryParameters.Add(string.Format("providerlist={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(providerlist, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -579,7 +567,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -590,7 +577,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("departmentid", departmentid);
                 tracingParameters.Add("firstname", firstname);
                 tracingParameters.Add("lastname", lastname);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatients", tracingParameters);
             }
@@ -611,10 +597,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (lastname != null)
             {
                 _queryParameters.Add(string.Format("lastname={0}", System.Uri.EscapeDataString(lastname)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -803,7 +785,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -825,7 +806,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("zip", zip);
                 tracingParameters.Add("sex", sex);
                 tracingParameters.Add("race", race);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreatePatient", tracingParameters);
             }
@@ -834,15 +814,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/patients").ToString();
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -1106,7 +1077,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -1126,7 +1096,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showinsurance", showinsurance);
                 tracingParameters.Add("showlocalpatientid", showlocalpatientid);
                 tracingParameters.Add("showportalstatus", showportalstatus);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientById", tracingParameters);
             }
@@ -1180,10 +1149,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showportalstatus != null)
             {
                 _queryParameters.Add(string.Format("showportalstatus={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showportalstatus, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1309,7 +1274,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -1318,7 +1282,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("patientId", patientId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientCcdaRecord", tracingParameters);
             }
@@ -1328,15 +1291,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -1475,7 +1429,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -1490,7 +1443,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showdeleted", showdeleted);
                 tracingParameters.Add("showtemplate", showtemplate);
                 tracingParameters.Add("status", status);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientLabResultDocuments", tracingParameters);
             }
@@ -1524,10 +1476,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (status != null)
             {
                 _queryParameters.Add(string.Format("status={0}", System.Uri.EscapeDataString(status)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -1719,7 +1667,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -1747,7 +1694,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("specimenreporteddatetime", specimenreporteddatetime);
                 tracingParameters.Add("tietoorderid", tietoorderid);
                 tracingParameters.Add("patientId", patientId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreatePatientLabResultDocument", tracingParameters);
             }
@@ -1757,15 +1703,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -2014,7 +1951,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -2025,7 +1961,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("patientId", patientId);
                 tracingParameters.Add("labResultId", labResultId);
                 tracingParameters.Add("showtemplate", showtemplate);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientLabResultDocument", tracingParameters);
             }
@@ -2040,10 +1975,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showtemplate != null)
             {
                 _queryParameters.Add(string.Format("showtemplate={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showtemplate, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -2172,7 +2103,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -2182,7 +2112,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("patientId", patientId);
                 tracingParameters.Add("labResultId", labResultId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "DeleteePatientLabResultDocument", tracingParameters);
             }
@@ -2193,15 +2122,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
             _url = _url.Replace("{labResultId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(labResultId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -2346,7 +2266,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -2358,7 +2277,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("providertype", providertype);
                 tracingParameters.Add("showallproviderids", showallproviderids);
                 tracingParameters.Add("showusualdepartmentguessthreshold", showusualdepartmentguessthreshold);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetProviders", tracingParameters);
             }
@@ -2383,10 +2301,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showusualdepartmentguessthreshold != null)
             {
                 _queryParameters.Add(string.Format("showusualdepartmentguessthreshold={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showusualdepartmentguessthreshold, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -2623,7 +2537,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -2666,7 +2579,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("supervisingprovidertype", supervisingprovidertype);
                 tracingParameters.Add("trackmissingslips", trackmissingslips);
                 tracingParameters.Add("username", username);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreateProvider", tracingParameters);
             }
@@ -2675,15 +2587,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/providers").ToString();
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -2995,7 +2898,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3007,7 +2909,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showallproviderids", showallproviderids);
                 tracingParameters.Add("showfederalidnumber", showfederalidnumber);
                 tracingParameters.Add("showusualdepartmentguessthreshold", showusualdepartmentguessthreshold);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetProviderById", tracingParameters);
             }
@@ -3029,10 +2930,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showusualdepartmentguessthreshold != null)
             {
                 _queryParameters.Add(string.Format("showusualdepartmentguessthreshold={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showusualdepartmentguessthreshold, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -3181,7 +3078,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3196,7 +3092,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showexpectedprocedurecodes", showexpectedprocedurecodes);
                 tracingParameters.Add("showinsurance", showinsurance);
                 tracingParameters.Add("showpatientdetail", showpatientdetail);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetAppointmentById", tracingParameters);
             }
@@ -3230,10 +3125,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showpatientdetail != null)
             {
                 _queryParameters.Add(string.Format("showpatientdetail={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showpatientdetail, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -3419,7 +3310,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3444,7 +3334,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("reasonid", reasonid);
                 tracingParameters.Add("urgentyn", urgentyn);
                 tracingParameters.Add("appointmentId", appointmentId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "BookAppointmentById", tracingParameters);
             }
@@ -3454,15 +3343,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{appointmentId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(appointmentId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -3684,7 +3564,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3693,7 +3572,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("appointmentId", appointmentId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "DeleteAppointmentById", tracingParameters);
             }
@@ -3703,15 +3581,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{appointmentId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(appointmentId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -3854,7 +3723,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -3869,7 +3737,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("ignoreschedulablepermission", ignoreschedulablepermission);
                 tracingParameters.Add("nopatientcase", nopatientcase);
                 tracingParameters.Add("appointmentId", appointmentId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CancelAppointmentById", tracingParameters);
             }
@@ -3879,15 +3746,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{appointmentId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(appointmentId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -4134,7 +3992,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -4161,7 +4018,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showremindercalldetail", showremindercalldetail);
                 tracingParameters.Add("startdate", startdate);
                 tracingParameters.Add("startlastmodified", startlastmodified);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetBookedAppointments", tracingParameters);
             }
@@ -4246,10 +4102,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (startlastmodified != null)
             {
                 _queryParameters.Add(string.Format("startlastmodified={0}", System.Uri.EscapeDataString(startlastmodified)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -4442,7 +4294,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -4469,7 +4320,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showremindercalldetail", showremindercalldetail);
                 tracingParameters.Add("startdate", startdate);
                 tracingParameters.Add("startlastmodified", startlastmodified);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetBookedAppointmentsFromMultipleDepartments", tracingParameters);
             }
@@ -4554,10 +4404,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (startlastmodified != null)
             {
                 _queryParameters.Add(string.Format("startlastmodified={0}", System.Uri.EscapeDataString(startlastmodified)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -4736,7 +4582,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -4753,7 +4598,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("reasonid", reasonid);
                 tracingParameters.Add("showfrozenslots", showfrozenslots);
                 tracingParameters.Add("startdate", startdate);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetOpenAppointments", tracingParameters);
             }
@@ -4798,10 +4642,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (startdate != null)
             {
                 _queryParameters.Add(string.Format("startdate={0}", System.Uri.EscapeDataString(startdate)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -4954,7 +4794,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -4968,7 +4807,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("departmentid", departmentid);
                 tracingParameters.Add("providerid", providerid);
                 tracingParameters.Add("reasonid", reasonid);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "OpenNewAppointment", tracingParameters);
             }
@@ -4977,15 +4815,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/appointments/open").ToString();
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -5180,7 +5009,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -5192,7 +5020,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("hidenongeneric", hidenongeneric);
                 tracingParameters.Add("hidenonpatient", hidenonpatient);
                 tracingParameters.Add("hidetemplatetypeonly", hidetemplatetypeonly);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetAppointmentTypes", tracingParameters);
             }
@@ -5217,10 +5044,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (hidetemplatetypeonly != null)
             {
                 _queryParameters.Add(string.Format("hidetemplatetypeonly={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(hidetemplatetypeonly, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -5392,7 +5215,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -5406,7 +5228,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("patient", patient);
                 tracingParameters.Add("shortname", shortname);
                 tracingParameters.Add("templatetypeonly", templatetypeonly);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreateAppointmentType", tracingParameters);
             }
@@ -5415,15 +5236,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/appointmenttypes").ToString();
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -5620,7 +5432,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -5634,7 +5445,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showndc", showndc);
                 tracingParameters.Add("showpend", showpend);
                 tracingParameters.Add("showrxnorm", showrxnorm);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientMedications", tracingParameters);
             }
@@ -5661,10 +5471,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showrxnorm != null)
             {
                 _queryParameters.Add(string.Format("showrxnorm={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showrxnorm, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -5800,7 +5606,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -5810,7 +5615,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("patientId", patientId);
                 tracingParameters.Add("departmentid", departmentid);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientMedicalHistory", tracingParameters);
             }
@@ -5822,10 +5626,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("departmentid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(departmentid, SerializationSettings).Trim('"'))));
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
             if (_queryParameters.Count > 0)
             {
                 _url += "?" + string.Join("&", _queryParameters);
@@ -5994,7 +5794,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -6012,7 +5811,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showhidden", showhidden);
                 tracingParameters.Add("showtemplate", showtemplate);
                 tracingParameters.Add("startdate", startdate);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientAnalytes", tracingParameters);
             }
@@ -6055,10 +5853,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (startdate != null)
             {
                 _queryParameters.Add(string.Format("startdate={0}", System.Uri.EscapeDataString(startdate)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -6228,7 +6022,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -6246,7 +6039,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showhidden", showhidden);
                 tracingParameters.Add("showtemplate", showtemplate);
                 tracingParameters.Add("startdate", startdate);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientLabResults", tracingParameters);
             }
@@ -6289,10 +6081,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (startdate != null)
             {
                 _queryParameters.Add(string.Format("startdate={0}", System.Uri.EscapeDataString(startdate)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -6438,7 +6226,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -6451,7 +6238,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("enddate", enddate);
                 tracingParameters.Add("showemptyvitals", showemptyvitals);
                 tracingParameters.Add("startdate", startdate);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientVitals", tracingParameters);
             }
@@ -6474,10 +6260,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (startdate != null)
             {
                 _queryParameters.Add(string.Format("startdate={0}", System.Uri.EscapeDataString(startdate)));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -6624,7 +6406,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -6636,7 +6417,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("departmentid", departmentid);
                 tracingParameters.Add("showdiagnosisinfo", showdiagnosisinfo);
                 tracingParameters.Add("showinactive", showinactive);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientProblems", tracingParameters);
             }
@@ -6655,10 +6435,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showinactive != null)
             {
                 _queryParameters.Add(string.Format("showinactive={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showinactive, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -6810,7 +6586,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -6825,7 +6600,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("note", note);
                 tracingParameters.Add("laterality", laterality);
                 tracingParameters.Add("patientId", patientId);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "CreatePatientProblem", tracingParameters);
             }
@@ -6835,15 +6609,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
-            List<string> _queryParameters = new List<string>();
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
-            if (_queryParameters.Count > 0)
-            {
-                _url += "?" + string.Join("&", _queryParameters);
-            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -7012,7 +6777,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -7025,7 +6789,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("recipientcategory", recipientcategory);
                 tracingParameters.Add("shownotperformedquestions", shownotperformedquestions);
                 tracingParameters.Add("showunansweredquestions", showunansweredquestions);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientSocialHistory", tracingParameters);
             }
@@ -7048,10 +6811,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showunansweredquestions != null)
             {
                 _queryParameters.Add(string.Format("showunansweredquestions={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showunansweredquestions, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -7188,7 +6947,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -7198,7 +6956,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("patientId", patientId);
                 tracingParameters.Add("departmentid", departmentid);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientSurgicalHistory", tracingParameters);
             }
@@ -7210,10 +6967,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             _url = _url.Replace("{patientId}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(patientId, SerializationSettings).Trim('"')));
             List<string> _queryParameters = new List<string>();
             _queryParameters.Add(string.Format("departmentid={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(departmentid, SerializationSettings).Trim('"'))));
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
-            }
             if (_queryParameters.Count > 0)
             {
                 _url += "?" + string.Join("&", _queryParameters);
@@ -7372,7 +7125,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -7389,7 +7141,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showallstatuses", showallstatuses);
                 tracingParameters.Add("showalltypes", showalltypes);
                 tracingParameters.Add("showdiagnoses", showdiagnoses);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientEncounters", tracingParameters);
             }
@@ -7428,10 +7179,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showdiagnoses != null)
             {
                 _queryParameters.Add(string.Format("showdiagnoses={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showdiagnoses, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -7532,6 +7279,150 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         }
 
         /// <summary>
+        /// Get encounter by id.
+        /// </summary>
+        /// <param name='encounterid'>
+        /// The encounter ID.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// Headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        /// <exception cref="ErrorException">
+        /// Thrown when the operation returned an invalid status code
+        /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
+        /// <exception cref="ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        /// <return>
+        /// A response object containing the response body and response headers.
+        /// </return>
+        public async Task<HttpOperationResponse<IList<EncounterInformation>>> GetEncounterWithHttpMessagesAsync(int encounterid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (Apivariant == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
+            }
+            // Tracing
+            bool _shouldTrace = ServiceClientTracing.IsEnabled;
+            string _invocationId = null;
+            if (_shouldTrace)
+            {
+                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
+                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
+                tracingParameters.Add("encounterid", encounterid);
+                tracingParameters.Add("cancellationToken", cancellationToken);
+                ServiceClientTracing.Enter(_invocationId, this, "GetEncounter", tracingParameters);
+            }
+            // Construct URL
+            var _baseUrl = BaseUri.AbsoluteUri;
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/chart/encounter/{encounterid}").ToString();
+            _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
+            _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
+            _url = _url.Replace("{encounterid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(encounterid, SerializationSettings).Trim('"')));
+            // Create HTTP transport objects
+            var _httpRequest = new HttpRequestMessage();
+            HttpResponseMessage _httpResponse = null;
+            _httpRequest.Method = new HttpMethod("GET");
+            _httpRequest.RequestUri = new System.Uri(_url);
+            // Set Headers
+
+
+            if (customHeaders != null)
+            {
+                foreach(var _header in customHeaders)
+                {
+                    if (_httpRequest.Headers.Contains(_header.Key))
+                    {
+                        _httpRequest.Headers.Remove(_header.Key);
+                    }
+                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
+                }
+            }
+
+            // Serialize Request
+            string _requestContent = null;
+            // Send Request
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
+            }
+            HttpStatusCode _statusCode = _httpResponse.StatusCode;
+            cancellationToken.ThrowIfCancellationRequested();
+            string _responseContent = null;
+            if ((int)_statusCode != 200)
+            {
+                var ex = new ErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
+                try
+                {
+                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    Error _errorBody =  SafeJsonConvert.DeserializeObject<Error>(_responseContent, DeserializationSettings);
+                    if (_errorBody != null)
+                    {
+                        ex.Body = _errorBody;
+                    }
+                }
+                catch (JsonException)
+                {
+                    // Ignore the exception
+                }
+                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
+                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
+                if (_shouldTrace)
+                {
+                    ServiceClientTracing.Error(_invocationId, ex);
+                }
+                _httpRequest.Dispose();
+                if (_httpResponse != null)
+                {
+                    _httpResponse.Dispose();
+                }
+                throw ex;
+            }
+            // Create Result
+            var _result = new HttpOperationResponse<IList<EncounterInformation>>();
+            _result.Request = _httpRequest;
+            _result.Response = _httpResponse;
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = SafeJsonConvert.DeserializeObject<IList<EncounterInformation>>(_responseContent, DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            if (_shouldTrace)
+            {
+                ServiceClientTracing.Exit(_invocationId, _result);
+            }
+            return _result;
+        }
+
+        /// <summary>
         /// Get encounters for the speicic patient.
         /// </summary>
         /// <param name='encounterid'>
@@ -7579,7 +7470,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -7592,7 +7482,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("showclinicalprovider", showclinicalprovider);
                 tracingParameters.Add("showdeclinedorders", showdeclinedorders);
                 tracingParameters.Add("showexternalcodes", showexternalcodes);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetPatientEncounterOrders", tracingParameters);
             }
@@ -7618,10 +7507,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showexternalcodes != null)
             {
                 _queryParameters.Add(string.Format("showexternalcodes={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showexternalcodes, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {
@@ -7782,7 +7667,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "this.Apivariant");
             }
-            string apiVersion = "1.0.0";
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
             string _invocationId = null;
@@ -7800,7 +7684,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
                 tracingParameters.Add("serviceenddate", serviceenddate);
                 tracingParameters.Add("servicestartdate", servicestartdate);
                 tracingParameters.Add("showcustomfields", showcustomfields);
-                tracingParameters.Add("apiVersion", apiVersion);
                 tracingParameters.Add("cancellationToken", cancellationToken);
                 ServiceClientTracing.Enter(_invocationId, this, "GetClaims", tracingParameters);
             }
@@ -7849,10 +7732,6 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             if (showcustomfields != null)
             {
                 _queryParameters.Add(string.Format("showcustomfields={0}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(showcustomfields, SerializationSettings).Trim('"'))));
-            }
-            if (apiVersion != null)
-            {
-                _queryParameters.Add(string.Format("api-version={0}", System.Uri.EscapeDataString(apiVersion)));
             }
             if (_queryParameters.Count > 0)
             {

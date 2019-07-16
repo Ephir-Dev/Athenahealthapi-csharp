@@ -1467,6 +1467,20 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<IList<EncountersList>>> GetPatientEncountersWithHttpMessagesAsync(int patientId, int departmentid, int? appointmentid = default(int?), int? providerid = default(int?), string enddate = default(string), string startdate = default(string), bool? showallstatuses = default(bool?), bool? showalltypes = default(bool?), bool? showdiagnoses = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Get encounter by id.
+        /// </summary>
+        /// <param name='encounterid'>
+        /// The encounter ID.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<EncounterInformation>>> GetEncounterWithHttpMessagesAsync(int encounterid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get encounters for the speicic patient.
         /// </summary>
         /// <param name='encounterid'>
