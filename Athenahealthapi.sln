@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A25E164C-096C-47B0-B1A1-0F419DFD6D22}"
 	ProjectSection(SolutionItems) = preProject
 		azure-pipelines.yml = azure-pipelines.yml
+		Directory.Build.props = Directory.Build.props
 		openapi.yaml = openapi.yaml
 		README.md = README.md
 	EndProjectSection

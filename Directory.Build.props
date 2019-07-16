@@ -1,0 +1,7 @@
+<Project>
+	<PropertyGroup>
+		<RestoreAdditionalProjectSources>
+		  https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json;
+		</RestoreAdditionalProjectSources>
+	</PropertyGroup>
+</Project>
