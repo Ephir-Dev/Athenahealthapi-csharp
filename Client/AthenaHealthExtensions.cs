@@ -2982,6 +2982,85 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
 
             /// <summary>
+            /// Given an encounter returns the assessment text.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            public static IList<EncounterAssesmentText> GetEncounterAssesmentText(this IAthenaHealth operations, int encounterid)
+            {
+                return operations.GetEncounterAssesmentTextAsync(encounterid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Given an encounter returns the assessment text.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<EncounterAssesmentText>> GetEncounterAssesmentTextAsync(this IAthenaHealth operations, int encounterid, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetEncounterAssesmentTextWithHttpMessagesAsync(encounterid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Append text to the assessment note
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='assessmenttext'>
+            /// The text to be updated to the assessment note.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            /// <param name='replacetext'>
+            /// If true, will replace the existing assessment text with the new one. If
+            /// false, will append to the existing text.
+            /// </param>
+            public static void AddEncounterAssesmentText(this IAthenaHealth operations, string assessmenttext, int encounterid, bool? replacetext = default(bool?))
+            {
+                operations.AddEncounterAssesmentTextAsync(assessmenttext, encounterid, replacetext).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Append text to the assessment note
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='assessmenttext'>
+            /// The text to be updated to the assessment note.
+            /// </param>
+            /// <param name='encounterid'>
+            /// The encounter ID.
+            /// </param>
+            /// <param name='replacetext'>
+            /// If true, will replace the existing assessment text with the new one. If
+            /// false, will append to the existing text.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task AddEncounterAssesmentTextAsync(this IAthenaHealth operations, string assessmenttext, int encounterid, bool? replacetext = default(bool?), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                (await operations.AddEncounterAssesmentTextWithHttpMessagesAsync(assessmenttext, encounterid, replacetext, null, cancellationToken).ConfigureAwait(false)).Dispose();
+            }
+
+            /// <summary>
             /// Get encounters for the speicic patient.
             /// </summary>
             /// <param name='operations'>

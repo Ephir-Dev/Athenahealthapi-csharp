@@ -1481,6 +1481,41 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
         Task<HttpOperationResponse<IList<EncounterInformation>>> GetEncounterWithHttpMessagesAsync(int encounterid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Given an encounter returns the assessment text.
+        /// </summary>
+        /// <param name='encounterid'>
+        /// The encounter ID.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<EncounterAssesmentText>>> GetEncounterAssesmentTextWithHttpMessagesAsync(int encounterid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Append text to the assessment note
+        /// </summary>
+        /// <param name='assessmenttext'>
+        /// The text to be updated to the assessment note.
+        /// </param>
+        /// <param name='encounterid'>
+        /// The encounter ID.
+        /// </param>
+        /// <param name='replacetext'>
+        /// If true, will replace the existing assessment text with the new
+        /// one. If false, will append to the existing text.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse> AddEncounterAssesmentTextWithHttpMessagesAsync(string assessmenttext, int encounterid, bool? replacetext = default(bool?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Get encounters for the speicic patient.
         /// </summary>
         /// <param name='encounterid'>

@@ -1715,6 +1715,96 @@ components:
           x-ms-client-name: Diagnoses
           items:
             $ref: "#/components/schemas/EncounterDiagnosis"
+    EncounterInformation:
+      required:
+        - encounterid
+        - diagnoses
+      properties:
+        encounterid:
+          type: integer
+          format: int32
+          x-ms-client-name: EncounterId
+          description: Athena ID for this encounter
+        diagnoses:
+          type: array
+          x-ms-client-name: Diagnoses
+          items:
+            $ref: "#/components/schemas/PatientEncounterDiagnosis"
+        appointmentid:
+          type: integer
+          format: int32
+          description: Athena appointment ID resulting in this encounter
+        departmentid:
+          type: integer
+          format: int32
+          x-ms-client-name: DepartmentId
+          description: The athena department ID of this encounter
+        encountervisitname:
+          type: string
+          description: The visit name for this encounter
+        encountertype:
+          type: string
+          description: >
+            Type of encounter (FLOWSHEET, ORDERSONLY, VISIT, etc.).
+            By default only VISIT and ORDERSONLY are shown, use INCLUDEALLtypeS flag to see others.
+        status:
+          type: string
+          description: >
+            Status of this encounter (CLOSED, OPEN, PEND).
+            By default only OPEN, CLOSED, and REVIEW statuses are shown, use INCLUDEALLSTATUSES flag to see others.
+        patientlocationid:
+          type: integer
+          description: Athena ID for the patient location
+        patientlocation:
+          type: string
+          description: Patient location
+        patientstatusid:
+          type: integer
+          description: Athena ID for the patient status
+        patientstatus:
+          type: string
+          description: Patient status
+        encounterdate:
+          type: string
+          description: Date when this encounter occured
+        stage:
+          type: string
+          description: Last stage of the encounter
+        providerid:
+          type: integer
+          description: The ID of the provider for this encounter
+        providerfirstname:
+          type: string
+          description: First name of the provider for this encounter
+        providerlastname:
+          type: string
+          description: Last name of the provider for this encounter
+        providerphone:
+          type: string
+          description: Phone number of the provider for this encounter
+        lastupdated:
+          type: string
+          description: The date the encounter was last updated
+    EncounterAssesmentText:
+      required:
+        - lastmodifieddatetime
+        - assessmenttext
+        - lastmodifiedby
+      properties:
+        lastmodifieddatetime:
+          type: string
+          x-ms-client-name: LastModifedDateTime
+          description: The datetime that this text was last updated.
+        assessmenttext:
+          type: string
+          x-ms-client-name: AssessmentText
+          description: >
+            The text of the Assessment / Plan section.
+            Not all practices use this. Some use it extensively with HTML templates.
+        lastmodifiedby:
+          type: string
+          x-ms-client-name: LastModifiedBy
+          description: The username of the user who last updated this text.
     ProviderInformation:
       required:
         - providerid
@@ -4654,6 +4744,96 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/chart/encounter/{encounterid}:
+    get:
+      summary: Get encounter by id.
+      operationId: getEncounter
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: encounterid
+          in: path
+          description: The encounter ID.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: >
+            The list of orders for this encounter, broken down by diagnosis.
+          content:
+            application/json:    
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EncounterInformation"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /{apivariant}/{practiceid}/chart/encounter/{encounterid}/assesment:
+    get:
+      summary: Given an encounter returns the assessment text.
+      operationId: getEncounterAssesmentText
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: encounterid
+          in: path
+          description: The encounter ID.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: >
+            The list of orders for this encounter, broken down by diagnosis.
+          content:
+            application/json:    
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EncounterAssesmentText"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Append text to the assessment note
+      operationId: addEncounterAssesmentText
+      parameters:
+        - $ref: "#/components/parameters/practiceid"
+        - $ref: "#/components/parameters/apivariant"
+        - name: encounterid
+          in: path
+          description: The encounter ID.
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          'application/x-www-form-urlencoded':
+            schema:
+              type: object
+              required:
+                - assessmenttext
+              properties:
+                assessmenttext:
+                  description: The text to be updated to the assessment note.
+                  type: string
+                replacetext:
+                  description: >
+                    If true, will replace the existing assessment text with the new one.
+                    If false, will append to the existing text.
+                  type: boolean
   /{apivariant}/{practiceid}/chart/encounter/{encounterid}/orders:
     get:
       summary: Get encounters for the speicic patient.
