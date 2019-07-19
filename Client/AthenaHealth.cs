@@ -7468,7 +7468,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/chart/encounter/{encounterid}/assesment").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/chart/encounter/{encounterid}/assessment").ToString();
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{encounterid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(encounterid, SerializationSettings).Trim('"')));
@@ -7622,7 +7622,7 @@ namespace AndriiKurdiumov.AuthenaHealth.Client
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/chart/encounter/{encounterid}/assesment").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "{apivariant}/{practiceid}/chart/encounter/{encounterid}/assessment").ToString();
             _url = _url.Replace("{practiceid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(Practiceid, SerializationSettings).Trim('"')));
             _url = _url.Replace("{apivariant}", System.Uri.EscapeDataString(Apivariant));
             _url = _url.Replace("{encounterid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(encounterid, SerializationSettings).Trim('"')));

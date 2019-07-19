@@ -4774,7 +4774,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /{apivariant}/{practiceid}/chart/encounter/{encounterid}/assesment:
+  /{apivariant}/{practiceid}/chart/encounter/{encounterid}/assessment:
     get:
       summary: Given an encounter returns the assessment text.
       operationId: getEncounterAssesmentText
