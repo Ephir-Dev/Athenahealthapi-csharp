@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\AndriiKurdiumov.AthenaHealth.Client.csproj" />
+    <ProjectReference Include="..\Client\AthenaHealth.Client.csproj" />
   </ItemGroup>
 
 </Project>
