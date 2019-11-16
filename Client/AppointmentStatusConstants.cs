@@ -1,4 +1,4 @@
-﻿namespace AndriiKurdiumov.AuthenaHealth.Client
+﻿namespace AthenaHealth.Client
 {
     public static class AppointmentStatusConstants
     {

@@ -10,7 +10,7 @@ use-extension:
 
 input-file: openapi.yaml
 csharp:
-  namespace: AndriiKurdiumov.AuthenaHealth.Client
+  namespace: AthenaHealth.Client
   output-folder: Client
 ```
 

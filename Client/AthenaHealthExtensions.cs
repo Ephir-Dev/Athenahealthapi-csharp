@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace AndriiKurdiumov.AuthenaHealth.Client
+namespace AthenaHealth.Client
 {
     using Models;
     using System.Collections;

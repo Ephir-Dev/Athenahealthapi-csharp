@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace AndriiKurdiumov.AuthenaHealth.Client.Models
+namespace AthenaHealth.Client.Models
 {
     using Newtonsoft.Json;
     using System.Linq;

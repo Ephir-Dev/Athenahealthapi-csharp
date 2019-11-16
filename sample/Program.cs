@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using AndriiKurdiumov.AuthenaHealth.Client;
-using AndriiKurdiumov.AuthenaHealth.Client.Models;
+using AthenaHealth.Client;
+using AthenaHealth.Client.Models;
 using IdentityModel.Client;
 using Microsoft.Rest;
 

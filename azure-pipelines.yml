@@ -25,7 +25,7 @@ steps:
 #- task: NuGetCommand@2
 #  inputs:
 #    command: pack
-#    packagesToPack: '**/AndriiKurdiumov.AuthenaHealth.Client.csproj'
+#    packagesToPack: '**/AthenaHealth.Client.csproj'
 #    versioningScheme: byPrereleaseNumber
 #    majorVersion: '0'
 #    minorVersion: '1'
